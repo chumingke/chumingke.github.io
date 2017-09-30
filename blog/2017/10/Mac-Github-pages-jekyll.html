@@ -90,18 +90,20 @@
 
 
 
-<meta name="description" content="#如何利用Mac+Github pages+jekyll来编写博客 在网上查看了很多步骤，汇总一个笔记，有一些疏漏，之后有机会补充。 目录[TOC] ##第一部分 Github准备  Mac 我用的是air Github jekyll MarkDown  1.首先去Github官网注册账号。2.然后下载GIT。3.然后配置SSH。此时本地git已经成功与Github链接。详细配置链接等请搜索其他教">
+<meta name="description" content="#如何利用Mac+Github pages+jekyll来编写博客 在网上查看了很多步骤，汇总一个笔记，有一些疏漏，之后有机会补充。 ##安装  sudo apt-get install tmux 安装完成后输入tmux进入软件，界面类似一个下方带有状态栏的终端。 ##基本概念   Tmux基于典型的c/s模型，主要分为会话、窗口和面板三个元素：  Session：输入tmux后就创建了一个会话，">
 <meta name="keywords" content="jekyll">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何利用Mac+Github pages+jekyll来编写博客">
 <meta property="og:url" content="https://chumingke.github.io/blog/2017/10/Mac-Github-pages-jekyll.html">
 <meta property="og:site_name" content="chumingke-二师兄">
-<meta property="og:description" content="#如何利用Mac+Github pages+jekyll来编写博客 在网上查看了很多步骤，汇总一个笔记，有一些疏漏，之后有机会补充。 目录[TOC] ##第一部分 Github准备  Mac 我用的是air Github jekyll MarkDown  1.首先去Github官网注册账号。2.然后下载GIT。3.然后配置SSH。此时本地git已经成功与Github链接。详细配置链接等请搜索其他教">
+<meta property="og:description" content="#如何利用Mac+Github pages+jekyll来编写博客 在网上查看了很多步骤，汇总一个笔记，有一些疏漏，之后有机会补充。 ##安装  sudo apt-get install tmux 安装完成后输入tmux进入软件，界面类似一个下方带有状态栏的终端。 ##基本概念   Tmux基于典型的c/s模型，主要分为会话、窗口和面板三个元素：  Session：输入tmux后就创建了一个会话，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-30T21:45:42.000Z">
+<meta property="og:image" content="https://chumingke.github.io/images/images/tmux.jpg">
+<meta property="og:updated_time" content="2017-09-30T21:53:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何利用Mac+Github pages+jekyll来编写博客">
-<meta name="twitter:description" content="#如何利用Mac+Github pages+jekyll来编写博客 在网上查看了很多步骤，汇总一个笔记，有一些疏漏，之后有机会补充。 目录[TOC] ##第一部分 Github准备  Mac 我用的是air Github jekyll MarkDown  1.首先去Github官网注册账号。2.然后下载GIT。3.然后配置SSH。此时本地git已经成功与Github链接。详细配置链接等请搜索其他教">
+<meta name="twitter:description" content="#如何利用Mac+Github pages+jekyll来编写博客 在网上查看了很多步骤，汇总一个笔记，有一些疏漏，之后有机会补充。 ##安装  sudo apt-get install tmux 安装完成后输入tmux进入软件，界面类似一个下方带有状态栏的终端。 ##基本概念   Tmux基于典型的c/s模型，主要分为会话、窗口和面板三个元素：  Session：输入tmux后就创建了一个会话，">
+<meta name="twitter:image" content="https://chumingke.github.io/images/images/tmux.jpg">
 
 
 
@@ -380,6 +382,19 @@
       
         <p>#如何利用Mac+Github pages+jekyll来编写博客</p>
 <p>在网上查看了很多步骤，汇总一个笔记，有一些疏漏，之后有机会补充。</p>
+<p>##安装 </p>
+<pre><code>sudo apt-get install tmux
+</code></pre><p>安装完成后输入tmux进入软件，界面类似一个下方带有状态栏的终端。</p>
+<p>##基本概念</p>
+<p>  Tmux基于典型的c/s模型，主要分为会话、窗口和面板三个元素：</p>
+<ul>
+<li>Session：输入tmux后就创建了一个会话，一个会话是一组窗体的集合。</li>
+<li>Window：会话中一个可见的窗口。</li>
+<li>Pane:一个窗口可以分成多个面板。</li>
+</ul>
+<p><img src="/images/images/tmux.jpg" alt=""></p>
+<p>图中左下角的3显示为当前会话，随后1 vim,2 bash,3 ssh 分别是3个窗口，蓝色bash表示当前窗口，图中用蓝色数字标记的1,2,3分别是bash窗口的三个面板。你还可以在tmux配置文件中给状态栏添加时间、天气等信息。</p>
+<p>##Tmux基本操作</p>
 <h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><p>[TOC]</p>
 <p>##第一部分 Github准备</p>
 <ul>
