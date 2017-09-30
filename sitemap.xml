@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://chumingke.github.io/tags/index.html</loc>
+    <loc>https://chumingke.github.io/blog/2017/10/Mac-Github-pages-jekyll.html</loc>
     
-    <lastmod>2017-09-30T19:46:34.000Z</lastmod>
+    <lastmod>2017-09-30T20:56:59.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://chumingke.github.io/categories/index.html</loc>
     
-    <lastmod>2017-09-30T19:46:04.000Z</lastmod>
+    <lastmod>2017-09-30T20:56:22.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chumingke.github.io/tags/index.html</loc>
+    
+    <lastmod>2017-09-30T20:55:58.000Z</lastmod>
     
   </url>
   
