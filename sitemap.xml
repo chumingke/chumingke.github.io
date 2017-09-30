@@ -2,7 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2017/10/01/hello-world/</loc>
+    <loc>https://chumingke.github.io/tags/index.html</loc>
+    
+    <lastmod>2017-09-30T19:46:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chumingke.github.io/categories/index.html</loc>
+    
+    <lastmod>2017-09-30T19:46:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chumingke.github.io/blog/2017/10/hello-world.html</loc>
     
     <lastmod>2017-09-30T18:56:01.000Z</lastmod>
     
