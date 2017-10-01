@@ -380,36 +380,20 @@
       
         
           
-            <blockquote>
-<p>本来 应该不是很复杂的事情操作了半天，所以还是记下来吧。</p>
-</blockquote>
-<p>[toc]</p>
-<h1 id="准备域名"><a href="#准备域名" class="headerlink" title="准备域名"></a>准备域名</h1><h2 id="购买域名"><a href="#购买域名" class="headerlink" title="购买域名"></a>购买域名</h2><p>首先在阿里云买一个域名，.com的域名一年55，还有1块钱的域名呢。</p>
-<h2 id="实名认证"><a href="#实名认证" class="headerlink" title="实名认证"></a>实名认证</h2><p>买好之后，进行实名认证。这一步我用mac自带浏览器上传身份证照片无数次都失败了，最后换了chrome浏览器才成功。所以假如遇到类似情况，可以考虑换个浏览器试试。认证审核大概需要一段时间。我这边过了大概一个小时就完了。</p>
-<h1 id="创建CNAME文件"><a href="#创建CNAME文件" class="headerlink" title="创建CNAME文件"></a>创建CNAME文件</h1><p>绑定域名网上好像有很几种方法，我们采用创建CNAME的方法</p>
-<p>首先在博客根目录下创建一个CNAME文件。<br>注意：没有后缀，文件名一定要大写。</p>
-<p>在该文件第一行写上你注册的域名，比如我的chumingke.com<br>注意，没有前缀，只是chumingke.com</p>
-<p>然后将该文件同步到Github。因为我用的是Hexo，所以hexo g d就可以了。(此处我将CNAME文件放在source文件夹下，防止被覆盖)</p>
-<blockquote>
-<p>这个文件可以告诉Github Pages服务器你想指定的域名。因此Github读取你的CNAME之后，Github服务器会设置chumingke.com为你的主域名，然后将chumingke.github.io重定向到chumingke.com。</p>
-</blockquote>
-<p>此时点开repository的settings往下拉到GitHub Pages位置可以看到<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Your site <span class="keyword">is</span> <span class="keyword">published</span> at http:<span class="comment">//chumingke.com/</span></div></pre></td></tr></table></figure></p>
-<p>证明配置成功。</p>
-<h1 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h1><blockquote>
-<p>这一步我研究了好久，发现很多教程都不一样。后来终于明白什么情况。主要是DNS设置的不同。<br>一种是默认使用阿里云提供的万网DNS服务器。<br>一种是使用DNSPOD提供的DNS服务器，这样可以使你的域名在国外更快速的传播。<br>我一开始一直以为是同一个东西，所以配置的时候总是有问题。这里把两种方法都写出来。</p>
-</blockquote>
-<h2 id="万网DNS服务器"><a href="#万网DNS服务器" class="headerlink" title="万网DNS服务器"></a>万网DNS服务器</h2><p>使用默认服务器就不用修改DNS啦，简单一些。</p>
-<h3 id="添加域名解析"><a href="#添加域名解析" class="headerlink" title="添加域名解析"></a>添加域名解析</h3><p>首先登录阿里云，点击控制台，最左侧有个域名与网站，下拉菜单里有个域名，点击之后就可以看到我们注册的域名了。<br>这时看看域名状态是不是已经正常，或者还在审核。如果是还在审核那设置也是无效的。<br>我们等状态显示正常后。点击该域名-域名解析。<br>然后添加三条解析。<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>，设置主机记录www，记录类型为A，记录值是IP192<span class="meta">.30</span><span class="meta">.252</span><span class="meta">.153</span>。</div><div class="line">其中<span class="number">192.30</span><span class="meta">.252</span><span class="meta">.153</span>是Github Pages服务器指定的<span class="built_in">IP</span>地址，访问该<span class="built_in">IP</span>地址即表示访问Github Pages。</div><div class="line"><span class="number">2</span>，设置主机记录www，记录类型为A，记录值是IP192<span class="meta">.30</span><span class="meta">.252</span><span class="meta">.154</span>。同上。</div><div class="line"><span class="number">3</span>，设置主机记录@，记录类型为CNAME，记录值是chumingke.github.io.。表示将http://chumingke.com这个主域名映射yuanzb.github.io。</div><div class="line">注意在这里千万不要忘记记录值中.io后面还有一个点.！</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>这一步是告诉所有DNS服务器，对于chumingke.com的访问都会被重定向到chumingke.github.io<br>这里如果记录类型为A，后面对应的是IP地址，如果是CNAME，后面是网址。<br>很多人在这一步都会出添加失败提示已经有@或者www的记录，这个时候看好。是不是类型跟之前重复了。重复的删掉。</p>
-</blockquote>
-<p>添加成功后，就完成设置了，一般要等10分钟以上，再打开www.chumingke.com看看效果（这里是你自己的域名）。<br>网上有其他教程通过其他解析方式完成。原理应该是类似的。</p>
-<h2 id="DNSPOD服务器"><a href="#DNSPOD服务器" class="headerlink" title="DNSPOD服务器"></a>DNSPOD服务器</h2><p>当你使用DNSPOD提供的DNS服务器时，除了DNS服务器不一样以外，其他的设置（比如A记录和CNAME记录）均相同。</p>
-<h3 id="修改DNS服务器"><a href="#修改DNS服务器" class="headerlink" title="修改DNS服务器"></a>修改DNS服务器</h3><p>点击域名后进入域名控制台，在基本管理下面，左侧边栏。选择DNS修改，将两个DNS服务器地址改为<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">f1g1ns1<span class="selector-class">.dnspod</span><span class="selector-class">.net</span></div><div class="line">f1g1ns2<span class="selector-class">.dnspod</span><span class="selector-class">.net</span></div></pre></td></tr></table></figure></p>
-<h3 id="添加记录"><a href="#添加记录" class="headerlink" title="添加记录"></a>添加记录</h3><p>注册DNSpod，然后添加域名，添加记录即可（添加记录操作同上面添加解析类似）。</p>
-<p>修改完成后等10分钟左右，就可以检验成果啦。</p>
-
           
+本来 应该不是很复杂的事情操作了半天，所以还是记下来吧。
+
+[toc]
+准备域名购买域名首先在阿里云买一个域名，.com的域名一年55，还有1块钱的域名呢。
+实名认证买好之后，进行实名认证。这一步我用mac自带浏览器上传身份证照片无数次都失败了，最后换了chrome浏览器才成功。所以假如遇到类似情
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2017/10/how-to-bind-Alibaba-Cloud-domain-name.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -562,64 +546,19 @@
       
         
           
-            <blockquote>
-<p>实际上我是先用jekyll搭建博客的。后来发现没有找到好看的主题，看到大神用的hexo的主题，感觉很好看，所以尝试了用hexo来搭建博客，如果有需要用jekyll搭建的，可以参考<a href="https://chumingke.github.io/blog/2017/10/Mac-Github-pages-jekyll.html">如何利用Mac+Github pages+jekyll来编写博客</a>。</p>
-</blockquote>
-<p>[toc]</p>
-<h1 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h1><p>安装环境：Node.js和Git。首先我们要安装这两个东西。</p>
-<blockquote>
-<p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
-<h2 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h2><p>直接点击<a href="https://nodejs.org/en/" target="_blank" rel="external">官网</a>下载安装。</p>
-<h2 id="安装GIT"><a href="#安装GIT" class="headerlink" title="安装GIT"></a>安装GIT</h2><p>这个不多说了，还是github创建主页那一套，其他教程很多。</p>
-<h2 id="安装hexo-1"><a href="#安装hexo-1" class="headerlink" title="安装hexo"></a>安装hexo</h2><h3 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 如遇权限问题在命令前加sudo</span></span></div><div class="line">mkdir hexo  #创建一个文件夹</div><div class="line">cd hexo</div><div class="line">npm install -g hexo-cli</div><div class="line">npm install hexo --save</div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#部署Hexo：在Git shell 中输入</span></span></div><div class="line">hexo init</div></pre></td></tr></table></figure>
-</blockquote>
-<p>这一步网上不同教程有不同做法。因为我是fork自大神EZLippi的主题。所以上面是这么写的。实际上我是看着几个教程做的。因为在我输入npm install -g hexo-cli后hexo里面已经有文件了，输入hexo无效了。然后也试了一开始hexo init blog命令。发现直接初始化的时候东西都安装好了。不过我理解大概意思是，首先建一个文件夹可以放hexo的配置文件。然后初始化，然后安装配置文件就可以了。</p>
-<p>新建完成后，blog文件夹的目录如下:<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">_config<span class="selector-class">.yml</span>    <span class="comment">// 站点的配置信息</span></div><div class="line">package<span class="selector-class">.json</span>   <span class="comment">// 应用程序的信息</span></div><div class="line">scanffolds     <span class="comment">// 模板文件夹</span></div><div class="line">source         <span class="comment">// 存放用户资源的文件夹</span></div><div class="line">themes         <span class="comment">// 主题文件夹，Hexo会根据主题生成静态页面</span></div></pre></td></tr></table></figure></p>
-<p>这个时候基本上就安装好啦。</p>
-<h3 id="安装Hexo-插件"><a href="#安装Hexo-插件" class="headerlink" title="安装Hexo 插件"></a>安装Hexo 插件</h3><p>自动生成sitemap,Rss，部署到git等，建议安装<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">npm <span class="keyword">install</span> hexo-generator-<span class="keyword">index</span> <span class="comment">--save</span></div><div class="line">npm <span class="keyword">install</span> hexo-generator-<span class="keyword">archive</span> <span class="comment">--save</span></div><div class="line">npm <span class="keyword">install</span> hexo-generator-<span class="keyword">category</span> <span class="comment">--save</span></div><div class="line">npm <span class="keyword">install</span> hexo-generator-tag <span class="comment">--save</span></div><div class="line">npm <span class="keyword">install</span> hexo-<span class="keyword">server</span> <span class="comment">--save</span></div><div class="line">npm <span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></div><div class="line">npm <span class="keyword">install</span> hexo-deployer-heroku <span class="comment">--save</span></div><div class="line">npm <span class="keyword">install</span> hexo-deployer-rsync <span class="comment">--save</span></div><div class="line">npm <span class="keyword">install</span> hexo-deployer-openshift <span class="comment">--save</span></div><div class="line">npm <span class="keyword">install</span> hexo-renderer-marked@<span class="number">0.2</span> <span class="comment">--save</span></div><div class="line">npm <span class="keyword">install</span> hexo-renderer-stylus@<span class="number">0.2</span> <span class="comment">--save</span></div><div class="line">npm <span class="keyword">install</span> hexo-generator-feed@<span class="number">1</span> <span class="comment">--save</span></div><div class="line">npm <span class="keyword">install</span> hexo-generator-sitemap@<span class="number">1</span> <span class="comment">--save</span></div></pre></td></tr></table></figure></p>
-<h2 id="本地浏览"><a href="#本地浏览" class="headerlink" title="本地浏览"></a>本地浏览</h2><p>启动本地服务器：<br><figure class="highlight axapta"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo <span class="keyword">server</span></div></pre></td></tr></table></figure></p>
-<p>此时打开网址<a href="http://localhost:4000，正常来讲就可以看到地平线的那个主题了。我这边没有出现，可能是之前设置的jekyll的原因？不过这边暂时不用所以不影响。" target="_blank" rel="external">http://localhost:4000，正常来讲就可以看到地平线的那个主题了。我这边没有出现，可能是之前设置的jekyll的原因？不过这边暂时不用所以不影响。</a></p>
-<h1 id="部署Git"><a href="#部署Git" class="headerlink" title="部署Git"></a>部署Git</h1><p>github账号这个不多说了。这里我们要有一个类似username.github.io的repository。配置好SSH。详细参考其他教程。<br>此时我们需要配置_config.yml文件。<br>终端里cd到hexo文件夹下，编辑_config.yml，滑到最底部，将deploy里的内容改为如下:<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">deploy</span>:</div><div class="line">	<span class="attribute">type</span>: git</div><div class="line">	<span class="attribute">repository</span>: git<span class="variable">@github</span>.<span class="attribute">com</span>:chumingke/chumingke.github.io.git(这个具体看自己Clone with SSH的地址)</div><div class="line">	<span class="attribute">branch</span>: master</div></pre></td></tr></table></figure></p>
-<h1 id="使用hexo"><a href="#使用hexo" class="headerlink" title="使用hexo"></a>使用hexo</h1><p>执行如下命令生成静态页面<br><figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo <span class="keyword">generate</span></div></pre></td></tr></table></figure></p>
-<p>然后执行部署命令<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">hexo deploy</span></div></pre></td></tr></table></figure></p>
-<p>这两个命令执行完看到Github上文件修改了。等大概不到一分钟打开<a href="https://username.github.io/（你自己起的名字）就可以看到主页啦。" target="_blank" rel="external">https://username.github.io/（你自己起的名字）就可以看到主页啦。</a></p>
-<p>实际上这两个命令是每次提交都要用的。后面会提到。</p>
-<h1 id="安装NexT主题"><a href="#安装NexT主题" class="headerlink" title="安装NexT主题"></a>安装NexT主题</h1><p>这里安装的是NexT主题，详细请参考<a href="http://theme-next.iissnan.com" target="_blank" rel="external">NexT使用文档</a>。<br>下载主题：<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cd</span> hexo目录</div><div class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/iissnan/hexo-theme-<span class="keyword">next</span> themes/<span class="keyword">next</span></div></pre></td></tr></table></figure></p>
-<p>你会发现在themes文件夹中多了一个next文件夹。这就是我们下载的主题。</p>
-<h1 id="修改-config-yml中配置信息"><a href="#修改-config-yml中配置信息" class="headerlink" title="修改_config.yml中配置信息"></a>修改_config.yml中配置信息</h1><blockquote>
-<p>需要注意的是，hexo文件夹下会包含两个_config.yml，一个位于站点根目录下，也就是刚才创建的hexo目录下，主要包含Hexo本身的配置；另一个位于主题目录下，主要用于配置主题相关的选项。</p>
-</blockquote>
-<p>由于刚才我们下载了NexT主题，要是想用的话还需要修改下下_config.yml。</p>
-<h2 id="修改站点目录下的-config-yml"><a href="#修改站点目录下的-config-yml" class="headerlink" title="修改站点目录下的_config.yml"></a>修改站点目录下的_config.yml</h2><p>编辑hexo目录下的_config.yml，找到theme字段，修改为<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">theme: <span class="keyword">next</span></div></pre></td></tr></table></figure></p>
-<p>注意，冒号后有空格！！！<br>其他可以修改的<br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># Site</span></div><div class="line"><span class="built_in">title</span>: WalkStep's Blog                   <span class="comment">// 站点标题</span></div><div class="line">subtitle:                                <span class="comment">// 站点副标题</span></div><div class="line">description: First, crawl. Then, walk!   <span class="comment">// 站点描述</span></div><div class="line">author: WalkStep                         <span class="comment">// 你的名字</span></div><div class="line">language: zh-Hans                        <span class="comment">// 站点语言</span></div><div class="line">timezone:                                <span class="comment">// 站点时区</span></div><div class="line">avatar: /uploads/avatar.png              <span class="comment">// 头像</span></div><div class="line"><span class="meta">##等等其他不一一赘述</span></div></pre></td></tr></table></figure></p>
-<h2 id="修改主题目录下的-config-yml"><a href="#修改主题目录下的-config-yml" class="headerlink" title="修改主题目录下的_config.yml"></a>修改主题目录下的_config.yml</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">menu:</div><div class="line">  home: /</div><div class="line">  categories: /categories</div><div class="line">  about: /about</div><div class="line">  archives: /archives</div><div class="line">  tags: /tags</div><div class="line"><span class="meta">  #</span><span class="bash">commonweal: /404.html</span></div><div class="line"><span class="meta">  #</span><span class="bash"><span class="comment"># 等等不一一赘述</span></span></div><div class="line"><span class="meta">  #</span><span class="bash"><span class="comment"># menu用来设置菜单，我这个地方设置了5个菜单选项，分别是首页、       </span></span></div><div class="line"><span class="meta">  #</span><span class="bash"><span class="comment"># 分类、关于、归档和标签，不让显示的菜单选项可以用#注释掉</span></span></div></pre></td></tr></table></figure>
-<p>这个位置也有很多选项，其中比如常用的要设置tags，categories等一定要在这里配置好，不然后面显示不出来的。</p>
-<h1 id="其他配置项"><a href="#其他配置项" class="headerlink" title="其他配置项"></a>其他配置项</h1><h2 id="添加标签tags页面"><a href="#添加标签tags页面" class="headerlink" title="添加标签tags页面"></a>添加标签tags页面</h2><p>定位到 Hexo 站点目录下，使用 hexo new page 新建一个页面，命名为 tags，布局格式为page：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd hexo目录</div><div class="line">hexo new<span class="built_in"> page </span>tags</div></pre></td></tr></table></figure></p>
-<p>这时会在source文件夹下建一个tags文件夹。修改里面的index.md<br>修改为：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="attr">title:</span> <span class="string">标签</span>            <span class="comment">##这个位置我试了好像中英文都可以</span></div><div class="line"><span class="attr">date:</span> <span class="number">2014</span><span class="bullet">-12</span><span class="bullet">-22</span> <span class="number">12</span><span class="string">:39:04</span></div><div class="line"><span class="attr">type:</span> <span class="string">"tags"</span></div><div class="line"><span class="attr">comments:</span> <span class="literal">false</span>       </div><div class="line"><span class="comment">##如果要关闭tags页面的评论可以设置comments为false，因为如果设置多说评论的话会在每个页面都设置评论，所以需要关闭。</span></div><div class="line"><span class="meta">---</span></div></pre></td></tr></table></figure></p>
-<p>这样以后tags页面在每次执行hexo generate后自动更新。</p>
-<h2 id="添加分类categories页面"><a href="#添加分类categories页面" class="headerlink" title="添加分类categories页面"></a>添加分类categories页面</h2><p>跟上面标签一样，执行<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new<span class="built_in"> page </span>categories</div></pre></td></tr></table></figure></p>
-<p>内容为：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="attr">title:</span> <span class="string">分类</span></div><div class="line"><span class="attr">date:</span> <span class="number">2014</span><span class="bullet">-12</span><span class="bullet">-22</span> <span class="number">12</span><span class="string">:39:04</span></div><div class="line"><span class="attr">type:</span> <span class="string">"categories"</span></div><div class="line"><span class="attr">comments:</span> <span class="literal">false</span></div><div class="line"><span class="meta">---</span></div></pre></td></tr></table></figure></p>
-<h2 id="修改post"><a href="#修改post" class="headerlink" title="修改post"></a>修改post</h2><blockquote>
-<p>之前我们添加了tags，categories。但是这时候即便我们写好博客分类也不会显示tags，categories。查了半天原来post的问题。<br>因为我们创建博客用的命令是<strong>hexo new [layout] “postName”</strong>其中layout是可选项，默认不填的话是post。<br>有哪些layout呢，请到<strong>scaffolds</strong>目录下查看，这些文件名称就是layout名称。当然你可以添加自己的layout，方法就是添加一个文件即可，同时你也可以编辑现有的layout，比如post的layout默认是hexo\scaffolds\post.md<br>找到post<br>没有修改之前是这样的<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attr">title:</span> <span class="string">&#123;</span> <span class="string">&#123;</span> <span class="string">title</span> <span class="string">&#125;</span> <span class="string">&#125;</span></div><div class="line"><span class="attr">date:</span> <span class="string">&#123;</span> <span class="string">&#123;</span> <span class="string">date</span> <span class="string">&#125;</span> <span class="string">&#125;</span></div><div class="line"><span class="attr">tags:</span></div><div class="line"><span class="meta">---</span></div></pre></td></tr></table></figure></p>
-</blockquote>
-<p>修改为<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">---</span></div><div class="line"><span class="attr">title:</span> <span class="string">&#123;&#123;</span> <span class="string">title</span> <span class="string">&#125;&#125;</span></div><div class="line"><span class="attr">date:</span> <span class="string">&#123;&#123;</span> <span class="string">date</span> <span class="string">&#125;&#125;</span></div><div class="line"><span class="attr">categories:</span> <span class="string">&#123;&#123;</span> <span class="string">categories</span> <span class="string">&#125;&#125;</span></div><div class="line"><span class="attr">tags:</span> <span class="string">&#123;&#123;</span> <span class="string">tags</span> <span class="string">&#125;&#125;</span></div><div class="line"><span class="meta">---</span></div></pre></td></tr></table></figure></p>
-<p>如果还设置了其他的页面，同样添加进去。</p>
-<blockquote>
-<p><strong>这里再严肃提醒，注意冒号及大括号中的空格！！！</strong></p>
-<h2 id="添加404页面"><a href="#添加404页面" class="headerlink" title="添加404页面"></a>添加404页面</h2><p>新建一个404.html文件，放到themes\next\source目录下，内容自己定。</p>
-</blockquote>
-<p>还有很多其他功能，下次有空添加~~</p>
-<h1 id="创建博客"><a href="#创建博客" class="headerlink" title="创建博客"></a>创建博客</h1><h2 id="写文章"><a href="#写文章" class="headerlink" title="写文章"></a>写文章</h2><p>执行new命令，生成指定名称的文章至hexo\source_posts\postName.md。<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo <span class="keyword">new</span> <span class="type"></span>[layout] <span class="string">"postName"</span> <span class="meta">#新建文章</span></div></pre></td></tr></table></figure></p>
-<p>layout的问题前面提到过。<br>这个时候一个新文件被创建好了，进去编辑一下标签。格式类似<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">---</span></div><div class="line"><span class="attr">title:</span> <span class="string">如何利用Mac+Github</span> <span class="string">pages+jekyll来搭建博客</span></div><div class="line"><span class="attr">date:</span> <span class="number">2017</span><span class="bullet">-10</span><span class="bullet">-01</span> <span class="number">04</span><span class="string">:38:04</span></div><div class="line"><span class="attr">categories:</span> <span class="string">[jekyll]</span></div><div class="line"><span class="attr">tags:</span> <span class="string">[jekyll]</span></div><div class="line"><span class="meta">---</span></div></pre></td></tr></table></figure></p>
-<p>然后可以在下面写博文啦。我是用csdn在线编辑好，然后复制到文件里面。这样本地文件就编辑好啦。</p>
-<h2 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h2><p>在终端里依次执行：<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean  ##清除缓存文件(db.json)和已生成的静态文件 (public)</div><div class="line">hexo generate      ## 生成静态文件，可以简写hexo g</div><div class="line">hexo deploy        ## 部署网点，可以简写hexo d</div></pre></td></tr></table></figure></p>
-<p>如果想现在本地看看效果，执行<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s    ## 启动本地服务器</div></pre></td></tr></table></figure></p>
-<p>打开网址<a href="http://localhost:4000，你就可以看到你写的文章了" target="_blank" rel="external">http://localhost:4000，你就可以看到你写的文章了</a></p>
-<p>然后等一会打开<a href="https://username.github.io/（你自己起的名字）就可以看到上传后的博客啦。" target="_blank" rel="external">https://username.github.io/（你自己起的名字）就可以看到上传后的博客啦。</a></p>
-<hr>
-<p>其他文章：<br><a href="https://chumingke.github.io/blog/2017/10/Mac-Github-pages-jekyll.html">如何利用Mac+Github pages+jekyll来编写博客</a></p>
-
           
+实际上我是先用jekyll搭建博客的。后来发现没有找到好看的主题，看到大神用的hexo的主题，感觉很好看，所以尝试了用hexo来搭建博客，如果有需要用jekyll搭建的，可以参考如何利用Mac+Github pages+jekyll来编写博客。
+
+[toc]
+安装hexo安装环境：Node.js和
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2017/10/Mac-github-pages-hexo.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -772,59 +711,22 @@
       
         
           
-            <p>在网上查看了很多步骤，汇总一个笔记，有一些疏漏，之后有机会补充。实际上当我写完这个博客后，又去用hexo来编写博客了。所以有需要请看hexo的教程。</p>
-<h1 id="第一部分-Github准备"><a href="#第一部分-Github准备" class="headerlink" title="第一部分 Github准备"></a>第一部分 Github准备</h1><ul>
-<li>Mac 我用的是air</li>
-<li>Github</li>
-<li>jekyll</li>
-<li>MarkDown</li>
-</ul>
-<p>1.首先去Github官网注册账号。<br>2.然后下载GIT。<br>3.然后配置SSH。<br>此时本地git已经成功与Github链接。<br>详细配置链接等请搜索其他教程。有很多教程，此处略过。</p>
-<h1 id="第二部分-jekyll准备"><a href="#第二部分-jekyll准备" class="headerlink" title="第二部分 jekyll准备"></a>第二部分 jekyll准备</h1><p>首先大概说下<br>安装jekyll需要的环境支持有Ruby，Gem（Gem是Ruby第三方插件管理器）。这两个东西都是Mac自带的。<br>但是如果Ruby、gem版本太低。就无法正常安装。更新这两个东西需要链接到ruby的源地址。但是由于墙的原因下载会很慢甚至失败。解决办法是更改到淘宝的源地址。<br>因此我们的操作顺序是先更改源地址，再更新版本，再下载jekyll。</p>
-<p>首先试一下安装jekyll。<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem <span class="keyword">install</span> jekyll</div></pre></td></tr></table></figure></p>
-<p>如果遇到权限问题，则输入以下命令。<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gem <span class="keyword">install</span> jekyll</div></pre></td></tr></table></figure></p>
-<p>如果成功可以略过更新等操作。如果失败请继续。</p>
-<h2 id="更新源地址"><a href="#更新源地址" class="headerlink" title="更新源地址"></a>更新源地址</h2><p>在此之前我们先检查一下版本。如果版本是最新的，那就可以略过下面的操作直接下载jekyll。下面的操作根据需求查看。</p>
-<p>输入以下命令检查gem,ruby版本。<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">gem -v</span></div><div class="line"><span class="attribute">ruby -v</span></div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>写本笔记的时候，gem最新版本为2.6.13，ruby最新版本为2.4。<br>如果版本较低，则需要更新版本。<br>更新版本前我们需要更改以下更新的源。因为墙的原因，如果不更新源下载速度会非常慢甚至失败。（也可以选择翻墙试试）</p>
-</blockquote>
-<p>我们用以下命令将源更改为淘宝源。<br>先检查源地址<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">gem sources -l</span></div></pre></td></tr></table></figure></p>
-<p>然后移除源地址。(加上sudo是为了避免权限问题，也可以直接输命令。如果失败再加上sudo，后面如果有类似问题按同样方法，这里不再赘述)<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gem sources --<span class="built_in">remove</span> http:<span class="comment">//rubygems.org/</span></div></pre></td></tr></table></figure></p>
-<p>添加新地址<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gem sources -<span class="selector-tag">a</span> https:<span class="comment">//gems.ruby-china.org/</span></div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>其中淘宝源的地址更改过。所以如果在网上查过类似问题，看到的地址可能是别的。2017年9月的最新地址为<a href="https://gems.ruby-china.org/。可以访问RubyGems" target="_blank" rel="external">https://gems.ruby-china.org/。可以访问RubyGems</a> 镜像网站<a href="https://ruby.taobao.org来查看最新地址。" target="_blank" rel="external">https://ruby.taobao.org来查看最新地址。</a></p>
-</blockquote>
-<p>此时输入命令检查源地址。如果为<a href="https://gems.ruby-china.org/代表修改成功，可以更新ruby和gem啦。" target="_blank" rel="external">https://gems.ruby-china.org/代表修改成功，可以更新ruby和gem啦。</a></p>
-<h2 id="更新gem-ruby"><a href="#更新gem-ruby" class="headerlink" title="更新gem, ruby"></a>更新gem, ruby</h2><p>输入以下命令更新gem<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 更新Gem(提示权限)</span></span></div><div class="line">gem update --system</div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 检查gem版本</span></span></div><div class="line">gem -v</div></pre></td></tr></table></figure></p>
-<p>此时gem应该更新好了。<br>然后来更新ruby，ruby的更新网上有几种方法。我采用的是先安装rvm，再更新ruby，这样比较方便容易成功。</p>
-<blockquote>
-<p>rvm是Ruby的版本管理器<br>为什么要安装rvm呢，因为rvm可以让你拥有多个版本的Ruby，并且可以在多个版本之间自由切换。</p>
-</blockquote>
-<p>第一步安装rvm<br>输入以下命令<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl -L get.rvm.io | bash -s stable</div><div class="line"><span class="keyword">source</span> ~<span class="regexp">/.rvm/</span>scripts<span class="regexp">/rvm</span></div></pre></td></tr></table></figure></p>
-<p>加载完毕后输入<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">rvm -v</span></div></pre></td></tr></table></figure></p>
-<p>如果能显示版本说明安装成功。</p>
-<p>第二步安装ruby<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#列出ruby可安装的版本信息</span></span></div><div class="line"> rvm list known</div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#安装一个ruby版本</span></span></div><div class="line"> rvm install 2.4.1</div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#如果想设置为默认版本，可以用这条命令来完成</span></span></div><div class="line"> rvm use 2.4.1 --default</div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#查看已安装的ruby</span></span></div><div class="line"> rvm list</div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#卸载一个已安装ruby版本</span></span></div><div class="line"> rvm remove 2.1.4</div></pre></td></tr></table></figure></p>
-<p> 此时，ruby跟gem应该都更新好啦，可以安装jekyll了<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#安装</span></span></div><div class="line">sudo gem install jekyll</div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#检查版本</span></span></div><div class="line">jekyll -v</div></pre></td></tr></table></figure></p>
-<p>能显示版本，就说明安装成功了。</p>
-<h1 id="第三部分-使用jekyll"><a href="#第三部分-使用jekyll" class="headerlink" title="第三部分 使用jekyll"></a>第三部分 使用jekyll</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#使用Jekyll创建你的博客站点</span></span></div><div class="line">jekyll new blog</div></pre></td></tr></table></figure>
-<p>此时会在用户文件夹下创建一个blog文件夹。这个就是用jekyll创建的博客文件夹了。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#开启Jekyll服务</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#进入blog目录,记得一定要进入创建的目录，否则服务无法开启</span></span></div><div class="line">cd blog</div><div class="line">jekyll serve</div></pre></td></tr></table></figure></p>
-<p>上面两个命令是为了开启本地服务，jekyll服务默认端口是4000，开启服务后打开浏览器，输入：<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a> 即可访问。<br>这个页面就是jekyll自动创建的博客页面。<br>可以选择自己写一套，也可以去网站<a href="http://jekyllthemes.org下载一套主题。" target="_blank" rel="external">http://jekyllthemes.org下载一套主题。</a></p>
-<h1 id="第四部分-使用github-pages建立博客"><a href="#第四部分-使用github-pages建立博客" class="headerlink" title="第四部分 使用github pages建立博客"></a>第四部分 使用github pages建立博客</h1><p>基本有两种方法，一种是你的GitHub用户名建立的username.github.io这样的用户&amp;组织页（站），另一种是依附项目的pages。<br>想建立个人博客是用的第一种，形如beiyuu.github.io这样的可访问的站，每个用户名下面只能建立一个。<br>因此我们选择第一种。</p>
-<p>建立一个新的repository，名字的位置填写为<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">usename<span class="selector-class">.github</span><span class="selector-class">.io</span></div></pre></td></tr></table></figure></p>
-<p>（usename替换为自己的用户名）<br>然后进入Settings，拉到下面github pages，点击choose a theme，进去随便选一个模板，点击绿色的select theme。然后就自动生成两个文件。将该项目clone到本地。<br>cd 到仓库目录下执行<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">jekyll serve -B</span></div></pre></td></tr></table></figure></p>
-<p>启动服务后，打开<a href="http://localhost:4000应该跟https://username.com/username.github.io/" target="_blank" rel="external">http://localhost:4000应该跟https://username.com/username.github.io/</a> 访问的应该是一模一样的。启动前确保其他目录下没有jekyll服务<br>通过ps aux|grep jekyll查看进程<br>有的话,用kill -9 进程号 杀掉其他进程。</p>
-<p>这个位置我发现杀不掉其他进程，不清楚为什么，进程号一直在变。。。因为这个操作是为了可以在本地端网页查看编写效果，所以暂时不影响，略过。。。</p>
-<p>然后将之前我们建的blog中的文件替换掉仓库中的文件。<br>到了这里其实就可以修改仓库中相应文件了，比如更换主题之类的。然后上传到Github。<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git status                             <span class="comment">#查看仓库状态</span></div><div class="line">git <span class="keyword">add</span><span class="bash"> --all                          <span class="comment">#添加到暂存区 </span></span></div><div class="line"><span class="bash">git commit -m <span class="string">"提交jekyll默认页面"</span>       <span class="comment">#提交到本地仓库</span></span></div><div class="line"><span class="bash">git push origin master       <span class="comment">#线上的站点是部署在master下面的</span></span></div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>注意，在提交前，请确保_config.yml文件里面下面是这样配置的，因为这个是Github Pages的规定，如果选择了其他的模式，会立即收到编译警告的邮件提醒的。<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">highlighter:</span> rouge</div><div class="line"><span class="symbol">markdown:</span> kramdown</div></pre></td></tr></table></figure></p>
-</blockquote>
-<p>等待大概1-2分钟之后，再次刷新username.github.io，就能看到我们的blog了。</p>
-<h1 id="第五部分-申请个人域名"><a href="#第五部分-申请个人域名" class="headerlink" title="第五部分 申请个人域名"></a>第五部分 申请个人域名</h1><p>这个网上教程也不少，就不多说了。</p>
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>以上就基本上完成了博客的环境配置。<br>然后查资料的时候发现有的说hexo更好，大概的区别是。hexo设置更简单，速度更快。但是必须在本机上使用，如果去一台陌生机器就要重新设置环境。而jekyll可以直接在github修改？反正各有优劣，要选择的话请查清楚~<br>这一套东西研究完之后，发现还是用CSDN写博客方便啊……<br>因为那一套搞完了，真的要写的话还需要配置各种css等前端的东西，其实我不是搞前端的……还是要加强学习呀……</p>
-<p>后来在查找主题的时候发现，jekyll并没有发现很漂亮的主题。反而hexo很好看。所以又去试了试hexo，发现配置好像更简单写。主题也很漂亮。详细过程请看另一篇教程。</p>
+          在网上查看了很多步骤，汇总一个笔记，有一些疏漏，之后有机会补充。实际上当我写完这个博客后，又去用hexo来编写博客了。所以有需要请看hexo的教程。
+第一部分 Github准备
+Mac 我用的是air
+Github
+jekyll
+MarkDown
 
-          
+1.首先去Github官网注册账号。2.然后下载G
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2017/10/Mac-Github-pages-jekyll.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -955,17 +857,15 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2017/10/hello-world.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
