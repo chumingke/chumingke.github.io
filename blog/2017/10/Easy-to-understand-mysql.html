@@ -1,0 +1,943 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Neucha:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="mysql," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="chumingke-二师兄" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本笔记为学习该书所记，便于复习。包含第一、二章笔记。 [TOC] 第一部分 基础篇第1章 mysql的安装与配置MySQL的下载 ：  分为windows平台，Linux平台两种 MySQL的安装MySQL的配置启动和关闭MySQL第2章 SQL基础SQL简介 Structure Query Language(结构化查询语言) (My)SQL使用入门SQL分类DDL—(Data Definitio">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入浅出MySQL笔记（一）">
+<meta property="og:url" content="https://chumingke.github.io/blog/2017/10/Easy-to-understand-mysql.html">
+<meta property="og:site_name" content="chumingke-二师兄">
+<meta property="og:description" content="本笔记为学习该书所记，便于复习。包含第一、二章笔记。 [TOC] 第一部分 基础篇第1章 mysql的安装与配置MySQL的下载 ：  分为windows平台，Linux平台两种 MySQL的安装MySQL的配置启动和关闭MySQL第2章 SQL基础SQL简介 Structure Query Language(结构化查询语言) (My)SQL使用入门SQL分类DDL—(Data Definitio">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-03T08:09:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入浅出MySQL笔记（一）">
+<meta name="twitter:description" content="本笔记为学习该书所记，便于复习。包含第一、二章笔记。 [TOC] 第一部分 基础篇第1章 mysql的安装与配置MySQL的下载 ：  分为windows平台，Linux平台两种 MySQL的安装MySQL的配置启动和关闭MySQL第2章 SQL基础SQL简介 Structure Query Language(结构化查询语言) (My)SQL使用入门SQL分类DDL—(Data Definitio">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://chumingke.github.io/blog/2017/10/Easy-to-understand-mysql.html"/>
+
+
+
+
+
+  <title> 深入浅出MySQL笔记（一） | chumingke-二师兄 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">chumingke-二师兄</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <h1 class="site-subtitle" itemprop="description"></h1>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://chumingke.github.io/blog/2017/10/Easy-to-understand-mysql.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="chumingke">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/dingxiu.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="chumingke-二师兄">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="chumingke-二师兄" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                深入浅出MySQL笔记（一）
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-03T16:07:24+08:00">
+                2017-10-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2017/10/Easy-to-understand-mysql.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2017/10/Easy-to-understand-mysql.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+ 
+        
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本笔记为学习该书所记，便于复习。<br>包含第一、二章笔记。</p>
+<p>[TOC]</p>
+<h1 id="第一部分-基础篇"><a href="#第一部分-基础篇" class="headerlink" title="第一部分 基础篇"></a>第一部分 基础篇</h1><h2 id="第1章-mysql的安装与配置"><a href="#第1章-mysql的安装与配置" class="headerlink" title="第1章 mysql的安装与配置"></a>第1章 mysql的安装与配置</h2><h3 id="MySQL的下载-："><a href="#MySQL的下载-：" class="headerlink" title="MySQL的下载 ："></a>MySQL的下载 ：</h3><p>  分为windows平台，Linux平台两种</p>
+<h3 id="MySQL的安装"><a href="#MySQL的安装" class="headerlink" title="MySQL的安装"></a>MySQL的安装</h3><h3 id="MySQL的配置"><a href="#MySQL的配置" class="headerlink" title="MySQL的配置"></a>MySQL的配置</h3><h3 id="启动和关闭MySQL"><a href="#启动和关闭MySQL" class="headerlink" title="启动和关闭MySQL"></a>启动和关闭MySQL</h3><h2 id="第2章-SQL基础"><a href="#第2章-SQL基础" class="headerlink" title="第2章 SQL基础"></a>第2章 SQL基础</h2><h3 id="SQL简介"><a href="#SQL简介" class="headerlink" title="SQL简介"></a>SQL简介</h3><p> Structure Query Language(结构化查询语言)</p>
+<h3 id="My-SQL使用入门"><a href="#My-SQL使用入门" class="headerlink" title="(My)SQL使用入门"></a>(My)SQL使用入门</h3><h4 id="SQL分类"><a href="#SQL分类" class="headerlink" title="SQL分类"></a>SQL分类</h4><p>DDL—(Data Definition Languages)语句—(数据定义语言)<br>DML—(Data Manipulation Language)语句—(数据操作语句)<br>DCL—(Data Control Language)语句—(数据控制语句)</p>
+<h4 id="DDL语句"><a href="#DDL语句" class="headerlink" title="DDL语句"></a>DDL语句</h4><h5 id="1-创建数据库"><a href="#1-创建数据库" class="headerlink" title="1 创建数据库"></a>1 创建数据库</h5><p>1.1 连接到mysql服务器<br>在安装好Mysql后，要创建数据库，首先要连接到MySQL服务器。<br>在MAC中打开终端，输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -u root -p</div></pre></td></tr></table></figure></p>
+<p>然后输入密码，即可连接。<br>这时候会显示一些信息。包括:<br>    命令结束符”;”或者”\g”<br>    客户链接ID，记录了到目前为止的连接次数<br>    版本<br>    显示帮助</p>
+<p>1.2 建库<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> dbname;</div></pre></td></tr></table></figure></p>
+<p>1.3查看数据库<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">show</span> <span class="keyword">databases</span>;</div></pre></td></tr></table></figure></p>
+<p>1.4 选择数据库<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">USE</span> dbname</div></pre></td></tr></table></figure></p>
+<p>1.5 查看数据库中的表<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">show</span> <span class="keyword">tables</span>;</div></pre></td></tr></table></figure></p>
+<p>必须先选择数据库后才能看表。</p>
+<h5 id="2-删除数据库"><a href="#2-删除数据库" class="headerlink" title="2 删除数据库"></a>2 删除数据库</h5><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">drop</span> <span class="keyword">database</span> dbname;</div></pre></td></tr></table></figure>
+<h5 id="3-创建表"><a href="#3-创建表" class="headerlink" title="3 创建表"></a>3 创建表</h5><p>3.1 建表<br>语法<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> tablename(</div><div class="line">column_name_1 column_type_1 <span class="keyword">constraints</span>,</div><div class="line">column_name_n column_type_n <span class="keyword">constraints</span>);</div></pre></td></tr></table></figure></p>
+<p>案例<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> emp(</div><div class="line">ename varchars(<span class="number">10</span>),</div><div class="line">hiredate <span class="built_in">date</span>,</div><div class="line">sal <span class="built_in">decimal</span>(<span class="number">10</span>,<span class="number">2</span>),</div><div class="line">deptno <span class="built_in">int</span>(<span class="number">2</span>)</div><div class="line">);</div></pre></td></tr></table></figure></p>
+<p>3.2 查看表定义<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">DESC tablename</span></div></pre></td></tr></table></figure></p>
+<p>3.3 查看创建表的SQL语句<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">table</span> emp \G;</div></pre></td></tr></table></figure></p>
+<h5 id="4-删除表"><a href="#4-删除表" class="headerlink" title="4 删除表"></a>4 删除表</h5><figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DROP <span class="keyword">TABLE</span> tablename</div></pre></td></tr></table></figure>
+<h5 id="5-修改表"><a href="#5-修改表" class="headerlink" title="5 修改表"></a>5 修改表</h5><p>5.1 修改表类型<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tablename <span class="keyword">MODIFY</span> [<span class="keyword">COLUMN</span>] column_definition [<span class="keyword">FIRST</span>|<span class="keyword">AFTER</span> col_name]</div></pre></td></tr></table></figure></p>
+<p>例子<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> emp <span class="keyword">modify</span> ename <span class="built_in">varchar</span>(<span class="number">20</span>);</div></pre></td></tr></table></figure></p>
+<p>5.2 增加表字段<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span>  tablename <span class="keyword">ADD</span> [<span class="keyword">COLUMN</span>] column_definition [<span class="keyword">FIRST</span>|<span class="keyword">AFTER</span> col_name]</div></pre></td></tr></table></figure></p>
+<p>例子<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> emp <span class="keyword">add</span> <span class="keyword">column</span> age <span class="built_in">int</span>(<span class="number">3</span>);</div></pre></td></tr></table></figure></p>
+<p>5.3 删除表字段<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tablename <span class="keyword">Drop</span> [<span class="keyword">COLUMN</span>] col_name</div></pre></td></tr></table></figure></p>
+<p>例子<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> emp <span class="keyword">drop</span> <span class="keyword">column</span> age;</div></pre></td></tr></table></figure></p>
+<p>5.4 字段改名<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tablename <span class="keyword">CHANGE</span> [<span class="keyword">COLUMN</span>] old_col_name column_definition [<span class="keyword">FIRST</span>|<span class="keyword">AFTER</span> col_name]</div></pre></td></tr></table></figure></p>
+<p>例子<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> emp <span class="keyword">change</span> age age1 <span class="built_in">int</span>(<span class="number">4</span>)</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意，change和modify都可以修改表定义，不同的是change修改表名，所以需要写两次表名，modify不能修改表名。</p>
+</blockquote>
+<p>5.5 修改字段排列顺序<br>ADD/CHANGE/MODIFY都有可选项<strong>first|after column</strong>。<br>ADD增加的新字段默认加在最后位置。<br>用FIRST可以放在最前面<br>例如<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> emp <span class="keyword">modify</span> age <span class="built_in">int</span>(<span class="number">3</span>) <span class="keyword">first</span>;</div></pre></td></tr></table></figure></p>
+<p>用after放在某个字段之后<br>例如<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> emp <span class="keyword">add</span> birth <span class="keyword">data</span> <span class="keyword">after</span> ename;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>CHANGE/FIRST|AFTER COLUMN 这些关键字都属于Mysql在标准SQL上的扩展，其他数据库不一定适用。</p>
+</blockquote>
+<p>5.6 更改表名<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tablename <span class="keyword">RENAME</span>[<span class="keyword">TO</span>] new_tablename</div></pre></td></tr></table></figure></p>
+<p>例子<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> emp <span class="keyword">rename</span> emp1;</div></pre></td></tr></table></figure></p>
+<h4 id="DML语句"><a href="#DML语句" class="headerlink" title="DML语句"></a>DML语句</h4><h5 id="1插入记录"><a href="#1插入记录" class="headerlink" title="1插入记录"></a>1插入记录</h5><p>insert<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">INSERT INTO tablename(<span class="name">field1</span>,field2..) VALUES(<span class="name">value1</span>,value2..)</div></pre></td></tr></table></figure></p>
+<p>也可以不指定字段名<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> emp</div><div class="line"><span class="keyword">values</span>(<span class="string">'lisa'</span>,<span class="string">'2003-03-03'</span>,<span class="string">'3000'</span>,<span class="number">2</span>);</div></pre></td></tr></table></figure></p>
+<p>一次性插入多条记录<br><figure class="highlight ceylon"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">INSERT INTO tablename (field<span class="number">1</span>,field<span class="number">2</span>..)</div><div class="line">VALUES</div><div class="line">(record<span class="number">1_</span><span class="keyword">value</span><span class="number">1</span>,record<span class="number">1_</span><span class="keyword">value</span><span class="number">2</span>...record<span class="number">1_</span>valuen),</div><div class="line">...</div><div class="line">(recordn<span class="number">_</span><span class="keyword">value</span><span class="number">1</span>,recordn<span class="number">_</span><span class="keyword">value</span><span class="number">2</span>...recordn<span class="number">_</span>valuen)</div><div class="line">;</div></pre></td></tr></table></figure></p>
+<h5 id="2更新记录"><a href="#2更新记录" class="headerlink" title="2更新记录"></a>2更新记录</h5><p>update<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">UPDATE</span> tablename <span class="keyword">SET</span> field1=<span class="keyword">values</span>,field2=value2..fieldn=valuen[<span class="keyword">WHERE</span> CONDITION]</div></pre></td></tr></table></figure></p>
+<p>可以同时更新多个表中的数据<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UPDATE t1,t2<span class="built_in">..</span>tn <span class="builtin-name">SET</span> t1.<span class="attribute">field1</span>=expr1...tn.fieldn=exprn [WHERE CONDITION]</div></pre></td></tr></table></figure></p>
+<p>例子<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">update emp a,dept b <span class="builtin-name">set</span> a.<span class="attribute">sal</span>=a.sal*b.deptno,b.deptname=a.ename</div><div class="line">where a.<span class="attribute">deptno</span>=b.deptno;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意，多表更新的语法更多地用在了根据一个表的字段来动态地更新另外一个表的字段</p>
+<h5 id="3删除记录"><a href="#3删除记录" class="headerlink" title="3删除记录"></a>3删除记录</h5><p>delete<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> tablename [<span class="keyword">WHERE</span> CONDITION]</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>例子<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> emp <span class="keyword">where</span> ename=<span class="string">'dony'</span>;</div></pre></td></tr></table></figure></p>
+<p>一次删除多个表的记录<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DELETE <span class="built_in">t1</span>,<span class="built_in">t2</span>...tn FROM <span class="built_in">t1</span>,<span class="built_in">t2</span>...tn [WHERE CONDITION]</div></pre></td></tr></table></figure></p>
+<p>如果from后面的表名用别名，则delete后面也要用相应的别名。<br>例子<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">delete a,b <span class="keyword">from</span> emp a,dept b where a.<span class="attribute">deptno</span>=b.deptno <span class="keyword">and</span> a.<span class="attribute">deptno</span>=3;</div></pre></td></tr></table></figure></p>
+<p>不管单表还是多表，不加where条件将会把所有表的所有记录删除，因此操作小心。</p>
+<h5 id="4-查询记录"><a href="#4-查询记录" class="headerlink" title="4 查询记录"></a>4 查询记录</h5><p>4.1 select<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> tablename [<span class="keyword">WHERE</span> CONDITION]</div></pre></td></tr></table></figure></p>
+<p>4.2 查询不重复的记录<br>distinct<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> deptno <span class="keyword">from</span> emp;</div></pre></td></tr></table></figure></p>
+<p>4.3 条件查询<br>where<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp <span class="keyword">where</span> deptno=<span class="number">1</span>;</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp <span class="keyword">where</span> deptno=<span class="number">1</span> <span class="keyword">and</span> sal&lt;<span class="number">3000</span>;</div></pre></td></tr></table></figure></p>
+<p>4.4 排序和限制<br>排序order by<br>DESC降序ASC升序<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> tablename [<span class="keyword">WHERE</span> CONDITION] [<span class="keyword">ORDER</span> <span class="keyword">BY</span> field1 [DES|<span class="keyword">ASC</span>]...fieldn[<span class="keyword">DESC</span>|<span class="keyword">ASC</span>]]</div></pre></td></tr></table></figure></p>
+<p>限制limit<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SELECT...[LIMIT offset_start,row_count]</div><div class="line">##其中offset_start表示记录的起始偏移量，row_count表示显示的行数</div></pre></td></tr></table></figure></p>
+<p>例子<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp oeder <span class="keyword">by</span> sal <span class="keyword">limit</span> <span class="number">1</span>,<span class="number">3</span>;</div><div class="line">输出排序后从第二条记录开始的3条记录</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>limit经常和order by一起配合使用来进行记录的分页显示<br>limit属于Mysql扩展sql92后的语法，在其他数据库上并不能通用</p>
+</blockquote>
+<p>4.5 聚合<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">SELECT [field1,field2<span class="built_in">..</span>.fieldn] fun_name   ##fun_name表示聚合函数</div><div class="line"><span class="keyword">FROM</span> tablename</div><div class="line">[WHERE where_contition]</div><div class="line">GROUP BY field1,field2<span class="built_in">..</span>.fieldn     ##GROUP BY后是待聚合字段</div><div class="line">[WITH ROLLUP]     ##可选，表示对聚合后结果进行再汇总</div><div class="line">[HAVING where_condition]   #表示对结果再进行条件过滤</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意，having和where的区别在于，where在聚合前对记录进行过滤，having是对聚合后的结果进行条件过滤。<br>尽可能先用where先过滤记录，这样结果集减小，对聚合效率大大提高<br>例子<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">select deptno,count(1) <span class="keyword">from</span> emp<span class="built_in"> group </span>by deptno with rollup</div><div class="line"><span class="comment">##统计各部门人数后汇总统计总人数</span></div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>4.6 表连接<br>内连接<br>关键字<br>where…=…<br>from…inner join…on<br>from…left join…on<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> ename,deptname <span class="keyword">from</span> emp,dept <span class="keyword">where</span> emp.deptno=dept.deptno;</div><div class="line"><span class="keyword">select</span> field1...fieldn <span class="keyword">from</span> tablename <span class="keyword">inner</span> <span class="keyword">join</span> <span class="keyword">table</span> <span class="keyword">on</span> join_condition;</div></pre></td></tr></table></figure></p>
+<p>外连接<br>左连接<br>查询emp中所有用户名和所在部门名称<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> ename,deptname <span class="keyword">from</span> emp <span class="keyword">left</span> <span class="keyword">join</span> dept <span class="keyword">on</span> emp.deptno=dept.deptno;</div></pre></td></tr></table></figure></p>
+<p>右连接<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> ename,deptname <span class="keyword">from</span> dept <span class="keyword">right</span> <span class="keyword">join</span> emp <span class="keyword">on</span> dept.deptno=emp.deptno;</div></pre></td></tr></table></figure></p>
+<p>4.7 子查询<br>关键字<br>in,<br>not in,<br>=,<br>!=,<br>exists,<br>not exists<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp <span class="keyword">where</span> deptno <span class="keyword">in</span>(<span class="keyword">select</span> deptno <span class="keyword">from</span> dept);</div></pre></td></tr></table></figure></p>
+<p>某些条件下，子查询可转化为表连接，条件的、外连接、内连接都可以使用<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> emp.* <span class="keyword">from</span> emp,dept <span class="keyword">where</span> emp.deptno=dept.deptno;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>书上说表关联的效率要高于子查询，因为子查询走的是笛卡尔积。而培训班老师所子查询效率高于表连接。。。<br>表关联可能有多条记录，子查询只有一条记录，如果需要唯一的列，最好走子查询。</p>
+</blockquote>
+<p>4.8 记录联合<br>关键字，union,union all<br>union是将union all结果去重DISTINCT<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> t1</div><div class="line"><span class="keyword">UNION</span>|<span class="keyword">UNION</span> <span class="keyword">ALL</span></div><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> t2</div></pre></td></tr></table></figure></p>
+<p>例子<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> deptno from emp</div><div class="line"><span class="class"><span class="keyword">union</span> <span class="title">all</span></span></div><div class="line"><span class="keyword">select</span> deptno from dept;</div></pre></td></tr></table></figure></p>
+<h4 id="DCL语句"><a href="#DCL语句" class="headerlink" title="DCL语句"></a>DCL语句</h4><p>用的比较少，简单写下<br>创建一个数据库用户z1，具有对sakila数据库中所有表的SELECT/INSERT权限<br>关键词grant<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">grant</span> <span class="keyword">select</span>,<span class="keyword">insert</span> <span class="keyword">on</span> sakila.* <span class="keyword">to</span> <span class="string">'z1'</span>@<span class="string">'localhost'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'123'</span>;</div></pre></td></tr></table></figure></p>
+<p>权限变更，需要收回z1的INSERT权限<br>关键词revoke<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">revoke</span> <span class="keyword">insert</span> <span class="keyword">on</span> sakila.* <span class="keyword">from</span> <span class="string">'z1'</span>@<span class="string">'localhost'</span>;</div></pre></td></tr></table></figure></p>
+<h3 id="帮助的使用"><a href="#帮助的使用" class="headerlink" title="帮助的使用"></a>帮助的使用</h3><h4 id="按照层次看帮助"><a href="#按照层次看帮助" class="headerlink" title="按照层次看帮助"></a>按照层次看帮助</h4><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?<span class="built_in">contents</span></div></pre></td></tr></table></figure>
+<p>?+类别名称<br>例如<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">? <span class="class"><span class="keyword">data</span> types</span></div></pre></td></tr></table></figure></p>
+<h4 id="快速查阅帮助"><a href="#快速查阅帮助" class="headerlink" title="快速查阅帮助"></a>快速查阅帮助</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">? 关键字</div></pre></td></tr></table></figure>
+<p>例如<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">? <span class="keyword">show</span>;</div><div class="line">? <span class="keyword">create</span> <span class="keyword">table</span>;</div></pre></td></tr></table></figure></p>
+<h4 id="常用的网络资源"><a href="#常用的网络资源" class="headerlink" title="常用的网络资源"></a>常用的网络资源</h4><p>略</p>
+<h3 id="查询元数据信息"><a href="#查询元数据信息" class="headerlink" title="查询元数据信息"></a>查询元数据信息</h3><h4 id="information-schema数据库"><a href="#information-schema数据库" class="headerlink" title="information_schema数据库"></a>information_schema数据库</h4><p>元数据信息，数据的数据，虚拟数据库，物理上并不存在相关目录文件。库里show tables显示的表全部是视图</p>
+<h4 id="常见场景"><a href="#常见场景" class="headerlink" title="常见场景"></a>常见场景</h4><h5 id="1删除数据库test1下所有前缀为tmp的表"><a href="#1删除数据库test1下所有前缀为tmp的表" class="headerlink" title="1删除数据库test1下所有前缀为tmp的表"></a>1删除数据库test1下所有前缀为tmp的表</h5><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">concat</span> (<span class="string">'drop table test1.,'</span>table_name,<span class="string">';'</span>) <span class="keyword">from</span> tables</div><div class="line"><span class="keyword">where</span> table_schema = <span class="string">'test1'</span> <span class="keyword">and</span> table_name like <span class="string">'tmp%'</span>;</div><div class="line">## <span class="keyword">concat</span> 将多个数组组合成新的数组</div></pre></td></tr></table></figure>
+<h5 id="2将数据库test1下所有存储引擎为mysiam的表改为innodb"><a href="#2将数据库test1下所有存储引擎为mysiam的表改为innodb" class="headerlink" title="2将数据库test1下所有存储引擎为mysiam的表改为innodb"></a>2将数据库test1下所有存储引擎为mysiam的表改为innodb</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">concat</span> (<span class="string">'alter table test1.'</span>,table_name,<span class="string">'engine = innodb;'</span>) <span class="keyword">from</span> <span class="keyword">tables</span></div><div class="line"><span class="keyword">where</span> table_schema = <span class="string">'test1'</span> <span class="keyword">and</span> <span class="keyword">engine</span> = <span class="string">'MyISAM'</span>;</div></pre></td></tr></table></figure>
+<h5 id="3常用视图"><a href="#3常用视图" class="headerlink" title="3常用视图"></a>3常用视图</h5><p>SCHEMATA:<br>提供了当前mysql实例中所有数据库的信息<br>show databases的结果取自此表<br>TABLES:<br>提供了关于数据库中表的信息（包括视图），详述了某个表属于哪个schema、表类型、表引擎、创建时间等信息<br>show tables from schemaname的结果取之此表<br>COLUMNS：<br>提供了表中的列信息，详述了某张表的所有列以及每个列的信息<br>show columns from schemaname.tablename的结果取自此表<br>STATISTICS：<br>该表提供了关于表索引的信息<br>show index from schemaname.tablename的结果取自此表</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+  
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+        </div>
+      
+
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>🐶 您的支持将鼓励我继续创作 🐶</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赞赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-img.jpg" alt="chumingke WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-img.jpg" alt="chumingke Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+         
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2017/10/how-to-bind-Alibaba-Cloud-domain-name.html" rel="next" title="如何绑定阿里云域名">
+                <i class="fa fa-chevron-left"></i> 如何绑定阿里云域名
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="/blog/2017/10/Easy-to-understand-mysql.html"
+     data-title="深入浅出MySQL笔记（一）"
+     data-content=""
+     data-url="https://chumingke.github.io/blog/2017/10/Easy-to-understand-mysql.html">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="monthly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="/blog/2017/10/Easy-to-understand-mysql.html"
+           data-title="深入浅出MySQL笔记（一）" data-url="https://chumingke.github.io/blog/2017/10/Easy-to-understand-mysql.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/dingxiu.jpg"
+               alt="chumingke" />
+          <p class="site-author-name" itemprop="name">chumingke</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chumingke" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/bi-ma-wen-34" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-battery-3"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.woaitqs.cc/" title="Qisen Tang" target="_blank">Qisen Tang</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://szhshp.org" title="szhshp的博客" target="_blank">szhshp的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://python.zhangwei.website" title="JuniorCoder" target="_blank">JuniorCoder</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hippo-jessy.com" title="Hippo" target="_blank">Hippo</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.zhihu.com/people/lippi-ouyang" title="友链出租" target="_blank">友链出租</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一部分-基础篇"><span class="nav-number">1.</span> <span class="nav-text">第一部分 基础篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第1章-mysql的安装与配置"><span class="nav-number">1.1.</span> <span class="nav-text">第1章 mysql的安装与配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL的下载-："><span class="nav-number">1.1.1.</span> <span class="nav-text">MySQL的下载 ：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL的安装"><span class="nav-number">1.1.2.</span> <span class="nav-text">MySQL的安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL的配置"><span class="nav-number">1.1.3.</span> <span class="nav-text">MySQL的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动和关闭MySQL"><span class="nav-number">1.1.4.</span> <span class="nav-text">启动和关闭MySQL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第2章-SQL基础"><span class="nav-number">1.2.</span> <span class="nav-text">第2章 SQL基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL简介"><span class="nav-number">1.2.1.</span> <span class="nav-text">SQL简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#My-SQL使用入门"><span class="nav-number">1.2.2.</span> <span class="nav-text">(My)SQL使用入门</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL分类"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">SQL分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DDL语句"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">DDL语句</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-创建数据库"><span class="nav-number">1.2.2.2.1.</span> <span class="nav-text">1 创建数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-删除数据库"><span class="nav-number">1.2.2.2.2.</span> <span class="nav-text">2 删除数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-创建表"><span class="nav-number">1.2.2.2.3.</span> <span class="nav-text">3 创建表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-删除表"><span class="nav-number">1.2.2.2.4.</span> <span class="nav-text">4 删除表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-修改表"><span class="nav-number">1.2.2.2.5.</span> <span class="nav-text">5 修改表</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DML语句"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">DML语句</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1插入记录"><span class="nav-number">1.2.2.3.1.</span> <span class="nav-text">1插入记录</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2更新记录"><span class="nav-number">1.2.2.3.2.</span> <span class="nav-text">2更新记录</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3删除记录"><span class="nav-number">1.2.2.3.3.</span> <span class="nav-text">3删除记录</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-查询记录"><span class="nav-number">1.2.2.3.4.</span> <span class="nav-text">4 查询记录</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DCL语句"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">DCL语句</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#帮助的使用"><span class="nav-number">1.2.3.</span> <span class="nav-text">帮助的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#按照层次看帮助"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">按照层次看帮助</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#快速查阅帮助"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">快速查阅帮助</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用的网络资源"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">常用的网络资源</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询元数据信息"><span class="nav-number">1.2.4.</span> <span class="nav-text">查询元数据信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#information-schema数据库"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">information_schema数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见场景"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">常见场景</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1删除数据库test1下所有前缀为tmp的表"><span class="nav-number">1.2.4.2.1.</span> <span class="nav-text">1删除数据库test1下所有前缀为tmp的表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2将数据库test1下所有存储引擎为mysiam的表改为innodb"><span class="nav-number">1.2.4.2.2.</span> <span class="nav-text">2将数据库test1下所有存储引擎为mysiam的表改为innodb</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3常用视图"><span class="nav-number">1.2.4.2.3.</span> <span class="nav-text">3常用视图</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chumingke</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ezlippi"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="//cdn.jsdelivr.net/ua-parser.js/0.7.10/ua-parser.min.js"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>
