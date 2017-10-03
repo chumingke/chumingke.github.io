@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chumingke.github.io/"/>
-  <updated>2017-10-03T08:09:22.000Z</updated>
+  <updated>2017-10-03T09:43:19.000Z</updated>
   <id>https://chumingke.github.io/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>深入浅出MySQL笔记（三）</title>
+    <link href="https://chumingke.github.io//blog/2017/10/Easy-to-understand-mysql-3.html"/>
+    <id>https://chumingke.github.io//blog/2017/10/Easy-to-understand-mysql-3.html</id>
+    <published>2017-10-03T09:41:18.000Z</published>
+    <updated>2017-10-03T09:43:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>本笔记为学习该书所记，便于复习。<br>包含第五、六章笔记。<br>常用函数与图形化工具的使用。<br>[TOC]</p><h1 id="第一部分-基础篇"><a href="#第一部分-基础篇" class="headerlink" title="第一部分 基础篇"></a>第一部分 基础篇</h1><h2 id="第5章-常用函数"><a href="#第5章-常用函数" class="headerlink" title="第5章 常用函数"></a>第5章 常用函数</h2><h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><p>常用字符串函数<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">CONCAT</span><span class="params">(S1,S2...Sn)</span></span></div><div class="line"><span class="function"><span class="title">INSERT</span><span class="params">(str,x,y,instr)</span></span></div><div class="line"><span class="function"><span class="title">LOWER</span><span class="params">(str)</span></span></div><div class="line"><span class="function"><span class="title">UPPER</span><span class="params">(str)</span></span></div><div class="line"><span class="function"><span class="title">LEFT</span><span class="params">(str,x)</span></span></div><div class="line"><span class="function"><span class="title">RIGHT</span><span class="params">(str,x)</span></span></div><div class="line"><span class="function"><span class="title">LPAD</span><span class="params">(str,n,pad)</span></span></div><div class="line"><span class="function"><span class="title">RPAD</span><span class="params">(str,n,pad)</span></span></div><div class="line"><span class="function"><span class="title">LTRIM</span><span class="params">(str)</span></span></div><div class="line"><span class="function"><span class="title">RTRIM</span><span class="params">(str)</span></span></div><div class="line"><span class="function"><span class="title">REPEAT</span><span class="params">(str,x)</span></span></div><div class="line"><span class="function"><span class="title">REPLACE</span><span class="params">(str,a,b)</span></span></div><div class="line"><span class="function"><span class="title">STRCMP</span><span class="params">(s1,s2)</span></span></div><div class="line"><span class="function"><span class="title">TRIM</span><span class="params">(str)</span></span></div><div class="line"><span class="function"><span class="title">SUBSTRING</span><span class="params">(str,x,y)</span></span></div></pre></td></tr></table></figure></p><h3 id="数字函数"><a href="#数字函数" class="headerlink" title="数字函数"></a>数字函数</h3><p>常用数值函数<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">ABS</span><span class="params">(x)</span></span></div><div class="line"><span class="function"><span class="title">CEIL</span><span class="params">(x)</span></span></div><div class="line"><span class="function"><span class="title">FLOOR</span><span class="params">(x)</span></span></div><div class="line"><span class="function"><span class="title">MOD</span><span class="params">(x,y)</span></span></div><div class="line"><span class="function"><span class="title">RAND</span><span class="params">()</span></span></div><div class="line"><span class="function"><span class="title">ROUND</span><span class="params">(x,y)</span></span></div><div class="line"><span class="function"><span class="title">TRUNCATE</span><span class="params">(x,y)</span></span></div></pre></td></tr></table></figure></p><h3 id="时间和日期函数"><a href="#时间和日期函数" class="headerlink" title="时间和日期函数"></a>时间和日期函数</h3><p>常用时间和日期函数</p><h3 id="流程函数"><a href="#流程函数" class="headerlink" title="流程函数"></a>流程函数</h3><figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">IF</span>(<span class="keyword">value</span>,t,f)</div><div class="line">IFNULL(value1,value2)</div><div class="line"><span class="keyword">CASE</span> WHER [value1] <span class="keyword">THEN</span> [result1]...ELES [<span class="keyword">default</span>] <span class="keyword">END</span></div><div class="line"><span class="keyword">CASE</span> [expr] WHEN [value1] <span class="keyword">THEN</span> [result1]... <span class="keyword">ELSE</span> [<span class="keyword">default</span>] <span class="keyword">END</span></div></pre></td></tr></table></figure><h3 id="其他常用函数"><a href="#其他常用函数" class="headerlink" title="其他常用函数"></a>其他常用函数</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">DATABASE</span><span class="params">()</span></span></div><div class="line"><span class="function"><span class="title">VERSION</span><span class="params">()</span></span></div><div class="line"><span class="function"><span class="title">USER</span><span class="params">()</span></span></div><div class="line"><span class="function"><span class="title">INET_ATON</span><span class="params">(IP)</span></span></div><div class="line"><span class="function"><span class="title">INET_NTOA</span><span class="params">(num)</span></span></div><div class="line"><span class="function"><span class="title">PASSWORD</span><span class="params">(str)</span></span></div><div class="line"><span class="function"><span class="title">MD5</span><span class="params">()</span></span></div></pre></td></tr></table></figure><h2 id="第6章-图形化工具的使用"><a href="#第6章-图形化工具的使用" class="headerlink" title="第6章 图形化工具的使用"></a>第6章 图形化工具的使用</h2><h3 id="Mysql-Workbench"><a href="#Mysql-Workbench" class="headerlink" title="Mysql Workbench"></a>Mysql Workbench</h3><h3 id="phpMyAdmin"><a href="#phpMyAdmin" class="headerlink" title="phpMyAdmin"></a>phpMyAdmin</h3><h3 id="navicat"><a href="#navicat" class="headerlink" title="navicat"></a>navicat</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;本笔记为学习该书所记，便于复习。&lt;br&gt;包含第五、六章笔记。&lt;br&gt;常用函数与图形化工具的使用。&lt;br&gt;[TOC]&lt;/p&gt;
+&lt;h1 id=&quot;第一部分-基础篇&quot;&gt;&lt;a href=&quot;#第一部分-基础篇&quot; class=&quot;headerlink&quot; title=&quot;第一部分 基础篇&quot;&gt;&lt;
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="https://chumingke.github.io/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="https://chumingke.github.io/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深入浅出MySQL笔记（二）</title>
+    <link href="https://chumingke.github.io//blog/2017/10/Easy-to-understand-mysql-2.html"/>
+    <id>https://chumingke.github.io//blog/2017/10/Easy-to-understand-mysql-2.html</id>
+    <published>2017-10-03T09:39:08.000Z</published>
+    <updated>2017-10-03T09:40:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>本笔记为学习该书所记，便于复习。<br>包含第三、四章笔记。<br>数据类型与运算符<br>[TOC]</p><h1 id="第一部分-基础篇"><a href="#第一部分-基础篇" class="headerlink" title="第一部分 基础篇"></a>第一部分 基础篇</h1><h2 id="第3章-Mysql支持的数据类型"><a href="#第3章-Mysql支持的数据类型" class="headerlink" title="第3章 Mysql支持的数据类型"></a>第3章 Mysql支持的数据类型</h2><h3 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h3><h4 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a>整数类型</h4><p>zerofill<br>UNSIGNED<br>AUTO_INCREMENT</p><h4 id="浮点数类型"><a href="#浮点数类型" class="headerlink" title="浮点数类型"></a>浮点数类型</h4><h4 id="定点数类型"><a href="#定点数类型" class="headerlink" title="定点数类型"></a>定点数类型</h4><p>DECIMAL(M,D)<br>SHOW WARNINGSL;</p><h4 id="位类型"><a href="#位类型" class="headerlink" title="位类型"></a>位类型</h4><p>BIT(M)<br>hex()</p><h3 id="日期时间类型"><a href="#日期时间类型" class="headerlink" title="日期时间类型"></a>日期时间类型</h3><h4 id="DATA"><a href="#DATA" class="headerlink" title="DATA"></a>DATA</h4><h4 id="DATATIME"><a href="#DATATIME" class="headerlink" title="DATATIME"></a>DATATIME</h4><h4 id="TIMESTAMP"><a href="#TIMESTAMP" class="headerlink" title="TIMESTAMP"></a>TIMESTAMP</h4><h4 id="TIME"><a href="#TIME" class="headerlink" title="TIME"></a>TIME</h4><h4 id="YEAR"><a href="#YEAR" class="headerlink" title="YEAR"></a>YEAR</h4><h4 id="查看时区"><a href="#查看时区" class="headerlink" title="查看时区"></a>查看时区</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">'time_zone'</span>;</div></pre></td></tr></table></figure><h3 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h3><h4 id="CHAR和VARCHAR类"><a href="#CHAR和VARCHAR类" class="headerlink" title="CHAR和VARCHAR类"></a>CHAR和VARCHAR类</h4><p>主要区别在于存储方式不同</p><ul><li>char列长度固定为创建列表时的长度</li><li>检索时，char列删除了尾部的空格</li><li>varchar列中的值为可变长字符串</li><li>检索时，varchar则保留这些空格<br>注意length()函数的用法<h4 id="BINARY和VARBINARY类型"><a href="#BINARY和VARBINARY类型" class="headerlink" title="BINARY和VARBINARY类型"></a>BINARY和VARBINARY类型</h4>包含二进制字符串<br>不包含二进制字符串<h4 id="ENUM类型"><a href="#ENUM类型" class="headerlink" title="ENUM类型"></a>ENUM类型</h4>枚举类型<br>忽略大小写（转化为大写）<br>如果不在指定范围内，不返回警告，而是插入第一个值M<br>只允许从值集合中选取单个值，而不能一次取多个值<h4 id="SET类型"><a href="#SET类型" class="headerlink" title="SET类型"></a>SET类型</h4>与ENUM类型类似<br>主要区别是，SET一次可以选取多个成员<h2 id="第4章-Mysql中的运算符"><a href="#第4章-Mysql中的运算符" class="headerlink" title="第4章 Mysql中的运算符"></a>第4章 Mysql中的运算符</h2><h3 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h3>加、减、乘、除、模运算<h3 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h3>大、小、等于，存在、指定范围等<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3>又称布尔运算符<br>与、或、非、异或<h3 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h3></li><li>将给定的操作数转换为二进制</li><li>对各个操作数每一位进行指定的逻辑运算</li><li>得到的二进制结果转换为十进制数后就是位运算的结果<h3 id="运算符的优先级"><a href="#运算符的优先级" class="headerlink" title="运算符的优先级"></a>运算符的优先级</h3>见表</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;本笔记为学习该书所记，便于复习。&lt;br&gt;包含第三、四章笔记。&lt;br&gt;数据类型与运算符&lt;br&gt;[TOC]&lt;/p&gt;
+&lt;h1 id=&quot;第一部分-基础篇&quot;&gt;&lt;a href=&quot;#第一部分-基础篇&quot; class=&quot;headerlink&quot; title=&quot;第一部分 基础篇&quot;&gt;&lt;/a&gt;第一部
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="https://chumingke.github.io/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="https://chumingke.github.io/tags/mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>深入浅出MySQL笔记（一）</title>
