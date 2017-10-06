@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chumingke.github.io/"/>
-  <updated>2017-10-05T05:11:16.000Z</updated>
+  <updated>2017-10-06T09:13:12.000Z</updated>
   <id>https://chumingke.github.io/</id>
   
   <author>
@@ -15,6 +15,133 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL触发器与事件调度器</title>
+    <link href="https://chumingke.github.io//blog/2017/10/MySQL-triggers-and-event-schedulers.html"/>
+    <id>https://chumingke.github.io//blog/2017/10/MySQL-triggers-and-event-schedulers.html</id>
+    <published>2017-10-06T09:12:37.000Z</published>
+    <updated>2017-10-06T09:13:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h1><p>自动执行预定好的sql语句<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">触发时间   <span class="keyword">before</span> /<span class="keyword">after</span> </div><div class="line">触发事件   insert,update,<span class="built_in">delete</span> </div><div class="line">触发地点   表名</div><div class="line">触发内容   要执行的语句</div></pre></td></tr></table></figure></p><p>在同一个位置不能建立两个不同的触发器,可以合并</p><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">##例子1</div><div class="line"><span class="keyword">create</span> <span class="keyword">TRIGGER</span> tr_1</div><div class="line">after <span class="keyword">insert</span> <span class="keyword">on</span> card_money</div><div class="line"><span class="keyword">for</span> <span class="keyword">each</span> row</div><div class="line"><span class="keyword">begin</span></div><div class="line">    <span class="keyword">case</span> <span class="keyword">when</span> c.<span class="built_in">type</span>=<span class="number">1</span>    ##状态码</div><div class="line">    <span class="keyword">then</span></div><div class="line">    <span class="keyword">update</span> card_info <span class="keyword">set</span> money =money+new.c <span class="keyword">where</span> id=new.cid;</div><div class="line">    else</div><div class="line">    <span class="keyword">update</span> card_info <span class="keyword">set</span> money =money-new.c <span class="keyword">where</span> id=new.cid;</div><div class="line">end;</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> card_money <span class="keyword">values</span> (<span class="number">2</span>,<span class="number">1</span>,<span class="number">0.1</span>,<span class="number">1</span>);</div><div class="line"></div><div class="line">例子2:</div><div class="line"><span class="keyword">create</span> <span class="keyword">TRIGGER</span> tr_2</div><div class="line">after <span class="keyword">update</span> <span class="keyword">on</span> card_money</div><div class="line"><span class="keyword">for</span> <span class="keyword">each</span> row</div><div class="line"><span class="keyword">begin</span></div><div class="line">    <span class="keyword">update</span> card_info <span class="keyword">set</span> money =money-old.c+new.c <span class="keyword">where</span> id=new.cid;</div><div class="line">end;</div></pre></td></tr></table></figure><h1 id="事件调度器"><a href="#事件调度器" class="headerlink" title="事件调度器"></a>事件调度器</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;触发器&quot;&gt;&lt;a href=&quot;#触发器&quot; class=&quot;headerlink&quot; title=&quot;触发器&quot;&gt;&lt;/a&gt;触发器&lt;/h1&gt;&lt;p&gt;自动执行预定好的sql语句&lt;br&gt;&lt;figure class=&quot;highlight livecodeserver&quot;&gt;&lt;table&gt;&lt;
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="https://chumingke.github.io/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="https://chumingke.github.io/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL数据库小技巧（注意点）</title>
+    <link href="https://chumingke.github.io//blog/2017/10/MySQL-database-tips.html"/>
+    <id>https://chumingke.github.io//blog/2017/10/MySQL-database-tips.html</id>
+    <published>2017-10-06T09:00:31.000Z</published>
+    <updated>2017-10-06T09:01:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="复合语句中声明变量-指令"><a href="#复合语句中声明变量-指令" class="headerlink" title="复合语句中声明变量/指令"></a>复合语句中声明变量/指令</h1><p>declare</p><h1 id="定义sql结束符"><a href="#定义sql结束符" class="headerlink" title="定义sql结束符"></a>定义sql结束符</h1><p>delimiter<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">delimiter %</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> login %</div></pre></td></tr></table></figure></p><h1 id="漂号"><a href="#漂号" class="headerlink" title="漂号`"></a>漂号`</h1><p>用于包裹关键词，来当做普通字符串处理<br>加上后不会自动解析关键词</p><h1 id="把关联查询转为子查询"><a href="#把关联查询转为子查询" class="headerlink" title="把关联查询转为子查询"></a>把关联查询转为子查询</h1><p>能写子查询写子查询</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;复合语句中声明变量-指令&quot;&gt;&lt;a href=&quot;#复合语句中声明变量-指令&quot; class=&quot;headerlink&quot; title=&quot;复合语句中声明变量/指令&quot;&gt;&lt;/a&gt;复合语句中声明变量/指令&lt;/h1&gt;&lt;p&gt;declare&lt;/p&gt;
+&lt;h1 id=&quot;定义sql结束符&quot;&gt;
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="https://chumingke.github.io/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="https://chumingke.github.io/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mysql错误码与异常捕获</title>
+    <link href="https://chumingke.github.io//blog/2017/10/MySQL-error-code-and-exception-capture.html"/>
+    <id>https://chumingke.github.io//blog/2017/10/MySQL-error-code-and-exception-capture.html</id>
+    <published>2017-10-06T08:56:40.000Z</published>
+    <updated>2017-10-06T08:57:20.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Mysql错误码"><a href="#Mysql错误码" class="headerlink" title="Mysql错误码"></a>Mysql错误码</h1><p>重要的几个<br><figure class="highlight basic"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">1049 </span>数据库不存在</div><div class="line"><span class="symbol">1051 </span>数据表不存在</div><div class="line"><span class="symbol">1054 </span>字段不存在</div></pre></td></tr></table></figure></p><h1 id="异常捕获"><a href="#异常捕获" class="headerlink" title="异常捕获"></a>异常捕获</h1><h2 id="异常条件类型"><a href="#异常条件类型" class="headerlink" title="异常条件类型"></a>异常条件类型</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#字符串类型的错误码</span></span></div><div class="line">SQLSTATE sqlstate_value</div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#数值类型的错误码</span></span></div><div class="line">mysql_error_code</div></pre></td></tr></table></figure><h2 id="异常的定义"><a href="#异常的定义" class="headerlink" title="异常的定义"></a>异常的定义</h2><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DECLARE</span> condition_name CONDITION <span class="keyword">FOR</span> [condition_type]</div></pre></td></tr></table></figure><h2 id="异常的捕获"><a href="#异常的捕获" class="headerlink" title="异常的捕获"></a>异常的捕获</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DECLARE</span> handler_type <span class="keyword">HANDLER</span> <span class="keyword">FOR</span> condition_value [...]</div></pre></td></tr></table></figure><p>handler_type  产生异常做什么操作<br>continue   跳过异常继续执行<br>exit       退出<br>condition_value   异常条件类型</p><h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">PROCEDURE</span> show_user(<span class="keyword">out</span> code_num <span class="built_in">int</span>)</div><div class="line"><span class="keyword">BEGIN</span></div><div class="line">    DELCARE no_table condition <span class="keyword">for</span> <span class="number">1054</span>;</div><div class="line">    <span class="keyword">DECLARE</span> CONTINUE <span class="keyword">HANDLER</span> <span class="keyword">FOR</span> <span class="keyword">no</span> <span class="keyword">table</span>;</div><div class="line">    <span class="keyword">set</span> code_num=<span class="number">1</span>;</div><div class="line">    <span class="keyword">select</span> user1 <span class="keyword">from</span> login;</div><div class="line"><span class="keyword">end</span>;</div><div class="line"><span class="keyword">call</span> show_user(@aa) ;</div><div class="line"><span class="keyword">select</span> @aa;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Mysql错误码&quot;&gt;&lt;a href=&quot;#Mysql错误码&quot; class=&quot;headerlink&quot; title=&quot;Mysql错误码&quot;&gt;&lt;/a&gt;Mysql错误码&lt;/h1&gt;&lt;p&gt;重要的几个&lt;br&gt;&lt;figure class=&quot;highlight basic&quot;&gt;&lt;tabl
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="https://chumingke.github.io/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="https://chumingke.github.io/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL存储过程与视图</title>
+    <link href="https://chumingke.github.io//blog/2017/10/MySQL-stored-procedures-and-views.html"/>
+    <id>https://chumingke.github.io//blog/2017/10/MySQL-stored-procedures-and-views.html</id>
+    <published>2017-10-06T08:47:37.000Z</published>
+    <updated>2017-10-06T08:48:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h1><p>视图相当于把一个复杂sql语句作为表保存起来，对于外层用户，只能查到视图中的数据，保护数据源，可以设置权限<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">##创建</div><div class="line">create view show_week_name <span class="keyword">as</span> (</div><div class="line">...);</div><div class="line">##使用</div><div class="line">select * <span class="keyword">from</span> show_week_name;</div></pre></td></tr></table></figure></p><h1 id="存储过程（带参函数）"><a href="#存储过程（带参函数）" class="headerlink" title="存储过程（带参函数）"></a>存储过程（带参函数）</h1><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">##创建</span></div><div class="line"><span class="function">create produre <span class="title">show_gender_list</span> (<span class="params"><span class="keyword">in</span> sex varchar(<span class="number">20</span></span>),<span class="keyword">out</span> count_num <span class="keyword">int</span>)</span></div><div class="line"><span class="function">BEGIN </span></div><div class="line"><span class="function">    <span class="keyword">select</span> <span class="title">count</span>(<span class="params">*</span>) <span class="keyword">into</span> count_num <span class="keyword">from</span> test</span></div><div class="line"><span class="function">    <span class="keyword">where</span> Gendder </span>= sex;</div><div class="line">end;</div><div class="line"><span class="meta">##使用</span></div><div class="line"><span class="function">call <span class="title">show_gender_list</span>(<span class="params"><span class="string">'男'</span></span>)</span>;</div></pre></td></tr></table></figure><h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">##创建</div><div class="line"><span class="keyword">create</span> <span class="keyword">function</span> show_g(sex varchar(<span class="number">20</span>))</div><div class="line"><span class="keyword">return</span> int</div><div class="line"><span class="keyword">BEGIN</span></div><div class="line">    <span class="keyword">set</span> @aaa = <span class="number">1</span>;</div><div class="line">    <span class="keyword">select</span> <span class="built_in">count</span>(*) <span class="keyword">into</span> @aaa <span class="keyword">from</span> test</div><div class="line">    <span class="keyword">where</span> Gender = sex;</div><div class="line">    return 1;</div><div class="line">end;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;视图&quot;&gt;&lt;a href=&quot;#视图&quot; class=&quot;headerlink&quot; title=&quot;视图&quot;&gt;&lt;/a&gt;视图&lt;/h1&gt;&lt;p&gt;视图相当于把一个复杂sql语句作为表保存起来，对于外层用户，只能查到视图中的数据，保护数据源，可以设置权限&lt;br&gt;&lt;figure class
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="https://chumingke.github.io/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="https://chumingke.github.io/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据库分析的简单步骤</title>
+    <link href="https://chumingke.github.io//blog/2017/10/Simple-steps-for-database-analysis.html"/>
+    <id>https://chumingke.github.io//blog/2017/10/Simple-steps-for-database-analysis.html</id>
+    <published>2017-10-06T08:37:31.000Z</published>
+    <updated>2017-10-06T08:48:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="第一步-大概看一下"><a href="#第一步-大概看一下" class="headerlink" title="第一步 大概看一下"></a>第一步 大概看一下</h1><p>拿到一张表，首先看一下它的字段</p><h1 id="第二步-确定数据规模"><a href="#第二步-确定数据规模" class="headerlink" title="第二步 确定数据规模"></a>第二步 确定数据规模</h1><p>确定数据规模 几行几列count</p><h1 id="第三步-确定分类字段对应的数据规模"><a href="#第三步-确定分类字段对应的数据规模" class="headerlink" title="第三步 确定分类字段对应的数据规模"></a>第三步 确定分类字段对应的数据规模</h1><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">count(*) ..<span class="keyword">group</span> <span class="title">by</span>  <span class="keyword">order</span> <span class="title">by</span></div></pre></td></tr></table></figure><p>比如会员类型，性别，地点，时间</p><h2 id="地点城市"><a href="#地点城市" class="headerlink" title="地点城市"></a>地点城市</h2><p>如果字段中含有城市，一般不在Mysql中切割<br>因为耗时间，比如每个市名字字数不一样，语句会很复杂<br>通常找一张城市表进行多表查询</p><h2 id="按照年月（时间）"><a href="#按照年月（时间）" class="headerlink" title="按照年月（时间）"></a>按照年月（时间）</h2><p>###日期格式化<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">DATE_FORMAT(date,format)</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">test</span> <span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">DATE_FORMAT</span>(<span class="built_in">date</span>,<span class="string">'%Y-%m'</span>)</div></pre></td></tr></table></figure></p><h3 id="格式化参数说明"><a href="#格式化参数说明" class="headerlink" title="格式化参数说明"></a>格式化参数说明</h3><p>ymdwhis<br>Y完整年，y取年后两位，M英语月份，m数字型月份<br>D 英语日，d数字日。H 24进制小时，h 12进制小时<br>I 等同于h，i 分钟。S 等同于s 代表秒<br>W 英语星期，w 数字形式星期<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="attr">#例如：</span></div><div class="line"><span class="attr">'20150711</span><span class="string">'</span></div><div class="line"><span class="string">'</span><span class="meta">%</span>Y<span class="meta">%</span>m<span class="meta">%</span>d<span class="string">'</span></div><div class="line"><span class="string">'</span><span class="number">150711</span><span class="string">'</span></div><div class="line"><span class="string">'</span><span class="meta">%</span>y<span class="meta">%</span>m<span class="meta">%</span>d<span class="string">'</span></div><div class="line"><span class="string">小写的对应不完整的年份，自动脑补前面两个</span></div></pre></td></tr></table></figure></p><h3 id="字符串转化为时间（将生日转化为时间）"><a href="#字符串转化为时间（将生日转化为时间）" class="headerlink" title="字符串转化为时间（将生日转化为时间）"></a>字符串转化为时间（将生日转化为时间）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">STR_TO_DATE(date,format)</div><div class="line"><span class="keyword">select</span> <span class="keyword">STR_TO_DATE</span>(<span class="string">'2015+07+11'</span>,<span class="string">'%Y+%m+%d'</span>)</div><div class="line">##将生日转化为时间进行分组:</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">test</span> </div><div class="line"><span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">DATE_FORMAT</span>(<span class="keyword">STR_TO_DATE</span>(Birthday,<span class="string">'%Y%m%d'</span>),<span class="string">'%Y-%m'</span>)</div></pre></td></tr></table></figure><h3 id="根据出生年月日，转化为星期，用英文显示周几出生的人比较多"><a href="#根据出生年月日，转化为星期，用英文显示周几出生的人比较多" class="headerlink" title="根据出生年月日，转化为星期，用英文显示周几出生的人比较多"></a>根据出生年月日，转化为星期，用英文显示周几出生的人比较多</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">count</span>(week_name),week_name <span class="keyword">from</span> (</div><div class="line"><span class="keyword">select</span> <span class="keyword">DATE_FORMAT</span>(<span class="keyword">STR_TO_DATE</span>(Birthday,<span class="string">'%Y%m%d'</span>),<span class="string">'%W'</span>) <span class="keyword">as</span> week_name <span class="keyword">from</span> <span class="keyword">test</span> </div><div class="line">) <span class="keyword">as</span> a</div><div class="line"><span class="keyword">group</span> <span class="keyword">by</span> week_name</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">count</span>(week_name) <span class="keyword">desc</span> <span class="keyword">limit</span> <span class="number">1</span>;</div></pre></td></tr></table></figure><h2 id="注意如何既显示中文同时排序，因为可能用中文排序不行"><a href="#注意如何既显示中文同时排序，因为可能用中文排序不行" class="headerlink" title="注意如何既显示中文同时排序，因为可能用中文排序不行"></a>注意如何既显示中文同时排序，因为可能用中文排序不行</h2><p>先通过英文字段排序，再将结果作为一个表，select..as 中文</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;第一步-大概看一下&quot;&gt;&lt;a href=&quot;#第一步-大概看一下&quot; class=&quot;headerlink&quot; title=&quot;第一步 大概看一下&quot;&gt;&lt;/a&gt;第一步 大概看一下&lt;/h1&gt;&lt;p&gt;拿到一张表，首先看一下它的字段&lt;/p&gt;
+&lt;h1 id=&quot;第二步-确定数据规模&quot;&gt;&lt;a
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="https://chumingke.github.io/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="https://chumingke.github.io/tags/mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>MySQL查询语句练习题(45题版)</title>

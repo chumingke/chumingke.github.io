@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chumingke.github.io/blog/2017/10/MySQL-triggers-and-event-schedulers.html</loc>
+    
+    <lastmod>2017-10-06T09:13:12.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chumingke.github.io/blog/2017/10/MySQL-database-tips.html</loc>
+    
+    <lastmod>2017-10-06T09:01:03.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chumingke.github.io/blog/2017/10/MySQL-error-code-and-exception-capture.html</loc>
+    
+    <lastmod>2017-10-06T08:57:20.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chumingke.github.io/blog/2017/10/Simple-steps-for-database-analysis.html</loc>
+    
+    <lastmod>2017-10-06T08:48:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chumingke.github.io/blog/2017/10/MySQL-stored-procedures-and-views.html</loc>
+    
+    <lastmod>2017-10-06T08:48:21.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://chumingke.github.io/blog/2017/10/MySQL-query-exercises-45.html</loc>
     
     <lastmod>2017-10-05T05:11:16.000Z</lastmod>
