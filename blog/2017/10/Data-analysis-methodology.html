@@ -72,7 +72,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="mysql," />
+  <meta name="keywords" content="Data analysis," />
 
 
 
@@ -90,18 +90,18 @@
 
 
 
-<meta name="description" content="第一步 大概看一下拿到一张表，首先看一下它的字段 第二步 确定数据规模确定数据规模 几行几列count 第三步 确定分类字段对应的数据规模1count(*) ..group by  order by 比如会员类型，性别，地点，时间 地点城市如果字段中含有城市，一般不在Mysql中切割因为耗时间，比如每个市名字字数不一样，语句会很复杂通常找一张城市表进行多表查询 按照年月（时间）###日期格式化12">
-<meta name="keywords" content="mysql">
+<meta name="description" content="整理了一些思维、方法论。 统计分析方法论营销管理方法论SWOT分析Strength(强势)Opportunity(机会)Weekness(弱点)threat(威胁) 4P营销理论产品价格渠道促销分析公司的整体营运情况 PEST分析法政治（Political）经济（Economic）技术（Technological）社会（Social）  用于对宏观环境的分析SMART目标分析明确性(Specifi">
+<meta name="keywords" content="Data analysis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据库分析的简单步骤">
-<meta property="og:url" content="https://chumingke.github.io/blog/2017/10/Simple-steps-for-database-analysis.html">
+<meta property="og:title" content="数据分析方法论">
+<meta property="og:url" content="https://chumingke.github.io/blog/2017/10/Data-analysis-methodology.html">
 <meta property="og:site_name" content="chumingke-二师兄">
-<meta property="og:description" content="第一步 大概看一下拿到一张表，首先看一下它的字段 第二步 确定数据规模确定数据规模 几行几列count 第三步 确定分类字段对应的数据规模1count(*) ..group by  order by 比如会员类型，性别，地点，时间 地点城市如果字段中含有城市，一般不在Mysql中切割因为耗时间，比如每个市名字字数不一样，语句会很复杂通常找一张城市表进行多表查询 按照年月（时间）###日期格式化12">
+<meta property="og:description" content="整理了一些思维、方法论。 统计分析方法论营销管理方法论SWOT分析Strength(强势)Opportunity(机会)Weekness(弱点)threat(威胁) 4P营销理论产品价格渠道促销分析公司的整体营运情况 PEST分析法政治（Political）经济（Economic）技术（Technological）社会（Social）  用于对宏观环境的分析SMART目标分析明确性(Specifi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-06T08:48:40.000Z">
+<meta property="og:updated_time" content="2017-10-08T12:45:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据库分析的简单步骤">
-<meta name="twitter:description" content="第一步 大概看一下拿到一张表，首先看一下它的字段 第二步 确定数据规模确定数据规模 几行几列count 第三步 确定分类字段对应的数据规模1count(*) ..group by  order by 比如会员类型，性别，地点，时间 地点城市如果字段中含有城市，一般不在Mysql中切割因为耗时间，比如每个市名字字数不一样，语句会很复杂通常找一张城市表进行多表查询 按照年月（时间）###日期格式化12">
+<meta name="twitter:title" content="数据分析方法论">
+<meta name="twitter:description" content="整理了一些思维、方法论。 统计分析方法论营销管理方法论SWOT分析Strength(强势)Opportunity(机会)Weekness(弱点)threat(威胁) 4P营销理论产品价格渠道促销分析公司的整体营运情况 PEST分析法政治（Political）经济（Economic）技术（Technological）社会（Social）  用于对宏观环境的分析SMART目标分析明确性(Specifi">
 
 
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="https://chumingke.github.io/blog/2017/10/Simple-steps-for-database-analysis.html"/>
+  <link rel="canonical" href="https://chumingke.github.io/blog/2017/10/Data-analysis-methodology.html"/>
 
 
 
 
 
-  <title> 数据库分析的简单步骤 | chumingke-二师兄 </title>
+  <title> 数据分析方法论 | chumingke-二师兄 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -268,7 +268,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://chumingke.github.io/blog/2017/10/Simple-steps-for-database-analysis.html">
+  <link itemprop="mainEntityOfPage" href="https://chumingke.github.io/blog/2017/10/Data-analysis-methodology.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="chumingke">
@@ -292,7 +292,7 @@
             
             
               
-                数据库分析的简单步骤
+                数据分析方法论
               
             
           </h2>
@@ -307,8 +307,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-06T16:37:31+08:00">
-                2017-10-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-08T20:42:19+08:00">
+                2017-10-08
               </time>
             
 
@@ -330,8 +330,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
+                  <a href="/categories/Data-analysis/" itemprop="url" rel="index">
+                    <span itemprop="name">Data analysis</span>
                   </a>
                 </span>
 
@@ -348,8 +348,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/2017/10/Simple-steps-for-database-analysis.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2017/10/Simple-steps-for-database-analysis.html" itemprop="commentCount"></span>
+                <a href="/blog/2017/10/Data-analysis-methodology.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2017/10/Data-analysis-methodology.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -378,16 +378,19 @@
       
 
       
-        <h1 id="第一步-大概看一下"><a href="#第一步-大概看一下" class="headerlink" title="第一步 大概看一下"></a>第一步 大概看一下</h1><p>拿到一张表，首先看一下它的字段</p>
-<h1 id="第二步-确定数据规模"><a href="#第二步-确定数据规模" class="headerlink" title="第二步 确定数据规模"></a>第二步 确定数据规模</h1><p>确定数据规模 几行几列count</p>
-<h1 id="第三步-确定分类字段对应的数据规模"><a href="#第三步-确定分类字段对应的数据规模" class="headerlink" title="第三步 确定分类字段对应的数据规模"></a>第三步 确定分类字段对应的数据规模</h1><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">count(*) ..<span class="keyword">group</span> <span class="title">by</span>  <span class="keyword">order</span> <span class="title">by</span></div></pre></td></tr></table></figure>
-<p>比如会员类型，性别，地点，时间</p>
-<h2 id="地点城市"><a href="#地点城市" class="headerlink" title="地点城市"></a>地点城市</h2><p>如果字段中含有城市，一般不在Mysql中切割<br>因为耗时间，比如每个市名字字数不一样，语句会很复杂<br>通常找一张城市表进行多表查询</p>
-<h2 id="按照年月（时间）"><a href="#按照年月（时间）" class="headerlink" title="按照年月（时间）"></a>按照年月（时间）</h2><p>###日期格式化<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">DATE_FORMAT(date,format)</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">test</span> <span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">DATE_FORMAT</span>(<span class="built_in">date</span>,<span class="string">'%Y-%m'</span>)</div></pre></td></tr></table></figure></p>
-<h3 id="格式化参数说明"><a href="#格式化参数说明" class="headerlink" title="格式化参数说明"></a>格式化参数说明</h3><p>ymdwhis<br>Y完整年，y取年后两位，M英语月份，m数字型月份<br>D 英语日，d数字日。H 24进制小时，h 12进制小时<br>I 等同于h，i 分钟。S 等同于s 代表秒<br>W 英语星期，w 数字形式星期<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="attr">#例如：</span></div><div class="line"><span class="attr">'20150711</span><span class="string">'</span></div><div class="line"><span class="string">'</span><span class="meta">%</span>Y<span class="meta">%</span>m<span class="meta">%</span>d<span class="string">'</span></div><div class="line"><span class="string">'</span><span class="number">150711</span><span class="string">'</span></div><div class="line"><span class="string">'</span><span class="meta">%</span>y<span class="meta">%</span>m<span class="meta">%</span>d<span class="string">'</span></div><div class="line"><span class="string">小写的对应不完整的年份，自动脑补前面两个</span></div></pre></td></tr></table></figure></p>
-<h3 id="字符串转化为时间（将生日转化为时间）"><a href="#字符串转化为时间（将生日转化为时间）" class="headerlink" title="字符串转化为时间（将生日转化为时间）"></a>字符串转化为时间（将生日转化为时间）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">STR_TO_DATE(date,format)</div><div class="line"><span class="keyword">select</span> <span class="keyword">STR_TO_DATE</span>(<span class="string">'2015+07+11'</span>,<span class="string">'%Y+%m+%d'</span>)</div><div class="line">##将生日转化为时间进行分组:</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">test</span> </div><div class="line"><span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">DATE_FORMAT</span>(<span class="keyword">STR_TO_DATE</span>(Birthday,<span class="string">'%Y%m%d'</span>),<span class="string">'%Y-%m'</span>)</div></pre></td></tr></table></figure>
-<h3 id="根据出生年月日，转化为星期，用英文显示周几出生的人比较多"><a href="#根据出生年月日，转化为星期，用英文显示周几出生的人比较多" class="headerlink" title="根据出生年月日，转化为星期，用英文显示周几出生的人比较多"></a>根据出生年月日，转化为星期，用英文显示周几出生的人比较多</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">count</span>(week_name),week_name <span class="keyword">from</span> (</div><div class="line"><span class="keyword">select</span> <span class="keyword">DATE_FORMAT</span>(<span class="keyword">STR_TO_DATE</span>(Birthday,<span class="string">'%Y%m%d'</span>),<span class="string">'%W'</span>) <span class="keyword">as</span> week_name <span class="keyword">from</span> <span class="keyword">test</span> </div><div class="line">) <span class="keyword">as</span> a</div><div class="line"><span class="keyword">group</span> <span class="keyword">by</span> week_name</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">count</span>(week_name) <span class="keyword">desc</span> <span class="keyword">limit</span> <span class="number">1</span>;</div></pre></td></tr></table></figure>
-<h2 id="注意如何既显示中文同时排序，因为可能用中文排序不行"><a href="#注意如何既显示中文同时排序，因为可能用中文排序不行" class="headerlink" title="注意如何既显示中文同时排序，因为可能用中文排序不行"></a>注意如何既显示中文同时排序，因为可能用中文排序不行</h2><p>先通过英文字段排序，再将结果作为一个表，select..as 中文</p>
+        <p>整理了一些思维、方法论。</p>
+<h1 id="统计分析方法论"><a href="#统计分析方法论" class="headerlink" title="统计分析方法论"></a>统计分析方法论</h1><h1 id="营销管理方法论"><a href="#营销管理方法论" class="headerlink" title="营销管理方法论"></a>营销管理方法论</h1><h2 id="SWOT分析"><a href="#SWOT分析" class="headerlink" title="SWOT分析"></a>SWOT分析</h2><p>Strength(强势)<br>Opportunity(机会)<br>Weekness(弱点)<br>threat(威胁)</p>
+<h2 id="4P营销理论"><a href="#4P营销理论" class="headerlink" title="4P营销理论"></a>4P营销理论</h2><p>产品<br>价格<br>渠道<br>促销<br>分析公司的整体营运情况</p>
+<h2 id="PEST分析法"><a href="#PEST分析法" class="headerlink" title="PEST分析法"></a>PEST分析法</h2><p>政治（Political）<br>经济（Economic）<br>技术（Technological）<br>社会（Social）</p>
+<ul>
+<li>用于对宏观环境的分析<h2 id="SMART目标分析"><a href="#SMART目标分析" class="headerlink" title="SMART目标分析"></a>SMART目标分析</h2>明确性(Specific)<br>可量化(Measurable)<br>可实现(Attainable)<br>相关联(Relevant)<br>时效性(Time)<h2 id="5W2H分析法"><a href="#5W2H分析法" class="headerlink" title="5W2H分析法"></a>5W2H分析法</h2>何因(Why)<br>何事(What)<br>何时(When)<br>何人(Who)<br>何地(Where)<br>如何做(How)<br>何价(How much)<h2 id="用户行为分析（user-behavior）"><a href="#用户行为分析（user-behavior）" class="headerlink" title="用户行为分析（user behavior）"></a>用户行为分析（user behavior）</h2>认知<br>熟悉<br>试用<br>使用<br>忠诚<br>适用于网站流量分析<h2 id="逻辑树分析法"><a href="#逻辑树分析法" class="headerlink" title="逻辑树分析法"></a>逻辑树分析法</h2>问题：（子问题一，子问题二）<br>把问题的所有子问题分层罗列<h1 id="张梦溪的系统案例（知乎数据分析方法论是什么）"><a href="#张梦溪的系统案例（知乎数据分析方法论是什么）" class="headerlink" title="张梦溪的系统案例（知乎数据分析方法论是什么）"></a>张梦溪的系统案例（知乎数据分析方法论是什么）</h1><h2 id="商业分析理论"><a href="#商业分析理论" class="headerlink" title="商业分析理论"></a>商业分析理论</h2>1.理解商业分析目标<br>2.理解企业成长模式，核心业务平台是什么？<br>3.理解商业分析进化论<figure class="highlight abnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">观察数据发生了什么<span class="comment">;</span></div><div class="line">理解为什么发生<span class="comment">;</span></div><div class="line">预测未来会发生什么<span class="comment">;</span></div><div class="line">商业决策。</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>4.EOI的分析架构<br><figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">助力（Empower）</div><div class="line">优化（<span class="keyword">Optimize</span>）</div><div class="line">创新（Innovate）</div></pre></td></tr></table></figure></p>
+<h2 id="常用分析方法"><a href="#常用分析方法" class="headerlink" title="常用分析方法"></a>常用分析方法</h2><h3 id="数据分析的基本思路"><a href="#数据分析的基本思路" class="headerlink" title="数据分析的基本思路"></a>数据分析的基本思路</h3><p>1.挖掘业务含义<br>2.制定分析计划<br>3.拆分查询数据<br>4.提炼业务洞察<br>5.产出商业决策</p>
+<h3 id="内外因素分解法"><a href="#内外因素分解法" class="headerlink" title="内外因素分解法"></a>内外因素分解法</h3><p>案例</p>
+<h3 id="DOSS"><a href="#DOSS" class="headerlink" title="DOSS"></a>DOSS</h3><h2 id="具体应用手段"><a href="#具体应用手段" class="headerlink" title="具体应用手段"></a>具体应用手段</h2><p>1.画像分群<br>2.趋势<br>3.漏斗洞察<br>4.行为轨迹<br>5.留存分析<br>6.A/B测试<br>7.优化建模</p>
+<h1 id="linkeln案例"><a href="#linkeln案例" class="headerlink" title="linkeln案例"></a>linkeln案例</h1><p>数据分析思维</p>
 
       
     </div>
@@ -401,7 +404,7 @@
   
         <div class="post-tags">
           
-            <a href="/tags/mysql/" rel="tag"># mysql</a>
+            <a href="/tags/Data-analysis/" rel="tag"># Data analysis</a>
           
         </div>
       
@@ -442,8 +445,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2017/10/MySQL-query-exercises-45.html" rel="next" title="MySQL查询语句练习题(45题版)">
-                <i class="fa fa-chevron-left"></i> MySQL查询语句练习题(45题版)
+              <a href="/blog/2017/10/Numpy-learning-notes.html" rel="next" title="Numpy学习笔记">
+                <i class="fa fa-chevron-left"></i> Numpy学习笔记
               </a>
             
           </div>
@@ -452,8 +455,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2017/10/MySQL-stored-procedures-and-views.html" rel="prev" title="MySQL存储过程与视图">
-                MySQL存储过程与视图 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2017/10/Data-analysis-method.html" rel="prev" title="数据分析方法">
+                数据分析方法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -469,10 +472,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="/blog/2017/10/Simple-steps-for-database-analysis.html"
-     data-title="数据库分析的简单步骤"
+        <div class="ds-share flat" data-thread-key="/blog/2017/10/Data-analysis-methodology.html"
+     data-title="数据分析方法论"
      data-content=""
-     data-url="https://chumingke.github.io/blog/2017/10/Simple-steps-for-database-analysis.html">
+     data-url="https://chumingke.github.io/blog/2017/10/Data-analysis-methodology.html">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -502,8 +505,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="/blog/2017/10/Simple-steps-for-database-analysis.html"
-           data-title="数据库分析的简单步骤" data-url="https://chumingke.github.io/blog/2017/10/Simple-steps-for-database-analysis.html">
+      <div class="ds-thread" data-thread-key="/blog/2017/10/Data-analysis-methodology.html"
+           data-title="数据分析方法论" data-url="https://chumingke.github.io/blog/2017/10/Data-analysis-methodology.html">
       </div>
     
   </div>
@@ -669,7 +672,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一步-大概看一下"><span class="nav-number">1.</span> <span class="nav-text">第一步 大概看一下</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第二步-确定数据规模"><span class="nav-number">2.</span> <span class="nav-text">第二步 确定数据规模</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第三步-确定分类字段对应的数据规模"><span class="nav-number">3.</span> <span class="nav-text">第三步 确定分类字段对应的数据规模</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#地点城市"><span class="nav-number">3.1.</span> <span class="nav-text">地点城市</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按照年月（时间）"><span class="nav-number">3.2.</span> <span class="nav-text">按照年月（时间）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#格式化参数说明"><span class="nav-number">3.2.1.</span> <span class="nav-text">格式化参数说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串转化为时间（将生日转化为时间）"><span class="nav-number">3.2.2.</span> <span class="nav-text">字符串转化为时间（将生日转化为时间）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据出生年月日，转化为星期，用英文显示周几出生的人比较多"><span class="nav-number">3.2.3.</span> <span class="nav-text">根据出生年月日，转化为星期，用英文显示周几出生的人比较多</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意如何既显示中文同时排序，因为可能用中文排序不行"><span class="nav-number">3.3.</span> <span class="nav-text">注意如何既显示中文同时排序，因为可能用中文排序不行</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#统计分析方法论"><span class="nav-number">1.</span> <span class="nav-text">统计分析方法论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#营销管理方法论"><span class="nav-number">2.</span> <span class="nav-text">营销管理方法论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SWOT分析"><span class="nav-number">2.1.</span> <span class="nav-text">SWOT分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4P营销理论"><span class="nav-number">2.2.</span> <span class="nav-text">4P营销理论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PEST分析法"><span class="nav-number">2.3.</span> <span class="nav-text">PEST分析法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SMART目标分析"><span class="nav-number">2.4.</span> <span class="nav-text">SMART目标分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5W2H分析法"><span class="nav-number">2.5.</span> <span class="nav-text">5W2H分析法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户行为分析（user-behavior）"><span class="nav-number">2.6.</span> <span class="nav-text">用户行为分析（user behavior）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑树分析法"><span class="nav-number">2.7.</span> <span class="nav-text">逻辑树分析法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#张梦溪的系统案例（知乎数据分析方法论是什么）"><span class="nav-number">3.</span> <span class="nav-text">张梦溪的系统案例（知乎数据分析方法论是什么）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#商业分析理论"><span class="nav-number">3.1.</span> <span class="nav-text">商业分析理论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用分析方法"><span class="nav-number">3.2.</span> <span class="nav-text">常用分析方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据分析的基本思路"><span class="nav-number">3.2.1.</span> <span class="nav-text">数据分析的基本思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内外因素分解法"><span class="nav-number">3.2.2.</span> <span class="nav-text">内外因素分解法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOSS"><span class="nav-number">3.2.3.</span> <span class="nav-text">DOSS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体应用手段"><span class="nav-number">3.3.</span> <span class="nav-text">具体应用手段</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#linkeln案例"><span class="nav-number">4.</span> <span class="nav-text">linkeln案例</span></a></li></ol></div>
             
 
           </div>
