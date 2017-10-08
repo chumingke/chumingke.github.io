@@ -1,0 +1,909 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Neucha:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="chumingke-二师兄" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="第二部分高级特性切片迭代1.如果给定一个list或tuple我们可以通过for循环来历遍这个list后者tuple。这种历遍我们称为迭代（Iteration)2.dict由于dict的储存不是按照list的方式顺序排列，所以迭代出的结果顺序可能不一样。默认dict迭代的是key,如果要迭代value：1for value in d.itervalues() 如果要同时迭代:1for k,v in">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python2.7学习笔记（二）">
+<meta property="og:url" content="https://chumingke.github.io/blog/2017/10/Python2-7-learning-notes-2.html">
+<meta property="og:site_name" content="chumingke-二师兄">
+<meta property="og:description" content="第二部分高级特性切片迭代1.如果给定一个list或tuple我们可以通过for循环来历遍这个list后者tuple。这种历遍我们称为迭代（Iteration)2.dict由于dict的储存不是按照list的方式顺序排列，所以迭代出的结果顺序可能不一样。默认dict迭代的是key,如果要迭代value：1for value in d.itervalues() 如果要同时迭代:1for k,v in">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-08T08:05:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python2.7学习笔记（二）">
+<meta name="twitter:description" content="第二部分高级特性切片迭代1.如果给定一个list或tuple我们可以通过for循环来历遍这个list后者tuple。这种历遍我们称为迭代（Iteration)2.dict由于dict的储存不是按照list的方式顺序排列，所以迭代出的结果顺序可能不一样。默认dict迭代的是key,如果要迭代value：1for value in d.itervalues() 如果要同时迭代:1for k,v in">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://chumingke.github.io/blog/2017/10/Python2-7-learning-notes-2.html"/>
+
+
+
+
+
+  <title> Python2.7学习笔记（二） | chumingke-二师兄 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">chumingke-二师兄</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <h1 class="site-subtitle" itemprop="description"></h1>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://chumingke.github.io/blog/2017/10/Python2-7-learning-notes-2.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="chumingke">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/dingxiu.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="chumingke-二师兄">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="chumingke-二师兄" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python2.7学习笔记（二）
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-08T16:04:32+08:00">
+                2017-10-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2017/10/Python2-7-learning-notes-2.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2017/10/Python2-7-learning-notes-2.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+ 
+        
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="第二部分"><a href="#第二部分" class="headerlink" title="第二部分"></a>第二部分</h1><h2 id="高级特性"><a href="#高级特性" class="headerlink" title="高级特性"></a>高级特性</h2><h3 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h3><h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p>1.如果给定一个list或tuple我们可以通过for循环来历遍这个list后者tuple。<br>这种历遍我们称为迭代（Iteration)<br>2.dict<br>由于dict的储存不是按照list的方式顺序排列，所以迭代出的结果顺序可能不一样。<br>默认dict迭代的是key,如果要迭代value：<br><figure class="highlight ceylon"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> <span class="keyword">value</span> <span class="keyword">in</span> d.itervalues()</div></pre></td></tr></table></figure></p>
+<p>如果要同时迭代:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> d.iteritems()</div></pre></td></tr></table></figure></p>
+<p>3.怎么判断是否可以迭代?<br>使用collections模块的iterable<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">form</span> collections import Iterable</div><div class="line"><span class="function"><span class="title">isinstanc</span><span class="params">(<span class="string">'abs'</span>,Iterable)</span></span></div></pre></td></tr></table></figure></p>
+<p>4.下标循环<br>java通过下标循环<br>如果想在python中实现类似下标循环<br>内置的enumerate函数可以吧list编程索引-元素对<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> <span class="selector-tag">i</span>,value <span class="keyword">in</span> enumerate([<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>]):</div></pre></td></tr></table></figure></p>
+<h3 id="列表生成式"><a href="#列表生成式" class="headerlink" title="列表生成式"></a>列表生成式</h3><p>1.列表生成式即List Comprehensions<br>内置的非常简单强大可以用来创建list的生成式<br>2.直接在列表里面写上公式<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[ x*x for x <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">11</span>) <span class="keyword">if</span> x%<span class="number">2</span> == <span class="number">0</span> ]</div><div class="line">##还可以写两层循环，生成全排列</div><div class="line">##三层及以上使用较少</div></pre></td></tr></table></figure></p>
+<p>3.列表生成式也可以使用两个变量生成list<br>4.最后把一个list中所有的字符串变小写</p>
+<h3 id="生成器（Generator）"><a href="#生成器（Generator）" class="headerlink" title="生成器（Generator）"></a>生成器（Generator）</h3><p>1.如果列表元素可以按照某种算法推算出来，那我们是否可以在循环过程中不断推算出后续的元素而不必创建完整的list。python中这种一边循环一边计算的机制，称为生成器<br>2.只要把列表的[]改成（），就创建了一个generator<br>3.如果一个函数定义中包含yield关键字，那这个函数就是一个generator<br>4.generator和函数的执行流程不一样<br>函数是顺序执行，遇到return语句或者最后一行函数语句就返回。<br>而变成generator的函数，在每次调用next()的时候执行，遇到yield语句返回，再次执行时从上次返回的yield语句处继续执行。<br>5.generator是非常强大的工具<br>6.斐波那契数列<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">def fib(max):</div><div class="line">n,a,<span class="attribute">b</span>=0,0,1</div><div class="line"><span class="keyword">while</span> n &lt; max:</div><div class="line"><span class="builtin-name">print</span> b</div><div class="line">a,<span class="attribute">b</span>=b,a+b</div><div class="line">n = n+1</div></pre></td></tr></table></figure></p>
+<p>7.将斐波那契数列函数改为generator<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">##将print <span class="keyword">b </span>改为<span class="keyword">yield </span><span class="keyword">b</span></div><div class="line"><span class="keyword">def </span>fib(max):</div><div class="line">n,a,<span class="keyword">b=0,0,1</span></div><div class="line"><span class="keyword">while </span>n &lt; max:</div><div class="line"><span class="keyword">yield </span><span class="keyword">b</span></div><div class="line"><span class="keyword">a,b=b,a+b</span></div><div class="line"><span class="keyword">n </span>= n+<span class="number">1</span></div></pre></td></tr></table></figure></p>
+<h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><h3 id="高阶函数（Higher-order-function）"><a href="#高阶函数（Higher-order-function）" class="headerlink" title="高阶函数（Higher-order function）"></a>高阶函数（Higher-order function）</h3><h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><p>1.变量可以指向函数<br>2.函数名也是变量<br>如果不慎将固定函数名指向其他变量，想要恢复只能重启python交互环境。<br>3.传入函数<br>将函数作为另一个函数的参数：高阶函数。</p>
+<h4 id="map-reduce"><a href="#map-reduce" class="headerlink" title="map/reduce"></a>map/reduce</h4><h5 id="map"><a href="#map" class="headerlink" title="map"></a>map</h5><p>1.接受两个参数，第一个是函数，一个是序列<br>2.map将传入的函数一次作用到序列的每个元素，并把结果作为新的list返回<br>3.不改变原列表，返回新列表</p>
+<h5 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h5><p>1.把一个函数作用在一个序列上，该函数必须接收两个参数，并把结果和序列的下一个参数做累计计算<br>2.例如阶乘<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">reduce(<span class="name">f</span>,[ x1,x2,x3,x4])   =    f(<span class="name">f</span>(<span class="name">f</span>(<span class="name">x1</span>,x2),x3),x4)</div></pre></td></tr></table></figure></p>
+<p>3.可以写一个把字符串转化为整数的函数</p>
+<h4 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h4><p>1.用于过滤序列<br>筛选函数<br>2.也是接收一个函数和一个序列，并把函数依次作用于每个元素，根据返回值是True还是False决定保留还是丢弃该元素<br>3.在一个list中，删掉偶数，只保留奇数，可以这么写<br>4.把一个序列中的空字符串删掉，可以这么写</p>
+<h4 id="sorted"><a href="#sorted" class="headerlink" title="sorted"></a>sorted</h4><p>1.排序算法<br>2.通常规定，对于两个元素xy,如果认为x &lt; y,则返回-1，如果认为x == y ,则返回0，如果认为x&gt;y，则返回1<br>3.可以sorted()直接排序<br>4.sorted也是一个高阶函数，同样可以接收一个比较函数来实现自定义的排序<br>如果要倒序排序<br>如果要按字母序排序字符串</p>
+<h3 id="返回函数"><a href="#返回函数" class="headerlink" title="返回函数"></a>返回函数</h3><p>1.高阶函数除了可以接受函数作为参数外，还可以把函数作为结果值返回<br>2.我们来实现一个可变参数的求和<br>通常情况下<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">calc_sum</span><span class="params">(*args)</span></span><span class="symbol">:</span></div><div class="line">    ax = <span class="number">0</span></div><div class="line">   <span class="keyword">for</span> n <span class="keyword">in</span> <span class="symbol">args:</span></div><div class="line">        ax = ax+n</div><div class="line">   <span class="keyword">return</span> ax</div></pre></td></tr></table></figure></p>
+<p>如果不需要立即求和，而是在后面的代码中，根据需要再计算，可以不返回求和结果，而返回求和函数<br>这种称为“闭包（closure)”的程序结构拥有极大威力<br>例子<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">lazy_sum</span><span class="params">(*args)</span></span><span class="symbol">:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sum</span><span class="params">()</span></span><span class="symbol">:</span></div><div class="line">        ax = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> <span class="symbol">args:</span></div><div class="line">            ax = ax +n</div><div class="line">        <span class="keyword">return</span> ax</div><div class="line">    <span class="keyword">return</span> sum</div></pre></td></tr></table></figure></p>
+<p>当我们调用lazy_sum（）时，返回的并不是求和结果，而是求和函数<br>3.返回函数不要引用任何循环变量，或者后续会发生变化的变量<br>4.如果一定要引用，方法是再创建一个函数，用该函数的参数绑定循环变量当前的值，无论该循环变量后续如何更改，已绑定到函数参数的值不变，缺点是代码比较长，可利用lambda函数缩短代码。</p>
+<h3 id="匿名函数lambda"><a href="#匿名函数lambda" class="headerlink" title="匿名函数lambda"></a>匿名函数lambda</h3><figure class="highlight llvm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">map ( lambda <span class="keyword">x</span>: <span class="keyword">x</span>*<span class="keyword">x</span>,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>])</div><div class="line">lambda <span class="keyword">x</span>: <span class="keyword">x</span>*<span class="keyword">x</span></div><div class="line">##等价于:</div><div class="line">def f(<span class="keyword">x</span>)</div><div class="line">    return <span class="keyword">x</span>*<span class="keyword">x</span></div><div class="line">##<span class="keyword">x</span>表示函数参数</div></pre></td></tr></table></figure>
+<p>匿名函数有个限制，只能有一个表达式，不用写return,返回值就是该表达式的结果。</p>
+<h3 id="装饰器-Decorator"><a href="#装饰器-Decorator" class="headerlink" title="装饰器(Decorator)"></a>装饰器(Decorator)</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>1.函数也是对象，函数对象可以被赋值给变量，所以可以通过变量调用函数<br>2.函数有一个<strong>name</strong>属性，可以获取函数名<br>3.现在我们要增强一个函数的功能，比如，在函数前后自动打印日志。又不想修改该函数的定义，这种在代码运行期间动态增加功能的方式，我们称之为装饰器<br>4.本质上，Decorator就是一个返回函数的高阶函数</p>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">import functools</div><div class="line">def <span class="built_in">log</span>(<span class="function"><span class="keyword">func</span>):</span></div><div class="line">    <span class="symbol">@functools</span>.wraps(<span class="function"><span class="keyword">func</span>)</span></div><div class="line">    def wrapper(*args, **kw):</div><div class="line">        print <span class="string">'call %s():'</span> % <span class="function"><span class="keyword">func</span>.<span class="title">__name__</span></span></div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">func</span><span class="params">(*args, **kw)</span></span></div><div class="line">    <span class="keyword">return</span> wrapper</div></pre></td></tr></table></figure>
+<h3 id="偏函数"><a href="#偏函数" class="headerlink" title="偏函数"></a>偏函数</h3><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><blockquote>
+<p>python的 functools 模块提供了很多有用的功能，其中一个就是偏函数 （Partial function) 。此处偏函数和数学意义上的不一样。<br>偏函数可以类似设定参数默认值，降低函数调用的难度。</p>
+<h4 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h4><p>1.int函数提供额外的base参数，默认为10，可以做N进制转换：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">int ('<span class="number">12345</span>' ,base = <span class="number">8</span>)</div><div class="line"><span class="number">5349</span></div><div class="line">int ('<span class="number">12345</span>' ,<span class="number">16</span>)</div><div class="line"><span class="number">74565</span></div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>2.假如要转换大量的二进制字符串，每次都传入int(x,base=2）非常麻烦，于是，我们想到可以定义一个int2()的函数<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">int2</span> <span class="params">(x,base =<span class="number">20</span></span></span></div><div class="line"><span class="function"><span class="params">    <span class="keyword">return</span> int(x,base)</span></span></div></pre></td></tr></table></figure></p>
+<p>3.functools.partial可以帮助我们创建偏函数，不需要自己定义int2()<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">import functools</div><div class="line">int2 = functools.<span class="keyword">partial</span>(<span class="keyword">int</span>,<span class="keyword">base</span> =<span class="number">2</span>)</div></pre></td></tr></table></figure></p>
+<p>4.简单地说，functools.partial的作用就是，把一个函数的某些参数给固定住（也就是设置默认值），返回一个新的函数，调用会更简单）<br>5.注意上面新的int2函数，仅仅是把base参数重新设定默认值为2，但也可以在函数调用时传入其他值</p>
+<blockquote>
+<p>当函数的参数个数太多，需要简化时，使用functools.partial创建一个新函数，这个新函数可以固定住原函数的部分参数</p>
+<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><h3 id="使用模块"><a href="#使用模块" class="headerlink" title="使用模块"></a>使用模块</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>一个.py文件就称之为一个模块（Module）</p>
+<h4 id="包（Package）"><a href="#包（Package）" class="headerlink" title="包（Package）:"></a>包（Package）:</h4><p>1.你也许还想到，如果不同的人编写的模块名相同怎么办？为了避免模块名冲突，Python又引入了按目录来组织模块的方法，称为包（Package）</p>
+</blockquote>
+<p>2.引入了包以后，只要顶层的包名不与别人冲突，那所有模块都不会与别人冲突。现在，abc.py模块的名字就变成了mycompany.abc，类似的，xyz.py的模块名变成了mycompany.xyz</p>
+<p>3.每一个包目录下面都会有一个<strong>init</strong>.py的文件<br>这个文件是必须存在的，否则，Python就把这个目录当成普通目录，而不是一个包。<br><strong>init</strong>.py可以是空文件，也可以有Python代码<br>因为<strong>init</strong>.py本身就是一个模块，而它的模块名就是mycompany<br>类似的，可以有多级目录，组成多级层次的包结构<br>文件www.py的模块名就是mycompany.web.www</p>
+<h4 id="例子-2"><a href="#例子-2" class="headerlink" title="例子"></a>例子</h4><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python   </div><div class="line">	##第<span class="number">1</span>行和第<span class="number">2</span>行是标准注释，第<span class="number">1</span>行注释可以让这个hello.py文件直接在Unix/Linux/Mac上运行</div><div class="line"># -*- coding: utf<span class="number">-8</span> -*-</div><div class="line">	##第<span class="number">2</span>行注释表示.py文件本身使用标准UTF<span class="number">-8</span>编码；</div><div class="line"></div><div class="line"><span class="string">' a test module '</span>         </div><div class="line">	##第<span class="number">4</span>行是一个字符串，表示模块的文档注释，任何模块代码的第一个字符串都被视为模块的文档注释；</div><div class="line"></div><div class="line">__author__ = <span class="string">'Michael Liao'</span></div><div class="line">	##第<span class="number">6</span>行使用__author__变量把作者写进去，这样当你公开源代码后别人就可以瞻仰你的大名；                                       </div><div class="line">	##以上就是Python模块的标准文件模板，当然也可以全部删掉不写，但是，按标准办事肯定没错。</div><div class="line"><span class="keyword">import</span> sys                    ##导入该模块</div><div class="line">def test():</div><div class="line">    args = sys.argv</div><div class="line">    <span class="keyword">if</span> len(args)==<span class="number">1</span>:</div><div class="line">        print <span class="string">'Hello, world!'</span></div><div class="line">    elif len(args)==<span class="number">2</span>:</div><div class="line">        print <span class="string">'Hello, %s!'</span> % args[<span class="number">1</span>]</div><div class="line">    else:</div><div class="line">        print <span class="string">'Too many arguments!'</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</div><div class="line">	##当我们在命令行运行hello模块文件时，Python解释器把一个特殊变量__name__置为__main__，而如果在其他地方导入该hello模块时，<span class="keyword">if</span>判断将失败，因此，这种<span class="keyword">if</span>测试可以让一个模块通过命令行运行时执行一些额外的代码，最常见的就是运行测试。</div><div class="line">	##直接在命令行，可以调用</div><div class="line">	##在交互环境，仅导入不能运行函数，需要调用</div><div class="line">    test()</div></pre></td></tr></table></figure>
+<h4 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h4><p>1.导入模块时，还可以使用别名，这样，可以在运行时根据当前环境选择最合适的模块<br>2.比如Python标准库一般会提供StringIO和cStringIO两个库<br>3.两个库的接口和功能是一样的，但是cStringIO是C写的，速度更快<br>所以，你会经常看到这样的写法:<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span>:</div><div class="line">    <span class="keyword">import</span> cStringIO <span class="keyword">as</span> <span class="type">StringIO</span></div><div class="line"><span class="keyword">except</span> <span class="type">ImportError</span>: <span class="comment"># 导入失败会捕获到ImportError</span></div><div class="line">    <span class="keyword">import</span> <span class="type">StringIO</span></div></pre></td></tr></table></figure></p>
+<p>这样就可以优先导入cStringIO。如果有些平台不提供cStringIO，还可以降级使用StringIO。导入cStringIO时，用import … as …指定了别名StringIO，因此，后续代码引用StringIO即可正常工作</p>
+<p>4.还有类似simplejson这样的库，在Python 2.6之开始内置，所以，会有这样的写法：<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span>:</div><div class="line">    <span class="keyword">import</span> json <span class="comment"># python &gt;= 2.6</span></div><div class="line"><span class="keyword">except</span> <span class="type">ImportError</span>:</div><div class="line">    <span class="keyword">import</span> simplejson <span class="keyword">as</span> json <span class="comment"># python &lt;= 2.5</span></div></pre></td></tr></table></figure></p>
+<p>5.由于Python是动态语言，函数签名一致接口就一样，因此，无论导入哪个模块后续代码都能正常工作。</p>
+<h4 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h4><p>在一个模块中，我们可能会定义很多函数和变量<br>1.有的函数和变量我们希望给别人使用</p>
+<p>正常的函数和变量名是公开的（public），可以被直接引用<br>比如：abc，x123，PI等</p>
+<p>2.有的函数和变量我们希望仅仅在模块内部使用<br>在Python中，是通过_前缀来实现的<br>类似<strong>xxx</strong>这样的变量是特殊变量，可以被直接引用，但是有特殊用途<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">比如上面的<span class="strong">__author__</span>，<span class="strong">__name__</span>就是特殊变量</div><div class="line">hello模块定义的文档注释也可以用特殊变量<span class="strong">__doc__</span>访问</div><div class="line">我们自己的变量一般不要用这种变量名</div></pre></td></tr></table></figure></p>
+<p>类似_xxx和__xxx这样的函数或变量就是非公开的（private），不应该被直接引用<br><figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">比如<span class="variable">_abc</span>，<span class="variable">__abc</span>等</div></pre></td></tr></table></figure></p>
+<p>从编程习惯上不应该引用private函数或变量<br>例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">_private_1</span><span class="params">(name)</span>:</span></div><div class="line">    <span class="keyword">return</span> <span class="string">'Hello, %s'</span> % name</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">_private_2</span><span class="params">(name)</span>:</span></div><div class="line">    <span class="keyword">return</span> <span class="string">'Hi, %s'</span> % name</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">greeting</span><span class="params">(name)</span>:</span></div><div class="line">    <span class="keyword">if</span> len(name) &gt; <span class="number">3</span>:</div><div class="line">        <span class="keyword">return</span> _private_1(name)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">return</span> _private_2(name)</div></pre></td></tr></table></figure></p>
+<p>我们在模块里公开greeting()函数，而把内部逻辑用private函数隐藏起来了。<br>这样，调用greeting()函数不用关心内部的private函数细节。<br>这也是一种非常有用的代码封装和抽象的方法。<br>即：外部不需要引用的函数全部定义成private，只有外部需要引用的函数才定义为public。</p>
+<h3 id="使用第三方模块"><a href="#使用第三方模块" class="headerlink" title="使用第三方模块"></a>使用第三方模块</h3><h3 id="使用future"><a href="#使用future" class="headerlink" title="使用future"></a>使用<strong>future</strong></h3>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+  
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>🐶 您的支持将鼓励我继续创作 🐶</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赞赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-img.jpg" alt="chumingke WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-img.jpg" alt="chumingke Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+         
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2017/10/Python2-7-learning-notes.html" rel="next" title="Python2.7学习笔记（一）">
+                <i class="fa fa-chevron-left"></i> Python2.7学习笔记（一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2017/10/Numpy-learning-notes.html" rel="prev" title="Numpy学习笔记">
+                Numpy学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="/blog/2017/10/Python2-7-learning-notes-2.html"
+     data-title="Python2.7学习笔记（二）"
+     data-content=""
+     data-url="https://chumingke.github.io/blog/2017/10/Python2-7-learning-notes-2.html">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="monthly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="/blog/2017/10/Python2-7-learning-notes-2.html"
+           data-title="Python2.7学习笔记（二）" data-url="https://chumingke.github.io/blog/2017/10/Python2-7-learning-notes-2.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/dingxiu.jpg"
+               alt="chumingke" />
+          <p class="site-author-name" itemprop="name">chumingke</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chumingke" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/bi-ma-wen-34" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-battery-3"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.woaitqs.cc/" title="Qisen Tang" target="_blank">Qisen Tang</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://szhshp.org" title="szhshp的博客" target="_blank">szhshp的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://python.zhangwei.website" title="JuniorCoder" target="_blank">JuniorCoder</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hippo-jessy.com" title="Hippo" target="_blank">Hippo</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.zhihu.com/people/lippi-ouyang" title="友链出租" target="_blank">友链出租</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第二部分"><span class="nav-number">1.</span> <span class="nav-text">第二部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#高级特性"><span class="nav-number">1.1.</span> <span class="nav-text">高级特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#切片"><span class="nav-number">1.1.1.</span> <span class="nav-text">切片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代"><span class="nav-number">1.1.2.</span> <span class="nav-text">迭代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表生成式"><span class="nav-number">1.1.3.</span> <span class="nav-text">列表生成式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成器（Generator）"><span class="nav-number">1.1.4.</span> <span class="nav-text">生成器（Generator）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数式编程"><span class="nav-number">1.2.</span> <span class="nav-text">函数式编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高阶函数（Higher-order-function）"><span class="nav-number">1.2.1.</span> <span class="nav-text">高阶函数（Higher-order function）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特性"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#map-reduce"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">map/reduce</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#map"><span class="nav-number">1.2.1.2.1.</span> <span class="nav-text">map</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#reduce"><span class="nav-number">1.2.1.2.2.</span> <span class="nav-text">reduce</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#filter"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">filter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sorted"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">sorted</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回函数"><span class="nav-number">1.2.2.</span> <span class="nav-text">返回函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名函数lambda"><span class="nav-number">1.2.3.</span> <span class="nav-text">匿名函数lambda</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#装饰器-Decorator"><span class="nav-number">1.2.4.</span> <span class="nav-text">装饰器(Decorator)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#偏函数"><span class="nav-number">1.2.5.</span> <span class="nav-text">偏函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念-1"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子-1"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">例子</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块"><span class="nav-number">1.3.</span> <span class="nav-text">模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用模块"><span class="nav-number">1.3.1.</span> <span class="nav-text">使用模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#包（Package）"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">包（Package）:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子-2"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#别名"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">别名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作用域"><span class="nav-number">1.3.1.5.</span> <span class="nav-text">作用域</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用第三方模块"><span class="nav-number">1.3.2.</span> <span class="nav-text">使用第三方模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用future"><span class="nav-number">1.3.3.</span> <span class="nav-text">使用future</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chumingke</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ezlippi"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="//cdn.jsdelivr.net/ua-parser.js/0.7.10/ua-parser.min.js"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>
