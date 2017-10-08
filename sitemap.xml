@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chumingke.github.io/blog/2017/10/Python2-7-learning-notes.html</loc>
+    
+    <lastmod>2017-10-08T06:17:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://chumingke.github.io/blog/2017/10/pandas-for-data-cleaning.html</loc>
     
     <lastmod>2017-10-07T03:06:38.000Z</lastmod>
