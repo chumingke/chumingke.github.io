@@ -1,0 +1,918 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Neucha:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Data analysis," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="chumingke-二师兄" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="其实这是个很大的话题。也很难一时说清，这里我记录一下自己的看法。估计可能会有很多不对的地方，权当为以后做一些参考。 传统企业的特点1.组织机构庞大复杂。组织复杂如果能运行良好，其实也可以。不过一般来讲，组织一旦复杂。公司运行就会受到阻碍。而且组织一旦复杂，牵一发而动全身。当我们需要更新某些部分的时候，从技术角度讲很难下手，从个人利益角度讲也是，公司的利益关系网也是复杂。 2.业务周期长打个比方，我">
+<meta name="keywords" content="Data analysis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于传统企业数据规划的看法">
+<meta property="og:url" content="https://chumingke.github.io/blog/2017/10/Data-planning-related.html">
+<meta property="og:site_name" content="chumingke-二师兄">
+<meta property="og:description" content="其实这是个很大的话题。也很难一时说清，这里我记录一下自己的看法。估计可能会有很多不对的地方，权当为以后做一些参考。 传统企业的特点1.组织机构庞大复杂。组织复杂如果能运行良好，其实也可以。不过一般来讲，组织一旦复杂。公司运行就会受到阻碍。而且组织一旦复杂，牵一发而动全身。当我们需要更新某些部分的时候，从技术角度讲很难下手，从个人利益角度讲也是，公司的利益关系网也是复杂。 2.业务周期长打个比方，我">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-09T06:05:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于传统企业数据规划的看法">
+<meta name="twitter:description" content="其实这是个很大的话题。也很难一时说清，这里我记录一下自己的看法。估计可能会有很多不对的地方，权当为以后做一些参考。 传统企业的特点1.组织机构庞大复杂。组织复杂如果能运行良好，其实也可以。不过一般来讲，组织一旦复杂。公司运行就会受到阻碍。而且组织一旦复杂，牵一发而动全身。当我们需要更新某些部分的时候，从技术角度讲很难下手，从个人利益角度讲也是，公司的利益关系网也是复杂。 2.业务周期长打个比方，我">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://chumingke.github.io/blog/2017/10/Data-planning-related.html"/>
+
+
+
+
+
+  <title> 关于传统企业数据规划的看法 | chumingke-二师兄 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">chumingke-二师兄</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <h1 class="site-subtitle" itemprop="description"></h1>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://chumingke.github.io/blog/2017/10/Data-planning-related.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="chumingke">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/dingxiu.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="chumingke-二师兄">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="chumingke-二师兄" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                关于传统企业数据规划的看法
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-09T14:02:00+08:00">
+                2017-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-analysis/" itemprop="url" rel="index">
+                    <span itemprop="name">Data analysis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2017/10/Data-planning-related.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2017/10/Data-planning-related.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+ 
+        
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>其实这是个很大的话题。也很难一时说清，这里我记录一下自己的看法。估计可能会有很多不对的地方，权当为以后做一些参考。</p>
+<h1 id="传统企业的特点"><a href="#传统企业的特点" class="headerlink" title="传统企业的特点"></a>传统企业的特点</h1><p>1.组织机构庞大复杂。<br>组织复杂如果能运行良好，其实也可以。不过一般来讲，组织一旦复杂。公司运行就会受到阻碍。而且组织一旦复杂，牵一发而动全身。当我们需要更新某些部分的时候，从技术角度讲很难下手，从个人利益角度讲也是，公司的利益关系网也是复杂。</p>
+<p>2.业务周期长<br>打个比方，我是生产运营处的一个数据分析课中的业务人员，然后程序后台很多东西都在咨询部门那边，所以每次有需求我要跟他们提。然后又是一个很长周期，等这个需求搞定了我们发现业务人员的需求已经换了。</p>
+<p>3.业务差距大，理解沟通困难<br>很多时候其他部门也不能很好理解我们的需求。因为业务范围的不同。所以往往两边都懂的人沟通起来会比较顺畅。</p>
+<p>4.人浮于事，推卸责任<br>在上面的情况下，就有可能出现人浮于事，推卸责任的现象。<br>有可能一开始大家的心态都是好的，都想好好完成这个事情。但是发现成本太高了。真的要好好解决要投入大量的精力，而且这个精力的投入可能是纯粹浪费在沟通或者其他不必要的事情上。有句话讲得好，不做不错，多做多错。</p>
+<p>5.企业文化落后<br>传统企业，尤其是几十年的企业，企业文化中往往流动的都是传统的血液。其实这种文化在当初是很好用的。但是到了现在只能说有利有弊。比如过分尊重领导，思想陈旧，做事方法陈旧。优点有增强凝聚力，增强领导能力等等。</p>
+<p>6.领导思维落后<br>这个在我看来是最大的弊端了。这几年数据分析很多，所以很多公司都想搞一搞。但是很多领导其实不懂数据分析是什么。下的决策往往缘木求鱼的效果。</p>
+<h1 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h1><p>比如一个制造业公司。做快消品几十年。大领导听说数据分析对公司有好处，就想搞这块。然后让小领导去办这个事。然后小领导带着业务人员就开始做。<br>这里面有几个问题。</p>
+<p>1.公司以前一点这方面基础没有。管理方面用类似SAP之类的系统。我们知道这个系统的数据模块主要是使用BW取数来推出报表的。BW就是我们说的传统BI，周期长，效果差，反应迟钝。然后最近流行一个HANA。</p>
+<p>2.数据方面，业务部门的数据，是首先由业务部门制定指标，然后咨询部门设计系统。然后由工厂端输入数据。</p>
+<p>这里面就有不少问题。<br>一是，业务部门制定的指标经常会变，因为本身业务也比较复杂，一开始如果没有考虑好，后期就要修改。那如果指标都一年一变的话，对应的数据就没有什么比较的意义。<br>二是，这个过程涉及到几个部门，由于之前说的沟通不畅，很容易出现很多问题。比如说系统突然出现错误，然后肯定是业务人员发现的，然后通知咨询，咨询开始调试。然后这就是个时间周期，这个周期里面的数据准确怎么保证呢？还有调试的结果也不一定准确，因为不同部门理解不同。</p>
+<p>3.业务人员的技术能力问题。这里面所有的人都不懂大数据是什么。因为大数据是有一定门槛的。并不是说说就能懂的。你要用到的东西，远一点的比如机器学习，算法，近一点的python，数据库。都是有一定门槛的。我们的业务人员之前也就用过excel，其他的都不懂。那做个。。。</p>
+<p>因为小领导也不懂，但是大领导布置了任务。只能硬着头皮做，所以就让业务人员去做，业务人员能怎么办呢。也是用传统的方法硬着头皮去做呗。<br>领导希望有一个可以随时取数的数据库，但是我们的数据都是在SAP里的，我们是通过BW取数的。小领导不清楚其他数据库是怎么搞的，只能按照传统思路，也就是硬着头皮写逻辑，就是想用BW做一个数据库表。要我说这连菜刀砍大树都算不上，简直是铅笔刀砍大树。还砍不断！<br>还有等等类似事情，最终会导致，大家敷衍了事，领导的任务无限延期。</p>
+<h1 id="数据分析规划架构"><a href="#数据分析规划架构" class="headerlink" title="数据分析规划架构"></a>数据分析规划架构</h1><p>这是我之前做的小计划。</p>
+<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>有一个可以随时提取数据进行数据分析的数据仓库<br>有一套完整的数据分析方案</p>
+<h2 id="总体构架"><a href="#总体构架" class="headerlink" title="总体构架"></a>总体构架</h2><h3 id="后台存储"><a href="#后台存储" class="headerlink" title="后台存储"></a>后台存储</h3><p>数据库包括：</p>
+<p>1.SAP<br>SAP BW BO</p>
+<p>2.mysql<br>兼容性：都可以<br>特征：底层数据库</p>
+<p>3.excel</p>
+<p>4.access</p>
+<h3 id="建模分析"><a href="#建模分析" class="headerlink" title="建模分析"></a>建模分析</h3><h4 id="简单建模"><a href="#简单建模" class="headerlink" title="简单建模"></a>简单建模</h4><h5 id="tableau"><a href="#tableau" class="headerlink" title="tableau"></a>tableau</h5><h5 id="excel"><a href="#excel" class="headerlink" title="excel"></a>excel</h5><p>1.描述分析<br>2.图表<br>3.关系分析<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">相关分析</div><div class="line">关联分析</div><div class="line">单因素方差分析</div><div class="line">双因素方差分析</div><div class="line">单变量求解</div><div class="line">规划求解</div><div class="line">线性回归</div></pre></td></tr></table></figure></p>
+<p>4.分类器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">聚类分析</div><div class="line">异常值分析</div></pre></td></tr></table></figure></p>
+<h5 id="power-bi"><a href="#power-bi" class="headerlink" title="power bi"></a>power bi</h5><h4 id="复杂建模"><a href="#复杂建模" class="headerlink" title="复杂建模"></a>复杂建模</h4><h5 id="python"><a href="#python" class="headerlink" title="python"></a>python</h5><h5 id="R"><a href="#R" class="headerlink" title="R"></a>R</h5><h5 id="sas"><a href="#sas" class="headerlink" title="sas"></a>sas</h5><h5 id="spss"><a href="#spss" class="headerlink" title="spss"></a>spss</h5><p>1.描述分析<br>2.关系分析<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">关联分析</div><div class="line">对应分析</div><div class="line">因子分析</div></pre></td></tr></table></figure></p>
+<p>3.回归分析<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">线性回归</div><div class="line">逻辑回归</div></pre></td></tr></table></figure></p>
+<p>4.分类算法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">决策树算法</div><div class="line">聚类分析</div><div class="line">时间序列分析</div></pre></td></tr></table></figure></p>
+<p>5.模型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">自动建模</div><div class="line">RFM模型</div><div class="line">信用模型</div></pre></td></tr></table></figure></p>
+<h3 id="展示（可视化）"><a href="#展示（可视化）" class="headerlink" title="展示（可视化）"></a>展示（可视化）</h3><p>tableau<br>d3.js<br>echarts<br>python<br>其他（excel，power bi）</p>
+<h3 id="核心原理"><a href="#核心原理" class="headerlink" title="核心原理"></a>核心原理</h3><h4 id="数据分析方法论"><a href="#数据分析方法论" class="headerlink" title="数据分析方法论"></a>数据分析方法论</h4><p>见另一篇方法论。</p>
+<h4 id="统计学原理"><a href="#统计学原理" class="headerlink" title="统计学原理"></a>统计学原理</h4><h4 id="配色原理"><a href="#配色原理" class="headerlink" title="配色原理"></a>配色原理</h4><p>常见的配色方案<br>参考公司配色</p>
+<h3 id="工具介绍"><a href="#工具介绍" class="headerlink" title="工具介绍"></a>工具介绍</h3><h4 id="power-bi-1"><a href="#power-bi-1" class="headerlink" title="power bi"></a>power bi</h4><p>1.作用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">可视化</div><div class="line">powerbi 标准解决方案:预设分析模型</div><div class="line">powerbi绿色开发平台</div></pre></td></tr></table></figure></p>
+<p>2.兼容性<br>仅win可用<br>3.工具<br>power系列:<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pivot：数据的读取、关联</div><div class="line"><span class="built_in">map</span>：地图</div><div class="line"><span class="built_in">view</span>：透视表</div><div class="line">powerbi：web，desktop</div></pre></td></tr></table></figure></p>
+<p>4.费用<br>基本免费<br>部分功能收费，费用较低<br>5.优缺点<br>优点：便宜，方案齐全<br>缺点：可视化图形难看，只可用于WIN</p>
+<h4 id="excel-1"><a href="#excel-1" class="headerlink" title="excel"></a>excel</h4><h4 id="spss-1"><a href="#spss-1" class="headerlink" title="spss"></a>spss</h4><h4 id="tableau-1"><a href="#tableau-1" class="headerlink" title="tableau"></a>tableau</h4><h4 id="echarts"><a href="#echarts" class="headerlink" title="echarts"></a>echarts</h4><h4 id="python-1"><a href="#python-1" class="headerlink" title="python"></a>python</h4><h3 id="知识体系"><a href="#知识体系" class="headerlink" title="知识体系"></a>知识体系</h3><p>书籍</p>
+<h4 id="tableau-2"><a href="#tableau-2" class="headerlink" title="tableau"></a>tableau</h4><p>《人人都是数据分析师tableau应用实战》</p>
+<h4 id="统计学"><a href="#统计学" class="headerlink" title="统计学"></a>统计学</h4><p>《商务经济统计学》<br>《概率论与数理统计》<br>《统计思维》<br>《统计学习方法》</p>
+<h4 id="数据挖掘"><a href="#数据挖掘" class="headerlink" title="数据挖掘"></a>数据挖掘</h4><p>《数据挖掘导论》<br>《算法导论》<br>《数据挖掘》<br>《web数据挖掘》</p>
+<h4 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h4><p>《深入浅出数据分析》<br>《数据分析：企业的贤内助》<br>《网站分析》<br>《实用数据分析》</p>
+<h4 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h4><p>《深入浅出SQL》<br>《hadoop实战》<br>《学习数据库Mysql》</p>
+<h4 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h4><p>《利用python进行数据分析》<br>《python学习手册》<br>《python科学计算》<br>《集体智慧编程》<br>《推荐系统实践》<br>《机器学习系统设计》<br>《R语言实战》<br>《机器学习：使用案例分析》<br>《python自然语言处理》</p>
+<h2 id="方案指导思想"><a href="#方案指导思想" class="headerlink" title="方案指导思想"></a>方案指导思想</h2><p>从单个问题出发,最小可行性产品，结合不同处理方式，找到最优解，以有实际结果为导向。<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span>从excel到excel到tableau到分析报告PPT</div><div class="line"><span class="number">10</span>万行，简单分析</div><div class="line"><span class="number">2.</span>从access到excel</div><div class="line"><span class="number">100</span>M，简单分析</div><div class="line"><span class="number">3.</span>从access到spss</div><div class="line"><span class="number">100</span>M，复杂分析</div><div class="line"><span class="number">4.</span>从access到power bi/从access到spss modeler</div><div class="line">百万级别，复杂分析</div><div class="line"><span class="number">5.</span>从excel到tableau到Python及ppt</div></pre></td></tr></table></figure></p>
+<h2 id="需要做的事"><a href="#需要做的事" class="headerlink" title="需要做的事"></a>需要做的事</h2><h3 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h3><p>数据梳理</p>
+<h4 id="业务模型梳理"><a href="#业务模型梳理" class="headerlink" title="业务模型梳理"></a>业务模型梳理</h4><p>1.基础数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">字段名</div><div class="line">字段类型</div></pre></td></tr></table></figure></p>
+<p>2.指标数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">字段名</div><div class="line">字段类型</div><div class="line">公式</div><div class="line">逻辑关系</div><div class="line">代表什么</div></pre></td></tr></table></figure></p>
+<p>3.数据结构建立</p>
+<h4 id="非业务模型数据梳理"><a href="#非业务模型数据梳理" class="headerlink" title="非业务模型数据梳理"></a>非业务模型数据梳理</h4><h3 id="图表准备"><a href="#图表准备" class="headerlink" title="图表准备"></a>图表准备</h3><p>按作用分类</p>
+<h3 id="数据分析方法论准备"><a href="#数据分析方法论准备" class="headerlink" title="数据分析方法论准备"></a>数据分析方法论准备</h3><h3 id="描述统计模型准备"><a href="#描述统计模型准备" class="headerlink" title="描述统计模型准备"></a>描述统计模型准备</h3><h4 id="常态模型"><a href="#常态模型" class="headerlink" title="常态模型"></a>常态模型</h4><p>已有模型优化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">日报</div><div class="line">月报</div><div class="line">KAI</div><div class="line">运营成本</div></pre></td></tr></table></figure></p>
+<p>开发新模型</p>
+<h4 id="非常态模型"><a href="#非常态模型" class="headerlink" title="非常态模型"></a>非常态模型</h4><p>汇报<br>年度总结<br>专案研究</p>
+<h4 id="方法论及方法"><a href="#方法论及方法" class="headerlink" title="方法论及方法"></a>方法论及方法</h4><p>方法论:描述统计原理的应用<br>方法:总体分析,对比分析</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><h5 id="描述统计模型1-0"><a href="#描述统计模型1-0" class="headerlink" title="描述统计模型1.0"></a>描述统计模型1.0</h5><p>1.其他<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">表头</div><div class="line">LOGO</div><div class="line">简介/注意</div></pre></td></tr></table></figure></p>
+<p>2.现状分析<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">综合评价分析</div><div class="line">对比分析</div><div class="line">平均分析</div></pre></td></tr></table></figure></p>
+<p>3.原因分析<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">通过上下钻查看总厂至分厂运营状况</div><div class="line">分组分析</div><div class="line">结构分析</div><div class="line">杜邦分析</div></pre></td></tr></table></figure></p>
+<p>4.项目进度<br>5.预测分析<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">线性回归</div></pre></td></tr></table></figure></p>
+<h5 id="分析模型"><a href="#分析模型" class="headerlink" title="分析模型"></a>分析模型</h5><p>swot模型</p>
+<h5 id="考核模型"><a href="#考核模型" class="headerlink" title="考核模型"></a>考核模型</h5><h3 id="数据挖掘模型准备"><a href="#数据挖掘模型准备" class="headerlink" title="数据挖掘模型准备"></a>数据挖掘模型准备</h3><h4 id="常态模型-1"><a href="#常态模型-1" class="headerlink" title="常态模型"></a>常态模型</h4><h4 id="非常态模型-1"><a href="#非常态模型-1" class="headerlink" title="非常态模型"></a>非常态模型</h4><h4 id="方法论及方法-1"><a href="#方法论及方法-1" class="headerlink" title="方法论及方法"></a>方法论及方法</h4><p>方法论<br>方法:回归分析,决策树</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+  
+        <div class="post-tags">
+          
+            <a href="/tags/Data-analysis/" rel="tag"># Data analysis</a>
+          
+        </div>
+      
+
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>🐶 您的支持将鼓励我继续创作 🐶</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赞赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-img.jpg" alt="chumingke WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-img.jpg" alt="chumingke Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+         
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2017/10/Data-analysis-method.html" rel="next" title="数据分析方法">
+                <i class="fa fa-chevron-left"></i> 数据分析方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2017/10/Book-related.html" rel="prev" title="关于数据分析的一些书籍推荐">
+                关于数据分析的一些书籍推荐 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="/blog/2017/10/Data-planning-related.html"
+     data-title="关于传统企业数据规划的看法"
+     data-content=""
+     data-url="https://chumingke.github.io/blog/2017/10/Data-planning-related.html">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="monthly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="/blog/2017/10/Data-planning-related.html"
+           data-title="关于传统企业数据规划的看法" data-url="https://chumingke.github.io/blog/2017/10/Data-planning-related.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/dingxiu.jpg"
+               alt="chumingke" />
+          <p class="site-author-name" itemprop="name">chumingke</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chumingke" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/bi-ma-wen-34" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-battery-3"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.woaitqs.cc/" title="Qisen Tang" target="_blank">Qisen Tang</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://szhshp.org" title="szhshp的博客" target="_blank">szhshp的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://python.zhangwei.website" title="JuniorCoder" target="_blank">JuniorCoder</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hippo-jessy.com" title="Hippo" target="_blank">Hippo</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.zhihu.com/people/lippi-ouyang" title="友链出租" target="_blank">友链出租</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#传统企业的特点"><span class="nav-number">1.</span> <span class="nav-text">传统企业的特点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#案例"><span class="nav-number">2.</span> <span class="nav-text">案例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据分析规划架构"><span class="nav-number">3.</span> <span class="nav-text">数据分析规划架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#目的"><span class="nav-number">3.1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总体构架"><span class="nav-number">3.2.</span> <span class="nav-text">总体构架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#后台存储"><span class="nav-number">3.2.1.</span> <span class="nav-text">后台存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建模分析"><span class="nav-number">3.2.2.</span> <span class="nav-text">建模分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单建模"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">简单建模</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#tableau"><span class="nav-number">3.2.2.1.1.</span> <span class="nav-text">tableau</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#excel"><span class="nav-number">3.2.2.1.2.</span> <span class="nav-text">excel</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#power-bi"><span class="nav-number">3.2.2.1.3.</span> <span class="nav-text">power bi</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复杂建模"><span class="nav-number">3.2.2.2.</span> <span class="nav-text">复杂建模</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#python"><span class="nav-number">3.2.2.2.1.</span> <span class="nav-text">python</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#R"><span class="nav-number">3.2.2.2.2.</span> <span class="nav-text">R</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#sas"><span class="nav-number">3.2.2.2.3.</span> <span class="nav-text">sas</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spss"><span class="nav-number">3.2.2.2.4.</span> <span class="nav-text">spss</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#展示（可视化）"><span class="nav-number">3.2.3.</span> <span class="nav-text">展示（可视化）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核心原理"><span class="nav-number">3.2.4.</span> <span class="nav-text">核心原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据分析方法论"><span class="nav-number">3.2.4.1.</span> <span class="nav-text">数据分析方法论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统计学原理"><span class="nav-number">3.2.4.2.</span> <span class="nav-text">统计学原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配色原理"><span class="nav-number">3.2.4.3.</span> <span class="nav-text">配色原理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工具介绍"><span class="nav-number">3.2.5.</span> <span class="nav-text">工具介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#power-bi-1"><span class="nav-number">3.2.5.1.</span> <span class="nav-text">power bi</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#excel-1"><span class="nav-number">3.2.5.2.</span> <span class="nav-text">excel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#spss-1"><span class="nav-number">3.2.5.3.</span> <span class="nav-text">spss</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tableau-1"><span class="nav-number">3.2.5.4.</span> <span class="nav-text">tableau</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#echarts"><span class="nav-number">3.2.5.5.</span> <span class="nav-text">echarts</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#python-1"><span class="nav-number">3.2.5.6.</span> <span class="nav-text">python</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#知识体系"><span class="nav-number">3.2.6.</span> <span class="nav-text">知识体系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#tableau-2"><span class="nav-number">3.2.6.1.</span> <span class="nav-text">tableau</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统计学"><span class="nav-number">3.2.6.2.</span> <span class="nav-text">统计学</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据挖掘"><span class="nav-number">3.2.6.3.</span> <span class="nav-text">数据挖掘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据分析"><span class="nav-number">3.2.6.4.</span> <span class="nav-text">数据分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库"><span class="nav-number">3.2.6.5.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#语言"><span class="nav-number">3.2.6.6.</span> <span class="nav-text">语言</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方案指导思想"><span class="nav-number">3.3.</span> <span class="nav-text">方案指导思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需要做的事"><span class="nav-number">3.4.</span> <span class="nav-text">需要做的事</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据准备"><span class="nav-number">3.4.1.</span> <span class="nav-text">数据准备</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#业务模型梳理"><span class="nav-number">3.4.1.1.</span> <span class="nav-text">业务模型梳理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非业务模型数据梳理"><span class="nav-number">3.4.1.2.</span> <span class="nav-text">非业务模型数据梳理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图表准备"><span class="nav-number">3.4.2.</span> <span class="nav-text">图表准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据分析方法论准备"><span class="nav-number">3.4.3.</span> <span class="nav-text">数据分析方法论准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#描述统计模型准备"><span class="nav-number">3.4.4.</span> <span class="nav-text">描述统计模型准备</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常态模型"><span class="nav-number">3.4.4.1.</span> <span class="nav-text">常态模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非常态模型"><span class="nav-number">3.4.4.2.</span> <span class="nav-text">非常态模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法论及方法"><span class="nav-number">3.4.4.3.</span> <span class="nav-text">方法论及方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例"><span class="nav-number">3.4.4.4.</span> <span class="nav-text">实例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#描述统计模型1-0"><span class="nav-number">3.4.4.4.1.</span> <span class="nav-text">描述统计模型1.0</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分析模型"><span class="nav-number">3.4.4.4.2.</span> <span class="nav-text">分析模型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#考核模型"><span class="nav-number">3.4.4.4.3.</span> <span class="nav-text">考核模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据挖掘模型准备"><span class="nav-number">3.4.5.</span> <span class="nav-text">数据挖掘模型准备</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常态模型-1"><span class="nav-number">3.4.5.1.</span> <span class="nav-text">常态模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非常态模型-1"><span class="nav-number">3.4.5.2.</span> <span class="nav-text">非常态模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法论及方法-1"><span class="nav-number">3.4.5.3.</span> <span class="nav-text">方法论及方法</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chumingke</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ezlippi"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="//cdn.jsdelivr.net/ua-parser.js/0.7.10/ua-parser.min.js"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

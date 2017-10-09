@@ -72,7 +72,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="mysql," />
+  <meta name="keywords" content="human nature," />
 
 
 
@@ -90,18 +90,18 @@
 
 
 
-<meta name="description" content="视图视图相当于把一个复杂sql语句作为表保存起来，对于外层用户，只能查到视图中的数据，保护数据源，可以设置权限12345##创建create view show_week_name as (...);##使用select * from show_week_name; 存储过程（带参函数）12345678##创建create produre show_gender_list (in sex varc">
-<meta name="keywords" content="mysql">
+<meta name="description" content="作者：张林昊链接：https://www.zhihu.com/question/57455607/answer/157878054来源：知乎著作权归作者所有，转载请联系作者获得授权。 所有近乎残忍的坚持，背后都隐藏着欲望的鬼魅。 只是对你来讲，这些欲望是点缀， 对他来说，这些欲望是刚需。 什么是刚需？ 周红衣这里有个再经典不过的例子，有人将木马封包装进AV里进行传播，360在用户试图播放时弹出警告">
+<meta name="keywords" content="human nature">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL存储过程与视图">
-<meta property="og:url" content="https://chumingke.github.io/blog/2017/10/MySQL-stored-procedures-and-views.html">
+<meta property="og:title" content="那些对自己特别狠的人，脑子里都是怎么想的？">
+<meta property="og:url" content="https://chumingke.github.io/blog/2017/10/what-are-the-thoughts-in-the-mind-of-those-who-are-particularly-ruthless-to-them.html">
 <meta property="og:site_name" content="chumingke-二师兄">
-<meta property="og:description" content="视图视图相当于把一个复杂sql语句作为表保存起来，对于外层用户，只能查到视图中的数据，保护数据源，可以设置权限12345##创建create view show_week_name as (...);##使用select * from show_week_name; 存储过程（带参函数）12345678##创建create produre show_gender_list (in sex varc">
+<meta property="og:description" content="作者：张林昊链接：https://www.zhihu.com/question/57455607/answer/157878054来源：知乎著作权归作者所有，转载请联系作者获得授权。 所有近乎残忍的坚持，背后都隐藏着欲望的鬼魅。 只是对你来讲，这些欲望是点缀， 对他来说，这些欲望是刚需。 什么是刚需？ 周红衣这里有个再经典不过的例子，有人将木马封包装进AV里进行传播，360在用户试图播放时弹出警告">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-06T08:48:21.000Z">
+<meta property="og:updated_time" content="2017-10-08T12:17:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySQL存储过程与视图">
-<meta name="twitter:description" content="视图视图相当于把一个复杂sql语句作为表保存起来，对于外层用户，只能查到视图中的数据，保护数据源，可以设置权限12345##创建create view show_week_name as (...);##使用select * from show_week_name; 存储过程（带参函数）12345678##创建create produre show_gender_list (in sex varc">
+<meta name="twitter:title" content="那些对自己特别狠的人，脑子里都是怎么想的？">
+<meta name="twitter:description" content="作者：张林昊链接：https://www.zhihu.com/question/57455607/answer/157878054来源：知乎著作权归作者所有，转载请联系作者获得授权。 所有近乎残忍的坚持，背后都隐藏着欲望的鬼魅。 只是对你来讲，这些欲望是点缀， 对他来说，这些欲望是刚需。 什么是刚需？ 周红衣这里有个再经典不过的例子，有人将木马封包装进AV里进行传播，360在用户试图播放时弹出警告">
 
 
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="https://chumingke.github.io/blog/2017/10/MySQL-stored-procedures-and-views.html"/>
+  <link rel="canonical" href="https://chumingke.github.io/blog/2017/10/what-are-the-thoughts-in-the-mind-of-those-who-are-particularly-ruthless-to-them.html"/>
 
 
 
 
 
-  <title> MySQL存储过程与视图 | chumingke-二师兄 </title>
+  <title> 那些对自己特别狠的人，脑子里都是怎么想的？ | chumingke-二师兄 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -268,7 +268,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://chumingke.github.io/blog/2017/10/MySQL-stored-procedures-and-views.html">
+  <link itemprop="mainEntityOfPage" href="https://chumingke.github.io/blog/2017/10/what-are-the-thoughts-in-the-mind-of-those-who-are-particularly-ruthless-to-them.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="chumingke">
@@ -292,7 +292,7 @@
             
             
               
-                MySQL存储过程与视图
+                那些对自己特别狠的人，脑子里都是怎么想的？
               
             
           </h2>
@@ -307,8 +307,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-06T16:47:37+08:00">
-                2017-10-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-08T20:13:52+08:00">
+                2017-10-08
               </time>
             
 
@@ -330,8 +330,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
+                  <a href="/categories/human-nature/" itemprop="url" rel="index">
+                    <span itemprop="name">human nature</span>
                   </a>
                 </span>
 
@@ -348,8 +348,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/2017/10/MySQL-stored-procedures-and-views.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2017/10/MySQL-stored-procedures-and-views.html" itemprop="commentCount"></span>
+                <a href="/blog/2017/10/what-are-the-thoughts-in-the-mind-of-those-who-are-particularly-ruthless-to-them.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2017/10/what-are-the-thoughts-in-the-mind-of-those-who-are-particularly-ruthless-to-them.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -378,9 +378,24 @@
       
 
       
-        <h1 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h1><p>视图相当于把一个复杂sql语句作为表保存起来，对于外层用户，只能查到视图中的数据，保护数据源，可以设置权限<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">##创建</div><div class="line">create view show_week_name <span class="keyword">as</span> (</div><div class="line">...);</div><div class="line">##使用</div><div class="line">select * <span class="keyword">from</span> show_week_name;</div></pre></td></tr></table></figure></p>
-<h1 id="存储过程（带参函数）"><a href="#存储过程（带参函数）" class="headerlink" title="存储过程（带参函数）"></a>存储过程（带参函数）</h1><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">##创建</span></div><div class="line"><span class="function">create produre <span class="title">show_gender_list</span> (<span class="params"><span class="keyword">in</span> sex varchar(<span class="number">20</span></span>),<span class="keyword">out</span> count_num <span class="keyword">int</span>)</span></div><div class="line"><span class="function">BEGIN </span></div><div class="line"><span class="function">    <span class="keyword">select</span> <span class="title">count</span>(<span class="params">*</span>) <span class="keyword">into</span> count_num <span class="keyword">from</span> test</span></div><div class="line"><span class="function">    <span class="keyword">where</span> Gendder </span>= sex;</div><div class="line">end;</div><div class="line"><span class="meta">##使用</span></div><div class="line"><span class="function">call <span class="title">show_gender_list</span>(<span class="params"><span class="string">'男'</span></span>)</span>;</div></pre></td></tr></table></figure>
-<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">##创建</div><div class="line"><span class="keyword">create</span> <span class="keyword">function</span> show_g(sex varchar(<span class="number">20</span>))</div><div class="line"><span class="keyword">return</span> int</div><div class="line"><span class="keyword">BEGIN</span></div><div class="line">    <span class="keyword">set</span> @aaa = <span class="number">1</span>;</div><div class="line">    <span class="keyword">select</span> <span class="built_in">count</span>(*) <span class="keyword">into</span> @aaa <span class="keyword">from</span> test</div><div class="line">    <span class="keyword">where</span> Gender = sex;</div><div class="line">    return 1;</div><div class="line">end;</div></pre></td></tr></table></figure>
+        <p>作者：张林昊<br>链接：<a href="https://www.zhihu.com/question/57455607/answer/157878054" target="_blank" rel="external">https://www.zhihu.com/question/57455607/answer/157878054</a><br>来源：知乎<br>著作权归作者所有，转载请联系作者获得授权。</p>
+<p>所有近乎残忍的坚持，背后都隐藏着欲望的鬼魅。</p>
+<p>只是对你来讲，这些欲望是点缀，</p>
+<p>对他来说，这些欲望是刚需。</p>
+<p>什么是刚需？</p>
+<p>周红衣这里有个再经典不过的例子，有人将木马封包装进AV里进行传播，360在用户试图播放时弹出警告，但是大多数用户的选择都是关掉弹窗，「如果360再弹，就把360彻底的卸掉」。</p>
+<p>而有的人对成功的渴望，就是可以和你深夜精虫入脑两眼猩红，满世界求种子的欲望同样强烈！</p>
+<p>你说他们「推开自己最爱的人，理智的可怕。」</p>
+<p>其实并不是。</p>
+<p>慕容复在枯井边推开了王语嫣，不是因为他理智，而是为那兴复燕国的执念。</p>
+<p>黄袍加身不是你的刚需，因此你狠不下来。不做皇帝你一样能活，慕容复做不了皇帝能疯。</p>
+<p>战胜欲望的永远只有更高级的欲望。</p>
+<p>解不了，名缰系嗔贪。</p>
+<p>当然，从某种程度上讲，你不理解，反倒说明你幸运。至少，不曾被自卑的阴影所笼罩，没有被未遂的野心所折磨，未曾在志得意满时被命运当头棒喝。</p>
+<p>苏秦读书，以锥刺骨，你不理解，是因为你没体会过 「兄弟嫂妹妻妾窃皆笑之」的困窘。</p>
+<p>乔丹练球，近乎偏执，你不理解，是因为你没品尝过只因身高不足便被球队扫地出门的羞辱。</p>
+<p>人是欲望的产物。</p>
+<p>有些行为看似不合逻辑，只是因为你还没能看穿他的欲望。</p>
 
       
     </div>
@@ -394,7 +409,7 @@
   
         <div class="post-tags">
           
-            <a href="/tags/mysql/" rel="tag"># mysql</a>
+            <a href="/tags/human-nature/" rel="tag"># human nature</a>
           
         </div>
       
@@ -435,8 +450,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2017/10/Simple-steps-for-database-analysis.html" rel="next" title="数据库分析的简单步骤">
-                <i class="fa fa-chevron-left"></i> 数据库分析的简单步骤
+              <a href="/blog/2017/10/How-can-Li-Kaifu-arrange-his-time-well.html" rel="next" title="李开复每天早上 4 点就起床，是怎么办到的？开复老师如何能很好地安排好自己的时间？">
+                <i class="fa fa-chevron-left"></i> 李开复每天早上 4 点就起床，是怎么办到的？开复老师如何能很好地安排好自己的时间？
               </a>
             
           </div>
@@ -445,8 +460,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2017/10/MySQL-error-code-and-exception-capture.html" rel="prev" title="Mysql错误码与异常捕获">
-                Mysql错误码与异常捕获 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2017/10/Data-analysis-methodology.html" rel="prev" title="数据分析方法论">
+                数据分析方法论 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -462,10 +477,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="/blog/2017/10/MySQL-stored-procedures-and-views.html"
-     data-title="MySQL存储过程与视图"
+        <div class="ds-share flat" data-thread-key="/blog/2017/10/what-are-the-thoughts-in-the-mind-of-those-who-are-particularly-ruthless-to-them.html"
+     data-title="那些对自己特别狠的人，脑子里都是怎么想的？"
      data-content=""
-     data-url="https://chumingke.github.io/blog/2017/10/MySQL-stored-procedures-and-views.html">
+     data-url="https://chumingke.github.io/blog/2017/10/what-are-the-thoughts-in-the-mind-of-those-who-are-particularly-ruthless-to-them.html">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -495,8 +510,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="/blog/2017/10/MySQL-stored-procedures-and-views.html"
-           data-title="MySQL存储过程与视图" data-url="https://chumingke.github.io/blog/2017/10/MySQL-stored-procedures-and-views.html">
+      <div class="ds-thread" data-thread-key="/blog/2017/10/what-are-the-thoughts-in-the-mind-of-those-who-are-particularly-ruthless-to-them.html"
+           data-title="那些对自己特别狠的人，脑子里都是怎么想的？" data-url="https://chumingke.github.io/blog/2017/10/what-are-the-thoughts-in-the-mind-of-those-who-are-particularly-ruthless-to-them.html">
       </div>
     
   </div>
@@ -520,17 +535,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/dingxiu.jpg"
@@ -652,22 +658,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#视图"><span class="nav-number">1.</span> <span class="nav-text">视图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存储过程（带参函数）"><span class="nav-number">2.</span> <span class="nav-text">存储过程（带参函数）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数"><span class="nav-number">3.</span> <span class="nav-text">函数</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
     </div>
