@@ -1,0 +1,910 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Neucha:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="mysql," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="chumingke-二师兄" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="转载自http://blog.csdn.net/chenleixing/article/details/42610529 一、程序员老鸟写sql语句的经验之谈做管理系统的，无论是bs结构的还是cs结构的，都不可避免的涉及到数据库表结构的设计，sql语句的编写等。因此在开发系统的时候，表结构设计是否合理，sql语句是否标准，写出的sql性能是否优化往往会成为公司衡量程序员技术水平的标准。我们程序员不">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程序员老鸟写sql语句的经验之谈、百万数据查询优化技巧三十则">
+<meta property="og:url" content="https://chumingke.github.io/blog/2017/10/MYSQL-optimization-techniques.html">
+<meta property="og:site_name" content="chumingke-二师兄">
+<meta property="og:description" content="转载自http://blog.csdn.net/chenleixing/article/details/42610529 一、程序员老鸟写sql语句的经验之谈做管理系统的，无论是bs结构的还是cs结构的，都不可避免的涉及到数据库表结构的设计，sql语句的编写等。因此在开发系统的时候，表结构设计是否合理，sql语句是否标准，写出的sql性能是否优化往往会成为公司衡量程序员技术水平的标准。我们程序员不">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-25T08:09:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="程序员老鸟写sql语句的经验之谈、百万数据查询优化技巧三十则">
+<meta name="twitter:description" content="转载自http://blog.csdn.net/chenleixing/article/details/42610529 一、程序员老鸟写sql语句的经验之谈做管理系统的，无论是bs结构的还是cs结构的，都不可避免的涉及到数据库表结构的设计，sql语句的编写等。因此在开发系统的时候，表结构设计是否合理，sql语句是否标准，写出的sql性能是否优化往往会成为公司衡量程序员技术水平的标准。我们程序员不">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://chumingke.github.io/blog/2017/10/MYSQL-optimization-techniques.html"/>
+
+
+
+
+
+  <title> 程序员老鸟写sql语句的经验之谈、百万数据查询优化技巧三十则 | chumingke-二师兄 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">chumingke-二师兄</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <h1 class="site-subtitle" itemprop="description"></h1>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://chumingke.github.io/blog/2017/10/MYSQL-optimization-techniques.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="chumingke">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/dingxiu.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="chumingke-二师兄">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="chumingke-二师兄" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                程序员老鸟写sql语句的经验之谈、百万数据查询优化技巧三十则
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-25T16:08:31+08:00">
+                2017-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2017/10/MYSQL-optimization-techniques.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2017/10/MYSQL-optimization-techniques.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+ 
+        
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>转载自<a href="http://blog.csdn.net/chenleixing/article/details/42610529" target="_blank" rel="external">http://blog.csdn.net/chenleixing/article/details/42610529</a></p>
+<h1 id="一、程序员老鸟写sql语句的经验之谈"><a href="#一、程序员老鸟写sql语句的经验之谈" class="headerlink" title="一、程序员老鸟写sql语句的经验之谈"></a>一、程序员老鸟写sql语句的经验之谈</h1><p>做管理系统的，无论是bs结构的还是cs结构的，都不可避免的涉及到数据库表结构的设计，sql语句的编写等。因此在开发系统的时候，表结构设计是否合理，sql语句是否标准，写出的sql性能是否优化往往会成为公司衡量程序员技术水平的标准。<br>我们程序员不是dba，不需要时刻关注sql运行时间，想方设法优化表结构，存储空间，优化表读取速度等等，但是在开发系统时，时刻保持优良的写sql语句的作风是很有必要的，这关乎到个人在公司的声誉，嘿嘿，你懂的。。。<br>新来的程序员老鸟，在一个开发团队中，需要表现一下自己的水平，奠定在公司的地位，需要努力表现一把，最简单的从写的sql语句就很容易表现出来，曾经就有一次，一个老程序员，上面定位是要做团队领导的，先历练一下做个制单的模块，列表sql中有一列这位老鸟直接写了个select语句从别的表中取之，而不是用表之间关联得到，一下破坏自己程序员老鸟光辉形象。<br>做技术的还是要注重自己的内涵，提升内功，哈哈。<br>闲话少说，总结一点程序员老鸟写sql顺手拈来的功夫吧：</p>
+<p>1.不论一个sql中涉及到多个表，每次都用两个表（结果集）操作，得到新的结果后，再和下一个表（结果集）操作。<br>2.避免在select f1,(select f2 from tableB )…. from tableA 这样得到字段列。直接用tableA和tableB关联得到A.f1,B.f2就可以了。<br>3.避免隐含的类型转换<br> 如<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> employee <span class="keyword">where</span> emp_id=<span class="string">'8'</span>  （错）</div><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> employee <span class="keyword">where</span> emp_id=<span class="number">8</span>    （对）</div><div class="line">##emp_id是整数型，用<span class="string">'8'</span>会默认启动类型转换，增加查询的开销</div></pre></td></tr></table></figure></p>
+<p>4.尽量减少使用正则表达式，尽量不使用通配符。<br>5.使用关键字代替函数<br>   如：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> employee <span class="keyword">where</span> <span class="keyword">UPPER</span>(dept) <span class="keyword">like</span> <span class="string">'TECH_DB'</span>  （错）</div><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> employee <span class="keyword">where</span> <span class="keyword">SUBSTR</span>(dept,<span class="number">1</span>,<span class="number">4</span>)=<span class="string">'TECH'</span>    （错）</div><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> employee <span class="keyword">where</span> dept <span class="keyword">like</span> <span class="string">'TECH%'</span>         （对）</div></pre></td></tr></table></figure></p>
+<p>6.不要在字段上用转换函数，尽量在常量上用<br>  如：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> employee <span class="keyword">where</span> to_char(create_date,<span class="string">'yyyy-mm-dd'</span>)=<span class="string">'2012-10-31'</span>  （错）</div><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> employee <span class="keyword">where</span> create_date=<span class="keyword">to_date</span>(<span class="string">'2012-10-31'</span>,<span class="string">'yyyy-mm-dd'</span>)   （对）</div></pre></td></tr></table></figure></p>
+<p>7.不使用联接做查询<br> 如：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> employee <span class="keyword">where</span> first_name || last_name <span class="keyword">like</span> <span class="string">'Jo%'</span>  （错）</div></pre></td></tr></table></figure></p>
+<p>8.尽量避免前后都用通配符<br>  如：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> employee <span class="keyword">where</span> dept <span class="keyword">like</span> <span class="string">'%TECH%'</span> (错）</div><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> employee <span class="keyword">where</span> dept <span class="keyword">like</span> <span class="string">'TECH%'</span> （对）</div></pre></td></tr></table></figure></p>
+<p>9.判断条件顺序<br>  如：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> employee <span class="keyword">where</span> creat_date<span class="number">-30</span>&gt;<span class="keyword">to_date</span>(<span class="string">'2012-10-31'</span>,<span class="string">'yyyy-mm-dd'</span>)   （错）</div><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> employee <span class="keyword">where</span> creat_date &gt;<span class="keyword">to_date</span>(<span class="string">'2012-10-31'</span>,<span class="string">'yyyy-mm-dd'</span>)+<span class="number">30</span>   （对）</div></pre></td></tr></table></figure></p>
+<p>10.尽量使用exists而非in<br> 当然这个也要根据记录的情况来定用exists还是用in, 通常的情况是用exists<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> employee <span class="keyword">where</span> salary <span class="keyword">in</span> (<span class="keyword">select</span> salary <span class="keyword">from</span> emp_level where....)   （错）   </div><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> employee <span class="keyword">where</span> salary <span class="keyword">exists</span>(<span class="keyword">select</span> <span class="string">'X'</span> <span class="keyword">from</span> emp_level <span class="keyword">where</span> ....)   （对）</div></pre></td></tr></table></figure></p>
+<p>11.使用not exists 而非not in<br>    和上面的类似</p>
+<p>12.减少查询表的记录数范围</p>
+<p>13.正确使用索引<br>  索引可以提高速度，一般来说，选择度越高，索引的效率越高。</p>
+<p>14.索引类型<br>  唯一索引，对于查询用到的字段，尽可能使用唯一索引。<br>  还有一些其他类型，如位图索引，在性别字段，只有男女的字段上用。<br>15.在经常进行连接，但是没有指定为外键的列上建立索引<br>16.在频繁进行排序会分组的列上建立索引，如经常做group by 或 order by 操作的字段。<br>17.在条件表达式中经常用到的不同值较多的列上建立检索，在不同值少的列上不建立索引。如性别列上只有男，女两个不同的值，就没必要建立索引（或建立位图索引）。如果建立索引不但不会提高查询效率，反而会严重降低更新速度。<br>18.在值比较少的字段做order by时，翻页会出现记录紊乱问题，要带上id字段一起做order by.<br>19.不要使用空字符串进行查询<br>    如：<br><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> id <span class="keyword">from</span> employee <span class="keyword">where</span> emp_name <span class="keyword">like</span> <span class="comment">'%%' （错）</span></div><div class="line">```    </div><div class="line"><span class="number">20.</span>尽量对经常用作<span class="keyword">group</span> <span class="keyword">by</span>的关键字段做索引。</div><div class="line"></div><div class="line"><span class="number">21.</span>正确使用表关联</div><div class="line">    利用外连接替换效率十分低下的<span class="keyword">not</span> <span class="keyword">in</span>运算，大大提高运行速度。</div><div class="line">    如：</div></pre></td></tr></table></figure></p>
+<p>select a.id from employee a where a.emp_no not in (select emp_no from employee1 where job =’SALE’)  （错）<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">    </div><div class="line"><span class="number">22.</span>使用临时表    </div><div class="line">   在必要的情况下，为减少读取次数，可以使用经过索引的临时表加快速度。</div><div class="line">   如：</div></pre></td></tr></table></figure></p>
+<p>select e.id from employee e ,dept d where e.dept_id=d.id and e.empno&gt;1000 order by e.id   （错）</p>
+<p>select id,empno from employee into temp_empl where empno&gt;1000 order by id<br>select m.id from temp_emp1 m,dept d where m.empno=d.id      （对）<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">对于大数据量sql语句性能优化更多的工作就交给dba去实践，我们程序员做好这些基本功就好了。</div><div class="line">以上文章来着博客园web报表的博客。</div><div class="line"><span class="meta"># 二、百万数据查询优化技巧三十则</span></div><div class="line"></div><div class="line"><span class="number">1.</span>对查询进行优化，应尽量避免全表扫描，首先应考虑在 <span class="keyword">where</span> 及 order <span class="keyword">by</span> 涉及的列上建立索引。 </div><div class="line"></div><div class="line"><span class="number">2.</span>应尽量避免在 <span class="keyword">where</span> 子句中对字段进行 <span class="literal">null</span> 值判断，否则将导致引擎放弃使用索引而进行全表扫描，如：</div></pre></td></tr></table></figure></p>
+<p>select id from t where num is null</p>
+<p>##可以在num上设置默认值0，确保表中num列没有null值，然后这样查询：<br>select id from t where num=0<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="number">3.</span>应尽量避免在 <span class="keyword">where</span> 子句中使用!=或&lt;&gt;操作符，否则将引擎放弃使用索引而进行全表扫描。</div><div class="line"></div><div class="line"><span class="number">4.</span>应尽量避免在 <span class="keyword">where</span> 子句中使用 <span class="keyword">or</span> 来连接条件，否则将导致引擎放弃使用索引而进行全表扫描，如：</div></pre></td></tr></table></figure></p>
+<p>select id from t where num=10 or num=20</p>
+<p>##可以这样查询：<br>select id from t where num=10<br>union all<br>select id from t where num=20<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">5</span>.<span class="keyword">in</span> 和 <span class="keyword">not</span> <span class="keyword">in</span> 也要慎用，否则会导致全表扫描，如：</div></pre></td></tr></table></figure></p>
+<p>select id from t where num in(1,2,3)</p>
+<p>##对于连续的数值，能用 between 就不要用 in 了：<br>select id from t where num between 1 and 3<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">6.</span>下面的查询也将导致全表扫描：</div></pre></td></tr></table></figure></p>
+<p>select id from t where name like ‘%abc%’</p>
+<p>##若要提高效率，可以考虑全文检索。<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">7.</span>如果在 <span class="keyword">where</span> 子句中使用参数，也会导致全表扫描。因为SQL只有在运行时才会解析局部变量，但优化程序不能将访问计划的选择推迟到运行时；它必须在编译时进行选择。然而，如果在编译时建立访问计划，变量的值还是未知的，因而无法作为索引选择的输入项。如下面语句将进行全表扫描：</div></pre></td></tr></table></figure></p>
+<p>select id from t where num=@num <a href="&#x6d;&#x61;&#105;&#108;&#116;&#111;&#58;&#110;&#x75;&#x6d;&#x3d;&#64;&#x6e;&#117;&#x6d;">&#110;&#x75;&#x6d;&#x3d;&#64;&#x6e;&#117;&#x6d;</a></p>
+<p>##可以改为强制查询使用索引：<br>select id from t with(index(索引名)) where num=@num <a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#111;&#58;&#110;&#117;&#x6d;&#x3d;&#64;&#110;&#x75;&#x6d;">&#110;&#117;&#x6d;&#x3d;&#64;&#110;&#x75;&#x6d;</a><br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">8.</span>应尽量避免在 <span class="keyword">where</span> 子句中对字段进行表达式操作，这将导致引擎放弃使用索引而进行全表扫描。如：</div></pre></td></tr></table></figure></p>
+<p>select id from t where num/2=100</p>
+<p>##应改为:<br>select id from t where num=100*2<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">9.</span>应尽量避免在<span class="keyword">where</span>子句中对字段进行函数操作，这将导致引擎放弃使用索引而进行全表扫描。如：</div></pre></td></tr></table></figure></p>
+<p>select id from t where substring(name,1,3)=’abc’–name以abc开头的id<br>select id from t where datediff(day,createdate,’2005-11-30’)=0–‘2005-11-30’生成的id</p>
+<p>##应改为:<br>select id from t where name like ‘abc%’<br>select id from t where createdate&gt;=’2005-11-30’ and createdate&lt;’2005-12-1’<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="number">10.</span>不要在 where 子句中的“=”左边进行函数、算术运算或其他表达式运算，否则系统将可能无法正确使用索引。</div><div class="line"></div><div class="line"><span class="number">11.</span>在使用索引字段作为条件时，如果该索引是复合索引，那么必须使用到该索引中的第一个字段作为条件时才能保证系统使用该索引，否则该索引将不会被使用，并且应尽可能的让字段顺序与索引顺序相一致。</div><div class="line"><span class="number">12.</span>不要写一些没有意义的查询，如需要生成一个空表结构：</div></pre></td></tr></table></figure></p>
+<p>select col1,col2 into #t from t where 1=0</p>
+<p>##这类代码不会返回任何结果集，但是会消耗系统资源的，应改成这样：<br>create table #t(…)<br><figure class="highlight ceylon"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">13</span>.很多时候用 <span class="keyword">exists</span> 代替 <span class="keyword">in</span> 是一个好的选择：</div></pre></td></tr></table></figure></p>
+<p>select num from a where num in(select num from b)</p>
+<p>##用下面的语句替换：<br>select num from a where exists(select 1 from b where num=a.num)<br>```<br>14.并不是所有索引对查询都有效，SQL是根据表中数据来进行查询优化的，当索引列有大量数据重复时，SQL查询可能不会去利用索引，如一表中有字段sex，male、female几乎各一半，那么即使在sex上建了索引也对查询效率起不了作用。</p>
+<p>15.索引并不是越多越好，索引固然可以提高相应的 select 的效率，但同时也降低了 insert 及 update 的效率，因为 insert 或 update 时有可能会重建索引，所以怎样建索引需要慎重考虑，视具体情况而定。一个表的索引数最好不要超过6个，若太多则应考虑一些不常使用到的列上建的索引是否有必要。</p>
+<p>16.应尽可能的避免更新 clustered 索引数据列，因为 clustered 索引数据列的顺序就是表记录的物理存储顺序，一旦该列值改变将导致整个表记录的顺序的调整，会耗费相当大的资源。若应用系统需要频繁更新 clustered 索引数据列，那么需要考虑是否应将该索引建为 clustered 索引。</p>
+<p>17.尽量使用数字型字段，若只含数值信息的字段尽量不要设计为字符型，这会降低查询和连接的性能，并会增加存储开销。这是因为引擎在处理查询和连接时会逐个比较字符串中每一个字符，而对于数字型而言只需要比较一次就够了。</p>
+<p>18.尽可能的使用 varchar/nvarchar 代替 char/nchar ，因为首先变长字段存储空间小，可以节省存储空间，其次对于查询来说，在一个相对较小的字段内搜索效率显然要高些。</p>
+<p>19.任何地方都不要使用 select <em> from t ，用具体的字段列表代替“</em>”，不要返回用不到的任何字段。</p>
+<p>20.尽量使用表变量来代替临时表。如果表变量包含大量数据，请注意索引非常有限（只有主键索引）。</p>
+<p>21.避免频繁创建和删除临时表，以减少系统表资源的消耗。</p>
+<p>22.临时表并不是不可使用，适当地使用它们可以使某些例程更有效，例如，当需要重复引用大型表或常用表中的某个数据集时。但是，对于一次性事件，最好使用导出表。</p>
+<p>23.在新建临时表时，如果一次性插入数据量很大，那么可以使用 select into 代替 create table，避免造成大量 log ，以提高速度；如果数据量不大，为了缓和系统表的资源，应先create table，然后insert。</p>
+<p>24.如果使用到了临时表，在存储过程的最后务必将所有的临时表显式删除，先 truncate table ，然后 drop table ，这样可以避免系统表的较长时间锁定。</p>
+<p>25.尽量避免使用游标，因为游标的效率较差，如果游标操作的数据超过1万行，那么就应该考虑改写。</p>
+<p>26.使用基于游标的方法或临时表方法之前，应先寻找基于集的解决方案来解决问题，基于集的方法通常更有效。</p>
+<p>27.与临时表一样，游标并不是不可使用。对小型数据集使用 FAST_FORWARD 游标通常要优于其他逐行处理方法，尤其是在必须引用几个表才能获得所需的数据时。在结果集中包括“合计”的例程通常要比使用游标执行的速度快。如果开发时间允许，基于游标的方法和基于集的方法都可以尝试一下，看哪一种方法的效果更好。</p>
+<p>28.在所有的存储过程和触发器的开始处设置 SET NOCOUNT ON ，在结束时设置 SET NOCOUNT OFF 。无需在执行存储过程和触发器的每个语句后向客户端发送 DONE_IN_PROC 消息。</p>
+<p>29.尽量避免大事务操作，提高系统并发能力。</p>
+<p>30.尽量避免向客户端返回大数据量，若数据量过大，应该考虑相应需求是否合理。</p>
+<p>第二部分的文章来着自己大学时从网上下载的一篇文档，2部分的内容都是来着很久以前下载的文档里，今天看到相关博文又有新收获的同时想起了这2篇文档，特意找出来回顾并供大家一起学习分享！</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+  
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+        </div>
+      
+
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>🐶 您的支持将鼓励我继续创作 🐶</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赞赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-img.jpg" alt="chumingke WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-img.jpg" alt="chumingke Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+         
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2017/10/Tableau-practical-combat-notes.html" rel="next" title="tableau应用实战">
+                <i class="fa fa-chevron-left"></i> tableau应用实战
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="/blog/2017/10/MYSQL-optimization-techniques.html"
+     data-title="程序员老鸟写sql语句的经验之谈、百万数据查询优化技巧三十则"
+     data-content=""
+     data-url="https://chumingke.github.io/blog/2017/10/MYSQL-optimization-techniques.html">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="monthly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="/blog/2017/10/MYSQL-optimization-techniques.html"
+           data-title="程序员老鸟写sql语句的经验之谈、百万数据查询优化技巧三十则" data-url="https://chumingke.github.io/blog/2017/10/MYSQL-optimization-techniques.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/dingxiu.jpg"
+               alt="chumingke" />
+          <p class="site-author-name" itemprop="name">chumingke</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chumingke" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/bi-ma-wen-34" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-battery-3"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.woaitqs.cc/" title="Qisen Tang" target="_blank">Qisen Tang</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://szhshp.org" title="szhshp的博客" target="_blank">szhshp的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://python.zhangwei.website" title="JuniorCoder" target="_blank">JuniorCoder</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hippo-jessy.com" title="Hippo" target="_blank">Hippo</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.zhihu.com/people/lippi-ouyang" title="友链出租" target="_blank">友链出租</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、程序员老鸟写sql语句的经验之谈"><span class="nav-number">1.</span> <span class="nav-text">一、程序员老鸟写sql语句的经验之谈</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chumingke</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ezlippi"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="//cdn.jsdelivr.net/ua-parser.js/0.7.10/ua-parser.min.js"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>
