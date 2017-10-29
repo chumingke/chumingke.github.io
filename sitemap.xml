@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chumingke.github.io/blog/2017/10/MySQL-index-correlation.html</loc>
+    
+    <lastmod>2017-10-29T13:58:49.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://chumingke.github.io/blog/2017/10/Using-SQL-to-realize-common-operation-of-Excel.html</loc>
+    
+    <lastmod>2017-10-29T03:06:15.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://chumingke.github.io/blog/2017/10/MySQL-triggers-and-event-schedulers.html</loc>
     
     <lastmod>2017-10-26T02:42:54.000Z</lastmod>

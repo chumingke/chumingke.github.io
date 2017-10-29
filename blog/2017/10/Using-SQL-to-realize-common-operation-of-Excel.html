@@ -90,18 +90,18 @@
 
 
 
-<meta name="description" content="本笔记为学习该书所记，便于复习。包含第五、六章笔记。常用函数与图形化工具的使用。[TOC] 第一部分 基础篇第5章 常用函数字符串函数常用字符串函数123456789101112131415CONCAT(S1,S2...Sn)          ##连接S1,S2...Sn为一个字符串INSERT(str,x,y,instr)       ##将字符串str从第x位置开始，y个字符长的子串替换为字">
+<meta name="description" content="转自https://zhuanlan.zhihu.com/p/30212389 数据是网上找到的销售数据，命名为sale。 一、关联公式:Vlookupvlookup是excel几乎最常用的公式，一般用于两个表的关联查询等。所以我先创建一个新表：复制sale表并筛选出地区仅为广州的，命名为sale_guang。1create table sale_guang SELECT * from sale">
 <meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入浅出MySQL笔记（三）">
-<meta property="og:url" content="https://chumingke.github.io/blog/2017/10/Easy-to-understand-mysql-3.html">
+<meta property="og:title" content="用SQL实现 excel常用操作">
+<meta property="og:url" content="https://chumingke.github.io/blog/2017/10/Using-SQL-to-realize-common-operation-of-Excel.html">
 <meta property="og:site_name" content="chumingke-二师兄">
-<meta property="og:description" content="本笔记为学习该书所记，便于复习。包含第五、六章笔记。常用函数与图形化工具的使用。[TOC] 第一部分 基础篇第5章 常用函数字符串函数常用字符串函数123456789101112131415CONCAT(S1,S2...Sn)          ##连接S1,S2...Sn为一个字符串INSERT(str,x,y,instr)       ##将字符串str从第x位置开始，y个字符长的子串替换为字">
+<meta property="og:description" content="转自https://zhuanlan.zhihu.com/p/30212389 数据是网上找到的销售数据，命名为sale。 一、关联公式:Vlookupvlookup是excel几乎最常用的公式，一般用于两个表的关联查询等。所以我先创建一个新表：复制sale表并筛选出地区仅为广州的，命名为sale_guang。1create table sale_guang SELECT * from sale">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-25T13:30:23.000Z">
+<meta property="og:updated_time" content="2017-10-29T03:06:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深入浅出MySQL笔记（三）">
-<meta name="twitter:description" content="本笔记为学习该书所记，便于复习。包含第五、六章笔记。常用函数与图形化工具的使用。[TOC] 第一部分 基础篇第5章 常用函数字符串函数常用字符串函数123456789101112131415CONCAT(S1,S2...Sn)          ##连接S1,S2...Sn为一个字符串INSERT(str,x,y,instr)       ##将字符串str从第x位置开始，y个字符长的子串替换为字">
+<meta name="twitter:title" content="用SQL实现 excel常用操作">
+<meta name="twitter:description" content="转自https://zhuanlan.zhihu.com/p/30212389 数据是网上找到的销售数据，命名为sale。 一、关联公式:Vlookupvlookup是excel几乎最常用的公式，一般用于两个表的关联查询等。所以我先创建一个新表：复制sale表并筛选出地区仅为广州的，命名为sale_guang。1create table sale_guang SELECT * from sale">
 
 
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="https://chumingke.github.io/blog/2017/10/Easy-to-understand-mysql-3.html"/>
+  <link rel="canonical" href="https://chumingke.github.io/blog/2017/10/Using-SQL-to-realize-common-operation-of-Excel.html"/>
 
 
 
 
 
-  <title> 深入浅出MySQL笔记（三） | chumingke-二师兄 </title>
+  <title> 用SQL实现 excel常用操作 | chumingke-二师兄 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -268,7 +268,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://chumingke.github.io/blog/2017/10/Easy-to-understand-mysql-3.html">
+  <link itemprop="mainEntityOfPage" href="https://chumingke.github.io/blog/2017/10/Using-SQL-to-realize-common-operation-of-Excel.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="chumingke">
@@ -292,7 +292,7 @@
             
             
               
-                深入浅出MySQL笔记（三）
+                用SQL实现 excel常用操作
               
             
           </h2>
@@ -307,8 +307,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-03T17:41:18+08:00">
-                2017-10-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-29T11:05:32+08:00">
+                2017-10-29
               </time>
             
 
@@ -348,8 +348,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/2017/10/Easy-to-understand-mysql-3.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2017/10/Easy-to-understand-mysql-3.html" itemprop="commentCount"></span>
+                <a href="/blog/2017/10/Using-SQL-to-realize-common-operation-of-Excel.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2017/10/Using-SQL-to-realize-common-operation-of-Excel.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -378,13 +378,20 @@
       
 
       
-        <p>本笔记为学习该书所记，便于复习。<br>包含第五、六章笔记。<br>常用函数与图形化工具的使用。<br>[TOC]</p>
-<h1 id="第一部分-基础篇"><a href="#第一部分-基础篇" class="headerlink" title="第一部分 基础篇"></a>第一部分 基础篇</h1><h2 id="第5章-常用函数"><a href="#第5章-常用函数" class="headerlink" title="第5章 常用函数"></a>第5章 常用函数</h2><h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><p>常用字符串函数<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">CONCAT</span><span class="params">(S1,S2...Sn)</span></span>          ##连接S1,S2...Sn为一个字符串</div><div class="line"><span class="function"><span class="title">INSERT</span><span class="params">(str,x,y,instr)</span></span>       ##将字符串str从第x位置开始，y个字符长的子串替换为字符串instr</div><div class="line"><span class="function"><span class="title">LOWER</span><span class="params">(str)</span></span>                  ##将字符串str中所有字符变为小写</div><div class="line"><span class="function"><span class="title">UPPER</span><span class="params">(str)</span></span>                  ##将字符串str中所有字符变为大写</div><div class="line"><span class="function"><span class="title">LEFT</span><span class="params">(str,x)</span></span>                 ##返回字符串str最左边的x个字符</div><div class="line"><span class="function"><span class="title">RIGHT</span><span class="params">(str,x)</span></span>                ##返回字符串str最右边的x个字符</div><div class="line"><span class="function"><span class="title">LPAD</span><span class="params">(str,n,pad)</span></span>             ##用字符串pad对str最左边进行填充，直到长度为n个字符长度</div><div class="line"><span class="function"><span class="title">RPAD</span><span class="params">(str,n,pad)</span></span>             ##用字符串pad对str最右边进行填充，直到长度为n个字符长度</div><div class="line"><span class="function"><span class="title">LTRIM</span><span class="params">(str)</span></span>                  ##去掉字符串str左侧的空格</div><div class="line"><span class="function"><span class="title">RTRIM</span><span class="params">(str)</span></span>                  ##去掉字符串str右侧的空格</div><div class="line"><span class="function"><span class="title">REPEAT</span><span class="params">(str,x)</span></span>               ##返回str重复x次的结果</div><div class="line"><span class="function"><span class="title">REPLACE</span><span class="params">(str,a,b)</span></span>            ##用字符串b替换字符串str中所有出现的字符串a</div><div class="line"><span class="function"><span class="title">STRCMP</span><span class="params">(s1,s2)</span></span>               ##比较字符串s1和s2</div><div class="line"><span class="function"><span class="title">TRIM</span><span class="params">(str)</span></span>                   ##去掉字符串行尾和行头的空格</div><div class="line"><span class="function"><span class="title">SUBSTRING</span><span class="params">(str,x,y)</span></span>          ##返回从字符串str x位置起y个字符长度的字串</div></pre></td></tr></table></figure></p>
-<h3 id="数字函数"><a href="#数字函数" class="headerlink" title="数字函数"></a>数字函数</h3><p>常用数值函数<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">ABS</span><span class="params">(x)</span></span>                   ##返回x的绝对值</div><div class="line"><span class="function"><span class="title">CEIL</span><span class="params">(x)</span></span>                  ##返回大于x的最小整数值</div><div class="line"><span class="function"><span class="title">FLOOR</span><span class="params">(x)</span></span>                 ##返回小于x的最大整数值</div><div class="line"><span class="function"><span class="title">MOD</span><span class="params">(x,y)</span></span>                 ##返回x/y的模</div><div class="line"><span class="function"><span class="title">RAND</span><span class="params">()</span></span>                   ##返回<span class="number">0</span>~<span class="number">1</span>内的随机值</div><div class="line"><span class="function"><span class="title">ROUND</span><span class="params">(x,y)</span></span>               ##返回参数x的四舍五入的有y位小数的值</div><div class="line"><span class="function"><span class="title">TRUNCATE</span><span class="params">(x,y)</span></span>            ##返回数字x截断为y位小数的结果</div></pre></td></tr></table></figure></p>
-<h3 id="时间和日期函数"><a href="#时间和日期函数" class="headerlink" title="时间和日期函数"></a>时间和日期函数</h3><p>常用时间和日期函数</p>
-<h3 id="流程函数"><a href="#流程函数" class="headerlink" title="流程函数"></a>流程函数</h3><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">IF</span>(value,t,f)</div><div class="line"><span class="meta">##如果value是真，返回t；否则返回f</span></div><div class="line">IFNULL(value1,value2)</div><div class="line"><span class="meta">##如果value1不为空，返回value1,否则返回value2</span></div><div class="line"><span class="keyword">CASE</span> WHER [value1] <span class="keyword">THEN</span> [result1]...ELES [<span class="keyword">default</span>] <span class="keyword">END</span></div><div class="line"><span class="meta">##如果value1是真，返回result1，否则返回default</span></div><div class="line"><span class="keyword">CASE</span> [expr] <span class="keyword">WHEN</span> [value1] <span class="keyword">THEN</span> [result1]... <span class="keyword">ELSE</span> [<span class="keyword">default</span>] <span class="keyword">END</span></div><div class="line"><span class="meta">##如果expr等于value1,返回result1,否则返回default</span></div></pre></td></tr></table></figure>
-<h3 id="其他常用函数"><a href="#其他常用函数" class="headerlink" title="其他常用函数"></a>其他常用函数</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">DATABASE</span><span class="params">()</span></span></div><div class="line"><span class="function"><span class="title">VERSION</span><span class="params">()</span></span></div><div class="line"><span class="function"><span class="title">USER</span><span class="params">()</span></span></div><div class="line"><span class="function"><span class="title">INET_ATON</span><span class="params">(IP)</span></span></div><div class="line"><span class="function"><span class="title">INET_NTOA</span><span class="params">(num)</span></span></div><div class="line"><span class="function"><span class="title">PASSWORD</span><span class="params">(str)</span></span></div><div class="line"><span class="function"><span class="title">MD5</span><span class="params">()</span></span></div></pre></td></tr></table></figure>
-<h2 id="第6章-图形化工具的使用"><a href="#第6章-图形化工具的使用" class="headerlink" title="第6章 图形化工具的使用"></a>第6章 图形化工具的使用</h2><h3 id="Mysql-Workbench"><a href="#Mysql-Workbench" class="headerlink" title="Mysql Workbench"></a>Mysql Workbench</h3><h3 id="phpMyAdmin"><a href="#phpMyAdmin" class="headerlink" title="phpMyAdmin"></a>phpMyAdmin</h3><h3 id="navicat"><a href="#navicat" class="headerlink" title="navicat"></a>navicat</h3>
+        <p>转自<a href="https://zhuanlan.zhihu.com/p/30212389" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/30212389</a></p>
+<p>数据是网上找到的销售数据，命名为sale。</p>
+<h1 id="一、关联公式-Vlookup"><a href="#一、关联公式-Vlookup" class="headerlink" title="一、关联公式:Vlookup"></a>一、关联公式:Vlookup</h1><p>vlookup是excel几乎最常用的公式，一般用于两个表的关联查询等。所以我先创建一个新表：复制sale表并筛选出地区仅为广州的，命名为sale_guang。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> sale_guang <span class="keyword">SELECT</span> * <span class="keyword">from</span> sale <span class="keyword">where</span> city=<span class="string">"广州"</span>;</div></pre></td></tr></table></figure></p>
+<p>需求：根据订单明细号关联两表，并且sale_guang只有订单明细号与利润两列<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">from</span> sale a</div><div class="line"><span class="keyword">inner</span> <span class="keyword">JOIN</span></div><div class="line">(<span class="keyword">SELECT</span> ordernum,profit <span class="keyword">from</span> sale_guang) b</div><div class="line"><span class="keyword">on</span> a.<span class="symbol">`ordernum`</span>=b.<span class="symbol">`ordernum`</span>;</div></pre></td></tr></table></figure></p>
+<h1 id="二、对比两列差异"><a href="#二、对比两列差异" class="headerlink" title="二、对比两列差异"></a>二、对比两列差异</h1><p>需求：对比sale的订单明细号与sale_guang订单明细号的差异；<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">from</span> sale a</div><div class="line"><span class="keyword">WHERE</span> a.ordernum <span class="keyword">not</span> <span class="keyword">in</span> </div><div class="line">(<span class="keyword">SELECT</span> b.ordernum <span class="keyword">from</span> sale_guang b);</div></pre></td></tr></table></figure></p>
+<h1 id="三、去除重复值"><a href="#三、去除重复值" class="headerlink" title="三、去除重复值"></a>三、去除重复值</h1><p>需求：去除业务员编码的重复值<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">from</span> sale </div><div class="line"><span class="keyword">WHERE</span> salesnum <span class="keyword">in</span></div><div class="line">(<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> salesnum <span class="keyword">from</span> sale);</div></pre></td></tr></table></figure></p>
+<h1 id="四、缺失值处理"><a href="#四、缺失值处理" class="headerlink" title="四、缺失值处理"></a>四、缺失值处理</h1><p>需求：用0填充缺失值或则删除有地区名称缺失值的行。<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#用0填充：</div><div class="line"><span class="keyword">update</span> sale <span class="keyword">set</span> city = <span class="number">0</span> <span class="keyword">where</span> city = <span class="literal">NULL</span></div><div class="line">#删除有缺失值的行：</div><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> sale <span class="keyword">where</span> city = <span class="literal">NULL</span>;</div></pre></td></tr></table></figure></p>
+<h1 id="五、多条件筛选"><a href="#五、多条件筛选" class="headerlink" title="五、多条件筛选"></a>五、多条件筛选</h1><p>需求：想知道业务员张爱，在北京区域卖的商品订单金额大于等于6000的信息。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">from</span> sale </div><div class="line"><span class="keyword">where</span> salesman = <span class="string">"张爱"</span> </div><div class="line"><span class="keyword">and</span> city = <span class="string">"北京"</span></div><div class="line"><span class="keyword">and</span> orderaccount &gt;=<span class="number">6000</span>;</div></pre></td></tr></table></figure></p>
+<h1 id="六、-模糊筛选数据"><a href="#六、-模糊筛选数据" class="headerlink" title="六、 模糊筛选数据"></a>六、 模糊筛选数据</h1><p>需求:筛选存货名称含有”三星”或则含有”索尼”的信息。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">from</span> sale </div><div class="line"><span class="keyword">where</span> inventoryname <span class="keyword">like</span> <span class="string">"%三星%"</span> <span class="keyword">or</span> 存货名称 <span class="keyword">like</span> <span class="string">"%索尼%"</span>;</div></pre></td></tr></table></figure></p>
+<h1 id="七、分类汇总"><a href="#七、分类汇总" class="headerlink" title="七、分类汇总"></a>七、分类汇总</h1><p>需求:北京区域各业务员的利润总额。<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SELECT city,sum(`profit`) <span class="keyword">from</span> sale</div><div class="line">WHERE city = <span class="string">"北京"</span></div><div class="line">GROUP BY `city`;</div></pre></td></tr></table></figure></p>
+<h1 id="八、条件计算"><a href="#八、条件计算" class="headerlink" title="八、条件计算"></a>八、条件计算</h1><p>需求：存货名称含“三星字眼”并且税费高于1000的订单有几个？这些订单的利润总和和平均利润是多少？<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#有多少个？</div><div class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(*) <span class="keyword">from</span> sale </div><div class="line"><span class="keyword">where</span> inventoryname <span class="keyword">like</span> <span class="string">"%三星%"</span></div><div class="line"><span class="keyword">and</span> <span class="symbol">`tax`</span> &gt; <span class="number">1000</span> ;</div><div class="line"></div><div class="line">#这些订单的利润总和和平均利润是多少？</div><div class="line"><span class="keyword">SELECT</span> <span class="symbol">`ordernum`</span>,<span class="built_in">SUM</span>(profit),<span class="built_in">AVG</span>(<span class="symbol">`profit`</span>) <span class="keyword">from</span> sale </div><div class="line"><span class="keyword">where</span> inventoryname <span class="keyword">like</span> <span class="string">"%三星%"</span></div><div class="line"><span class="keyword">and</span> <span class="symbol">`tax`</span> &gt; <span class="number">1000</span> </div><div class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="symbol">`ordernum`</span>;</div></pre></td></tr></table></figure></p>
+<h1 id="九、删除数据间的空格"><a href="#九、删除数据间的空格" class="headerlink" title="九、删除数据间的空格"></a>九、删除数据间的空格</h1><p>需求：删除存货名称两边的空格。<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> <span class="built_in">trim</span>(inventoryname) <span class="keyword">from</span> sale;</div></pre></td></tr></table></figure></p>
+<h1 id="十、合并与排序列"><a href="#十、合并与排序列" class="headerlink" title="十、合并与排序列"></a>十、合并与排序列</h1><p>需求：计算每个订单号的成本并从高到低排序（成本 = 不含税金额 - 利润）<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> city,ordernum,(Nontaxamount - profit) <span class="keyword">as</span> <span class="keyword">cost</span> <span class="keyword">from</span> sale</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">cost</span> <span class="keyword">DESC</span>;</div></pre></td></tr></table></figure></p>
+
       
     </div>
 
@@ -438,8 +445,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2017/10/Easy-to-understand-mysql-2.html" rel="next" title="深入浅出MySQL笔记（二）">
-                <i class="fa fa-chevron-left"></i> 深入浅出MySQL笔记（二）
+              <a href="/blog/2017/10/Mysql-MYSQL-optimization-technique-1.html" rel="next" title="SQL语句常用优化技巧(一)">
+                <i class="fa fa-chevron-left"></i> SQL语句常用优化技巧(一)
               </a>
             
           </div>
@@ -448,8 +455,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2017/10/Data-analysis-charts.html" rel="prev" title="整理了部分数据分析用图表">
-                整理了部分数据分析用图表 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2017/10/MySQL-index-correlation.html" rel="prev" title="MySQL索引相关">
+                MySQL索引相关 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -465,10 +472,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="/blog/2017/10/Easy-to-understand-mysql-3.html"
-     data-title="深入浅出MySQL笔记（三）"
+        <div class="ds-share flat" data-thread-key="/blog/2017/10/Using-SQL-to-realize-common-operation-of-Excel.html"
+     data-title="用SQL实现 excel常用操作"
      data-content=""
-     data-url="https://chumingke.github.io/blog/2017/10/Easy-to-understand-mysql-3.html">
+     data-url="https://chumingke.github.io/blog/2017/10/Using-SQL-to-realize-common-operation-of-Excel.html">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -498,8 +505,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="/blog/2017/10/Easy-to-understand-mysql-3.html"
-           data-title="深入浅出MySQL笔记（三）" data-url="https://chumingke.github.io/blog/2017/10/Easy-to-understand-mysql-3.html">
+      <div class="ds-thread" data-thread-key="/blog/2017/10/Using-SQL-to-realize-common-operation-of-Excel.html"
+           data-title="用SQL实现 excel常用操作" data-url="https://chumingke.github.io/blog/2017/10/Using-SQL-to-realize-common-operation-of-Excel.html">
       </div>
     
   </div>
@@ -665,7 +672,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一部分-基础篇"><span class="nav-number">1.</span> <span class="nav-text">第一部分 基础篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第5章-常用函数"><span class="nav-number">1.1.</span> <span class="nav-text">第5章 常用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串函数"><span class="nav-number">1.1.1.</span> <span class="nav-text">字符串函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字函数"><span class="nav-number">1.1.2.</span> <span class="nav-text">数字函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间和日期函数"><span class="nav-number">1.1.3.</span> <span class="nav-text">时间和日期函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流程函数"><span class="nav-number">1.1.4.</span> <span class="nav-text">流程函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他常用函数"><span class="nav-number">1.1.5.</span> <span class="nav-text">其他常用函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第6章-图形化工具的使用"><span class="nav-number">1.2.</span> <span class="nav-text">第6章 图形化工具的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mysql-Workbench"><span class="nav-number">1.2.1.</span> <span class="nav-text">Mysql Workbench</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#phpMyAdmin"><span class="nav-number">1.2.2.</span> <span class="nav-text">phpMyAdmin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#navicat"><span class="nav-number">1.2.3.</span> <span class="nav-text">navicat</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、关联公式-Vlookup"><span class="nav-number">1.</span> <span class="nav-text">一、关联公式:Vlookup</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、对比两列差异"><span class="nav-number">2.</span> <span class="nav-text">二、对比两列差异</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、去除重复值"><span class="nav-number">3.</span> <span class="nav-text">三、去除重复值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、缺失值处理"><span class="nav-number">4.</span> <span class="nav-text">四、缺失值处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、多条件筛选"><span class="nav-number">5.</span> <span class="nav-text">五、多条件筛选</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、-模糊筛选数据"><span class="nav-number">6.</span> <span class="nav-text">六、 模糊筛选数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七、分类汇总"><span class="nav-number">7.</span> <span class="nav-text">七、分类汇总</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#八、条件计算"><span class="nav-number">8.</span> <span class="nav-text">八、条件计算</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#九、删除数据间的空格"><span class="nav-number">9.</span> <span class="nav-text">九、删除数据间的空格</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十、合并与排序列"><span class="nav-number">10.</span> <span class="nav-text">十、合并与排序列</span></a></li></ol></div>
             
 
           </div>
