@@ -1,0 +1,905 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Neucha:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="chumingke-二师兄" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="转自http://www.cnblogs.com/arkenstone/p/5467034.html python数据分析部分1. 如何利用SciKit包训练一个简单的线性回归模型利用linear_model.LinearRegression()函数1234# Create linear regression objectregr = linear_model.LinearRegression()">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python数据分析师面试题选">
+<meta property="og:url" content="https://chumingke.github.io/blog/2017/10/Interview-of-Python-Data-Analyst.html">
+<meta property="og:site_name" content="chumingke-二师兄">
+<meta property="og:description" content="转自http://www.cnblogs.com/arkenstone/p/5467034.html python数据分析部分1. 如何利用SciKit包训练一个简单的线性回归模型利用linear_model.LinearRegression()函数1234# Create linear regression objectregr = linear_model.LinearRegression()">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-30T02:55:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python数据分析师面试题选">
+<meta name="twitter:description" content="转自http://www.cnblogs.com/arkenstone/p/5467034.html python数据分析部分1. 如何利用SciKit包训练一个简单的线性回归模型利用linear_model.LinearRegression()函数1234# Create linear regression objectregr = linear_model.LinearRegression()">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://chumingke.github.io/blog/2017/10/Interview-of-Python-Data-Analyst.html"/>
+
+
+
+
+
+  <title> python数据分析师面试题选 | chumingke-二师兄 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">chumingke-二师兄</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <h1 class="site-subtitle" itemprop="description"></h1>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://chumingke.github.io/blog/2017/10/Interview-of-Python-Data-Analyst.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="chumingke">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/dingxiu.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="chumingke-二师兄">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="chumingke-二师兄" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                python数据分析师面试题选
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-30T10:54:49+08:00">
+                2017-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2017/10/Interview-of-Python-Data-Analyst.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2017/10/Interview-of-Python-Data-Analyst.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+ 
+        
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>转自<a href="http://www.cnblogs.com/arkenstone/p/5467034.html" target="_blank" rel="external">http://www.cnblogs.com/arkenstone/p/5467034.html</a></p>
+<h1 id="python数据分析部分"><a href="#python数据分析部分" class="headerlink" title="python数据分析部分"></a>python数据分析部分</h1><h3 id="1-如何利用SciKit包训练一个简单的线性回归模型"><a href="#1-如何利用SciKit包训练一个简单的线性回归模型" class="headerlink" title="1. 如何利用SciKit包训练一个简单的线性回归模型"></a>1. 如何利用SciKit包训练一个简单的线性回归模型</h3><p>利用linear_model.LinearRegression()函数<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Create linear regression object</span></div><div class="line">regr = linear_model.LinearRegression()</div><div class="line"><span class="comment"># Train the model using the training sets</span></div><div class="line">regr.fit(data_X_train, data_y_train)</div></pre></td></tr></table></figure></p>
+<h3 id="2-例举几个常用的python分析数据包及其作用"><a href="#2-例举几个常用的python分析数据包及其作用" class="headerlink" title="2. 例举几个常用的python分析数据包及其作用"></a>2. 例举几个常用的python分析数据包及其作用</h3><p>数据处理和分析：NumPy, SciPy, Pandas<br>机器学习：SciKit<br>可视化： Matplotlib, Seaborn</p>
+<h3 id="3-如何利用Numpy对数列的前n项进行排序"><a href="#3-如何利用Numpy对数列的前n项进行排序" class="headerlink" title="3. 如何利用Numpy对数列的前n项进行排序"></a>3. 如何利用Numpy对数列的前n项进行排序</h3><p>使用argsort()函数：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">x</span><span class="selector-attr">[x [: n-1]</span><span class="selector-class">.argsort</span> ()]</div></pre></td></tr></table></figure></p>
+<h3 id="4-如何检验一个数据集或者时间序列是随机分布的"><a href="#4-如何检验一个数据集或者时间序列是随机分布的" class="headerlink" title="4. 如何检验一个数据集或者时间序列是随机分布的"></a>4. 如何检验一个数据集或者时间序列是随机分布的</h3><p>画lag plot（Correlogram：相关图），如果图上的点呈散乱分布，则为随机</p>
+<h3 id="5-在python中如何创建包含不同类型数据的dataframe"><a href="#5-在python中如何创建包含不同类型数据的dataframe" class="headerlink" title="5. 在python中如何创建包含不同类型数据的dataframe"></a>5. 在python中如何创建包含不同类型数据的dataframe</h3><p>利用pandas包的DataFrame函数的serias创建列然后用dtype定义类型：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df = pd.DataFrame(&#123;<span class="string">'x'</span>: pd.Series([<span class="string">'1.0'</span>, <span class="string">'2.0'</span>, <span class="string">'3.0'</span>], dtype=<span class="keyword">float</span>), <span class="string">'y'</span>: pd.Series([<span class="string">'1'</span>, <span class="string">'2'</span>, <span class="string">'3'</span>], dtype=<span class="keyword">int</span>)&#125;)</div></pre></td></tr></table></figure></p>
+<h3 id="6-Pandas中使用的标准数据缺失标志是什么"><a href="#6-Pandas中使用的标准数据缺失标志是什么" class="headerlink" title="6. Pandas中使用的标准数据缺失标志是什么"></a>6. Pandas中使用的标准数据缺失标志是什么</h3><p>NaN</p>
+<h3 id="7-描述numpy-array比python-list的优势"><a href="#7-描述numpy-array比python-list的优势" class="headerlink" title="7. 描述numpy array比python list的优势"></a>7. 描述numpy array比python list的优势</h3><p>a. numpy array比python list更紧凑，存储数据占的空间小，读写速度快。(这是由于python list储存的是指向对象（至少需要16个字节）的指针（至少4个字节）；而array中储存的是单一变量（比如单精度浮点数为4个字节，双精度为8）) </p>
+<p>b. array可以直接使用vector和matrix类型的处理函数，非常方便。</p>
+<h3 id="8-如何检验numpy的array为空"><a href="#8-如何检验numpy的array为空" class="headerlink" title="8. 如何检验numpy的array为空"></a>8. 如何检验numpy的array为空</h3><p>使用size函数， 比如:<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a = np.<span class="keyword">array</span>([])</div><div class="line"><span class="built_in">print</span> a.<span class="built_in">size</span> # <span class="number">0</span></div></pre></td></tr></table></figure></p>
+<h3 id="9-如何检验pandas-dataframe为空？"><a href="#9-如何检验pandas-dataframe为空？" class="headerlink" title="9. 如何检验pandas dataframe为空？"></a>9. 如何检验pandas dataframe为空？</h3><p>使用empty函数</p>
+<h1 id="python-基础操作部分"><a href="#python-基础操作部分" class="headerlink" title="python 基础操作部分"></a>python 基础操作部分</h1><h3 id="1-如何在python中复制对象"><a href="#1-如何在python中复制对象" class="headerlink" title="1. 如何在python中复制对象"></a>1. 如何在python中复制对象</h3><p>使用copy包的copy和deepcopy函数。其中，copy 仅拷贝对象本身，而不拷贝对象中引用的其它对象；deepcopy 除拷贝对象本身，而且拷贝对象中引用的其它对象。</p>
+<h3 id="2-PEP8是什么"><a href="#2-PEP8是什么" class="headerlink" title="2. PEP8是什么?"></a>2. PEP8是什么?</h3><p>python语言的编程规范，提高代码可读性</p>
+<h3 id="init-py是什么"><a href="#init-py是什么" class="headerlink" title="init.py是什么"></a>init.py是什么</h3><p>一个空文件，用于将导入目录中的模块。比如有一个模块是maindir/subdir/module.py，init.py 可以使之可以通过以下形式导入。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import maindir<span class="selector-class">.subdir</span><span class="selector-class">.module</span></div></pre></td></tr></table></figure></p>
+<h3 id="4-range-和xrange-函数的差异"><a href="#4-range-和xrange-函数的差异" class="headerlink" title="4. range()和xrange()函数的差异"></a>4. range()和xrange()函数的差异</h3><p>range()生成的是list，而xrange（）生成的是迭代器（iterator）。例如：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">range(<span class="number">5</span>) #  [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</div><div class="line">xrange(<span class="number">5</span>)</div><div class="line"><span class="type">list</span>(xrange(<span class="number">1</span>,<span class="number">5</span>)) # [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</div></pre></td></tr></table></figure></p>
+<h3 id="5-如何对list中的item进行随机重排"><a href="#5-如何对list中的item进行随机重排" class="headerlink" title="5. 如何对list中的item进行随机重排"></a>5. 如何对list中的item进行随机重排</h3><p>使用shuffle()函数</p>
+<h3 id="6-python中用于发现bug的工具"><a href="#6-python中用于发现bug的工具" class="headerlink" title="6. python中用于发现bug的工具"></a>6. python中用于发现bug的工具</h3><p>Pylint和Pychecker.<br>Pylint可以检验模块是否满足所有的编程标准；Pychecker则是静态分析工具。</p>
+<h3 id="7-装饰器的作用"><a href="#7-装饰器的作用" class="headerlink" title="7. 装饰器的作用"></a>7. 装饰器的作用</h3><p>装饰器可用于修饰函数或类。通过装饰器可以包裹函数或类使之执行之前或之后调用装饰器函数，从而达到抽离出大量函数中与函数功能本身无关的雷同代码并继续重用的目的。比较经典的厨力场景有检验权限，追踪参数，日志登陆等。<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">makebold</span><span class="params">(fn)</span></span><span class="symbol">:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapped</span><span class="params">()</span></span><span class="symbol">:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">"&lt;b&gt;"</span> + fn() + <span class="string">"&lt;/b&gt;"</span></div><div class="line">    <span class="keyword">return</span> wrapped</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">makeitalic</span><span class="params">(fn)</span></span><span class="symbol">:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapped</span><span class="params">()</span></span><span class="symbol">:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">"&lt;i&gt;"</span> + fn() + <span class="string">"&lt;/i&gt;"</span></div><div class="line">    <span class="keyword">return</span> wrapped</div><div class="line"> </div><div class="line">@makebold</div><div class="line">@makeitalic</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span></span><span class="symbol">:</span></div><div class="line">    <span class="keyword">return</span> <span class="string">"hello world"</span></div></pre></td></tr></table></figure></p>
+<h1 id="python程序解析部分"><a href="#python程序解析部分" class="headerlink" title="python程序解析部分"></a>python程序解析部分</h1><h3 id="以下代码的输出？"><a href="#以下代码的输出？" class="headerlink" title="以下代码的输出？"></a>以下代码的输出？</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">multipliers</span><span class="params">()</span>:</span></div><div class="line"><span class="keyword">return</span> [<span class="keyword">lambda</span> x: i * x <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">4</span>)]</div><div class="line"><span class="keyword">print</span> [m(<span class="number">2</span>) <span class="keyword">for</span> m <span class="keyword">in</span> multipliers()]</div></pre></td></tr></table></figure>
+<p>输出为[6,6,6,6]。 这个的原因是 Python 的闭包的后期绑定导致的 late binding，这意味着在闭包中的变量是在内部函数被调用的时候被查找。所以结果是，当任何 multipliers() 返回的函数被调用，在那时，i 的值是在它被调用时的周围作用域中查找，到那时，无论哪个返回的函数被调用，for 循环都已经完成了，i 最后的值是 3，因此，每个返回的函数 multiplies 的值都是 3。因此一个等于 2 的值被传递进以上代码，它们将返回一个值 6 （比如： 3 x 2）。</p>
+<h3 id="以下代码是否报错"><a href="#以下代码是否报错" class="headerlink" title="以下代码是否报错"></a>以下代码是否报错</h3><figure class="highlight golo"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">list</span>= [‘a’,’e’,’i’,’o’,’u’]</div><div class="line"><span class="keyword">print</span> <span class="keyword">list</span> [<span class="number">8</span>:]</div></pre></td></tr></table></figure>
+<p>输出为[]。 访问一个列表的以超出列表成员数作为开始索引的切片将不会导致 IndexError，并且将仅仅返回一个空列表。</p>
+<h3 id="以下代码的输出"><a href="#以下代码的输出" class="headerlink" title="以下代码的输出"></a>以下代码的输出</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span> <span class="params">(i= [])</span></span><span class="symbol">:</span></div><div class="line">i.append (<span class="number">1</span>)</div><div class="line"><span class="keyword">return</span> i</div><div class="line">foo ()</div><div class="line">foo ()</div></pre></td></tr></table></figure>
+<p>输出为[1],[1,1]。 新的默认列表仅仅只在函数被定义时创建一次。当foo没有被指定的列表参数调用的时候，其使用的是同一个列表。</p>
+<h1 id="数学统计学部分"><a href="#数学统计学部分" class="headerlink" title="数学统计学部分"></a>数学统计学部分</h1><h3 id="1-什么是逻辑斯蒂回归（logistic-regression）"><a href="#1-什么是逻辑斯蒂回归（logistic-regression）" class="headerlink" title="1. 什么是逻辑斯蒂回归（logistic regression）"></a>1. 什么是逻辑斯蒂回归（logistic regression）</h3><p>逻辑斯蒂回归常指逻辑回归模型，用于预测参数之间组合可能输出的二分结果。</p>
+<h3 id="2-推荐系统、协同过滤"><a href="#2-推荐系统、协同过滤" class="headerlink" title="2. 推荐系统、协同过滤"></a>2. 推荐系统、协同过滤</h3><h3 id="3-P值的意义"><a href="#3-P值的意义" class="headerlink" title="3. P值的意义"></a>3. P值的意义</h3><p>决定假设检验的的结果是否显著</p>
+<h3 id="4-监督学习和非监督学习，机器学习算法"><a href="#4-监督学习和非监督学习，机器学习算法" class="headerlink" title="4. 监督学习和非监督学习，机器学习算法"></a>4. 监督学习和非监督学习，机器学习算法</h3><h3 id="5-A-B测试"><a href="#5-A-B测试" class="headerlink" title="5. A/B测试"></a>5. A/B测试</h3><figure class="highlight dns"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对有两个变量<span class="keyword">A</span>，B的随机试验进行的统计结果测试，目的是识别改动对网页点击率的影响从而获得实现最大化的改动。</div></pre></td></tr></table></figure>
+<h3 id="6-特征值和特征向量"><a href="#6-特征值和特征向量" class="headerlink" title="6. 特征值和特征向量"></a>6. 特征值和特征向量</h3><p>在数据分析是通过计算相关和协方差矩阵的特征向量可以用于确定之后的线性转换的方向。特征值表示特征向量方向转化或者压缩的强度。</p>
+<h3 id="7-如何评价一个逻辑斯蒂模型"><a href="#7-如何评价一个逻辑斯蒂模型" class="headerlink" title="7. 如何评价一个逻辑斯蒂模型"></a>7. 如何评价一个逻辑斯蒂模型</h3><ul>
+<li>用分类矩阵查看真阴性和假阳性</li>
+<li>一致性分析： 查看逻辑斯蒂模型区分事件是否发生的能力</li>
+<li>与随机选择模型进行对比<h3 id="8-项目分析的步骤"><a href="#8-项目分析的步骤" class="headerlink" title="8. 项目分析的步骤"></a>8. 项目分析的步骤</h3></li>
+<li>理解问题</li>
+<li>探索数据</li>
+<li>准备数据用于建模</li>
+<li>建模</li>
+<li>测试</li>
+<li><p>上线执行并追踪</p>
+<h3 id="9-如何处理缺失数据？-如果缺失的数据不可得，将采用何种手段收集？"><a href="#9-如何处理缺失数据？-如果缺失的数据不可得，将采用何种手段收集？" class="headerlink" title="9. 如何处理缺失数据？(如果缺失的数据不可得，将采用何种手段收集？)"></a>9. 如何处理缺失数据？(如果缺失的数据不可得，将采用何种手段收集？)</h3><p>首先判断缺失数据是否有意义，如果没有意义或者缺失数据的比例超过80%直接去掉。如果缺失数据有规律，则需根据其变化规律来推测次缺失值；如果数据没有规律，则用其他值代替：</p>
+</li>
+<li><p>如果数据符合正态分布，缺失值用期望值代替</p>
+</li>
+<li><p>如果数据是类型变量，则用默认类型值代替缺失值</p>
+<h3 id="10-描述K-Means-Clustering算法"><a href="#10-描述K-Means-Clustering算法" class="headerlink" title="10. 描述K-Means Clustering算法"></a>10. 描述K-Means Clustering算法</h3><h3 id="11-逻辑斯蒂回归和线性回归的区别"><a href="#11-逻辑斯蒂回归和线性回归的区别" class="headerlink" title="11. 逻辑斯蒂回归和线性回归的区别"></a>11. 逻辑斯蒂回归和线性回归的区别</h3><p>逻辑斯蒂回归的预测值是两元的，0或1；而线性回归的预测值是连续的。</p>
+<h3 id="12-如何证明根号2是无理数"><a href="#12-如何证明根号2是无理数" class="headerlink" title="12. 如何证明根号2是无理数"></a>12. 如何证明根号2是无理数</h3><h3 id="13-统计中国有多少树"><a href="#13-统计中国有多少树" class="headerlink" title="13. 统计中国有多少树"></a>13. 统计中国有多少树</h3></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+  
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>🐶 您的支持将鼓励我继续创作 🐶</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赞赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-img.jpg" alt="chumingke WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-img.jpg" alt="chumingke Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+         
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2017/10/MySQL-index-correlation.html" rel="next" title="MySQL索引相关">
+                <i class="fa fa-chevron-left"></i> MySQL索引相关
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="/blog/2017/10/Interview-of-Python-Data-Analyst.html"
+     data-title="python数据分析师面试题选"
+     data-content=""
+     data-url="https://chumingke.github.io/blog/2017/10/Interview-of-Python-Data-Analyst.html">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="monthly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="/blog/2017/10/Interview-of-Python-Data-Analyst.html"
+           data-title="python数据分析师面试题选" data-url="https://chumingke.github.io/blog/2017/10/Interview-of-Python-Data-Analyst.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/dingxiu.jpg"
+               alt="chumingke" />
+          <p class="site-author-name" itemprop="name">chumingke</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chumingke" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/bi-ma-wen-34" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-battery-3"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.woaitqs.cc/" title="Qisen Tang" target="_blank">Qisen Tang</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://szhshp.org" title="szhshp的博客" target="_blank">szhshp的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://python.zhangwei.website" title="JuniorCoder" target="_blank">JuniorCoder</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hippo-jessy.com" title="Hippo" target="_blank">Hippo</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.zhihu.com/people/lippi-ouyang" title="友链出租" target="_blank">友链出租</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#python数据分析部分"><span class="nav-number">1.</span> <span class="nav-text">python数据分析部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-如何利用SciKit包训练一个简单的线性回归模型"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. 如何利用SciKit包训练一个简单的线性回归模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-例举几个常用的python分析数据包及其作用"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. 例举几个常用的python分析数据包及其作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-如何利用Numpy对数列的前n项进行排序"><span class="nav-number">1.0.3.</span> <span class="nav-text">3. 如何利用Numpy对数列的前n项进行排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-如何检验一个数据集或者时间序列是随机分布的"><span class="nav-number">1.0.4.</span> <span class="nav-text">4. 如何检验一个数据集或者时间序列是随机分布的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-在python中如何创建包含不同类型数据的dataframe"><span class="nav-number">1.0.5.</span> <span class="nav-text">5. 在python中如何创建包含不同类型数据的dataframe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Pandas中使用的标准数据缺失标志是什么"><span class="nav-number">1.0.6.</span> <span class="nav-text">6. Pandas中使用的标准数据缺失标志是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-描述numpy-array比python-list的优势"><span class="nav-number">1.0.7.</span> <span class="nav-text">7. 描述numpy array比python list的优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-如何检验numpy的array为空"><span class="nav-number">1.0.8.</span> <span class="nav-text">8. 如何检验numpy的array为空</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-如何检验pandas-dataframe为空？"><span class="nav-number">1.0.9.</span> <span class="nav-text">9. 如何检验pandas dataframe为空？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#python-基础操作部分"><span class="nav-number">2.</span> <span class="nav-text">python 基础操作部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-如何在python中复制对象"><span class="nav-number">2.0.1.</span> <span class="nav-text">1. 如何在python中复制对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-PEP8是什么"><span class="nav-number">2.0.2.</span> <span class="nav-text">2. PEP8是什么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#init-py是什么"><span class="nav-number">2.0.3.</span> <span class="nav-text">init.py是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-range-和xrange-函数的差异"><span class="nav-number">2.0.4.</span> <span class="nav-text">4. range()和xrange()函数的差异</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-如何对list中的item进行随机重排"><span class="nav-number">2.0.5.</span> <span class="nav-text">5. 如何对list中的item进行随机重排</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-python中用于发现bug的工具"><span class="nav-number">2.0.6.</span> <span class="nav-text">6. python中用于发现bug的工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-装饰器的作用"><span class="nav-number">2.0.7.</span> <span class="nav-text">7. 装饰器的作用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#python程序解析部分"><span class="nav-number">3.</span> <span class="nav-text">python程序解析部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#以下代码的输出？"><span class="nav-number">3.0.1.</span> <span class="nav-text">以下代码的输出？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以下代码是否报错"><span class="nav-number">3.0.2.</span> <span class="nav-text">以下代码是否报错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以下代码的输出"><span class="nav-number">3.0.3.</span> <span class="nav-text">以下代码的输出</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数学统计学部分"><span class="nav-number">4.</span> <span class="nav-text">数学统计学部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-什么是逻辑斯蒂回归（logistic-regression）"><span class="nav-number">4.0.1.</span> <span class="nav-text">1. 什么是逻辑斯蒂回归（logistic regression）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-推荐系统、协同过滤"><span class="nav-number">4.0.2.</span> <span class="nav-text">2. 推荐系统、协同过滤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-P值的意义"><span class="nav-number">4.0.3.</span> <span class="nav-text">3. P值的意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-监督学习和非监督学习，机器学习算法"><span class="nav-number">4.0.4.</span> <span class="nav-text">4. 监督学习和非监督学习，机器学习算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-A-B测试"><span class="nav-number">4.0.5.</span> <span class="nav-text">5. A/B测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-特征值和特征向量"><span class="nav-number">4.0.6.</span> <span class="nav-text">6. 特征值和特征向量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-如何评价一个逻辑斯蒂模型"><span class="nav-number">4.0.7.</span> <span class="nav-text">7. 如何评价一个逻辑斯蒂模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-项目分析的步骤"><span class="nav-number">4.0.8.</span> <span class="nav-text">8. 项目分析的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-如何处理缺失数据？-如果缺失的数据不可得，将采用何种手段收集？"><span class="nav-number">4.0.9.</span> <span class="nav-text">9. 如何处理缺失数据？(如果缺失的数据不可得，将采用何种手段收集？)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-描述K-Means-Clustering算法"><span class="nav-number">4.0.10.</span> <span class="nav-text">10. 描述K-Means Clustering算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-逻辑斯蒂回归和线性回归的区别"><span class="nav-number">4.0.11.</span> <span class="nav-text">11. 逻辑斯蒂回归和线性回归的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-如何证明根号2是无理数"><span class="nav-number">4.0.12.</span> <span class="nav-text">12. 如何证明根号2是无理数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-统计中国有多少树"><span class="nav-number">4.0.13.</span> <span class="nav-text">13. 统计中国有多少树</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chumingke</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ezlippi"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="//cdn.jsdelivr.net/ua-parser.js/0.7.10/ua-parser.min.js"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>
